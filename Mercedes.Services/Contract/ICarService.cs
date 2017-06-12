@@ -11,5 +11,8 @@ namespace Mercedes.Services.Contract
     {
         Manufacturer GetManufacturerById(int manufacturerId);
         IList<Manufacturer> GetAllManufacturers();
+        bool AddManufacturer(Manufacturer manufacturer);
+        bool DeleteManufacturer(Manufacturer manufacturer);
+        bool UpdateManufacturer(Manufacturer manufacturer);
     }
 }

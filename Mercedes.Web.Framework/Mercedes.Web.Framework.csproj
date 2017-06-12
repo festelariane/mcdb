@@ -97,7 +97,10 @@
     <Compile Include="Menu\SiteMapNode.cs" />
     <Compile Include="Menu\XmlSiteMap.cs" />
     <Compile Include="Mvc\ActionResults\DownloadResult.cs" />
+    <Compile Include="Mvc\Attributes\UserAuthorizeAttribute.cs" />
     <Compile Include="Mvc\Controllers\BaseController.cs" />
+    <Compile Include="Mvc\Infrastructure\MercedesViewEngine.cs" />
+    <Compile Include="Mvc\Infrastructure\ThemeableVirtualPathProviderViewEngine.cs" />
     <Compile Include="Mvc\Pages\WebViewPage.cs" />
     <Compile Include="Mvc\Validators\BaseAbstractValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -120,7 +123,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Mvc\Attributes\" />
     <Folder Include="Mvc\ModelBinders\" />
     <Folder Include="Themes\" />
   </ItemGroup>

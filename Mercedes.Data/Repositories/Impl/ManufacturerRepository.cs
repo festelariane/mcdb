@@ -1,10 +1,6 @@
 ﻿using Mercedes.Data.Repositories.Contract;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Mercedes.Core.Domain;
 using Mercedes.Core.Domain;
 using Dapper;
 
@@ -36,17 +32,32 @@ namespace Mercedes.Data.Repositories.Impl
 
         public void Add(Manufacturer entity)
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var query = "insert into Manufacturer (Code,Name) values (@Code,@Name)";
+                var result = conn.Query(query, new { Code = entity.Code, Name = entity.Name });
+            }
         }
 
         public void Delete(Manufacturer entity)
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var query = "delete Manufacturer where Id=@Id";
+                var result = conn.Query(query, new { Id = entity.Id });
+            }
         }
 
         public void Update(Manufacturer entity)
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var query = "update Manufacturer set Code=@Code, Name=@Name where Id=@Id";
+                var result = conn.Query(query, new { Code = entity.Code, Name = entity.Name, Id = entity.Id });
+            }
         }
     }
 }

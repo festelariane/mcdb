@@ -19,6 +19,44 @@ namespace Mercedes.Services.Impl
             _manufactureRepository = manufactureRepository;
         }
 
+        public bool AddManufacturer(Manufacturer manufacturer)
+        {
+            try
+            {
+                _manufactureRepository.Add(manufacturer);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+           
+        }
+
+        public bool DeleteManufacturer(Manufacturer manufacturer)
+        {
+            try
+            {
+                _manufactureRepository.Delete(manufacturer);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool UpdateManufacturer(Manufacturer manufacturer)
+        {
+            try
+            {
+                _manufactureRepository.Update(manufacturer);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         public IList<Manufacturer> GetAllManufacturers()
         {
             return _manufactureRepository.GetAll().ToList();

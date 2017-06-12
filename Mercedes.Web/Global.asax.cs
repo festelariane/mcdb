@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mercedes.Web.Framework.Mvc.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,6 +18,9 @@ namespace Mercedes.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             DryIocConfig.BuildConfig();
+            //Set viewEngines
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new MercedesViewEngine());
         }
     }
 }
