@@ -13,10 +13,12 @@ namespace Mercedes.Services.Impl
     {
         private readonly IVehicleRepository _carRepository;
         private readonly IManufacturerRepository _manufactureRepository;
-        public CarService(IVehicleRepository carRepository, IManufacturerRepository manufactureRepository)
+        private readonly IModelRepository _modelRepository;
+        public CarService(IVehicleRepository carRepository, IManufacturerRepository manufactureRepository, IModelRepository modelRepository)
         {
             _carRepository = carRepository;
             _manufactureRepository = manufactureRepository;
+            _modelRepository = modelRepository;
         }
 
         public bool AddManufacturer(Manufacturer manufacturer)
@@ -65,6 +67,55 @@ namespace Mercedes.Services.Impl
         public Manufacturer GetManufacturerById(int manufacturerId)
         {
             return _manufactureRepository.Get(manufacturerId);
+        }
+
+        public Model GetModelById(int modelId)
+        {
+            return _modelRepository.Get(modelId);
+        }
+
+        public IList<Model> GetAllModel()
+        {
+            return _modelRepository.GetAll().ToList();
+        }
+
+        public bool AddModel(Model model)
+        {
+            try
+            {
+                _modelRepository.Add(model);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteModel(Model model)
+        {
+            try
+            {
+                _modelRepository.Delete(model);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateModel(Model model)
+        {
+            try
+            {
+                _modelRepository.Update(model);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

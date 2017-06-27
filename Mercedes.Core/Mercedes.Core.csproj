@@ -86,6 +86,7 @@
     <Compile Include="Common\DefaultValueDictionary.cs" />
     <Compile Include="Common\PagedData.cs" />
     <Compile Include="Domain\BaseEntity.cs" />
+    <Compile Include="Domain\Model.cs" />
     <Compile Include="Domain\Vehicle.cs" />
     <Compile Include="Domain\Manufacturer.cs" />
     <Compile Include="Domain\UserRole.cs" />

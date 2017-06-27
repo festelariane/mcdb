@@ -46,11 +46,13 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\Contract\IModelRepository.cs" />
     <Compile Include="Repositories\Contract\IVehicleRepository.cs" />
     <Compile Include="Repositories\Contract\IGenericRepository.cs" />
     <Compile Include="Repositories\Contract\IManufacturerRepository.cs" />
     <Compile Include="Repositories\Contract\IRoleRepository.cs" />
     <Compile Include="Repositories\Contract\IUserRepository.cs" />
+    <Compile Include="Repositories\Impl\ModelRepository.cs" />
     <Compile Include="Repositories\Impl\VehicleRepository.cs" />
     <Compile Include="Repositories\Impl\GenericRepository.cs" />
     <Compile Include="Repositories\Impl\ManufacturerRepository.cs" />

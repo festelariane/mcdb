@@ -149,6 +149,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManufacturerController.cs" />
+    <Compile Include="Controllers\ModelController.cs" />
     <Compile Include="Mvc\Attributes\UserAdminAuthorizeAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -372,6 +373,9 @@
     <Content Include="assets\plugins\datatables\extensions\TableTools\Readme.md" />
     <Content Include="Views\Manufacturer\_AddManuafacturerFrom.cshtml" />
     <Content Include="Views\Manufacturer\_UpdateManuafacturerFrom.cshtml" />
+    <Content Include="Views\Model\Index.cshtml" />
+    <Content Include="Views\Model\_UpdateModelFrom.cshtml" />
+    <Content Include="Views\Model\_AddModelFrom.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
