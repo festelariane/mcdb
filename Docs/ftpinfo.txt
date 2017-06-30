@@ -1,5 +1,0 @@
-Thông tin FTP cho a e up code nè:
-Server: 112.78.2.76
-FTP Account:
-user: mercedes
-pass: FtpAccount@!1
