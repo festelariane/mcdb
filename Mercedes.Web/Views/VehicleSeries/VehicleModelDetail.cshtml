@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "";
+}
+@using Mercedes.Web.Models
+@model ModelDetail
+
+<section class="product-detail-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 product-slider">
+                <ul class="bxslider-product">
+                    <li><a href="../images/c200-img-01.jpg" data-fancybox="group"><img src="../images/c200-img-01.jpg" /></a></li>
+                    <li><a href="../images/c200-img-02.jpg" data-fancybox="group"><img src="../images/c200-img-02.jpg" /></a></li>
+                    <li><a href="../images/c200-img-03.jpg" data-fancybox="group"><img src="../images/c200-img-03.jpg" /></a></li>
+                    <li><a href="../images/c200-img-04.jpg" data-fancybox="group"><img src="../images/c200-img-04.jpg" /></a></li>
+                    <li><a href="../images/c200-img-05.jpg" data-fancybox="group"><img src="../images/c200-img-05.jpg" /></a></li>
+                </ul>
+
+                <div id="bx-pager">
+                    <a data-slide-index="0" href=""><img src="../images/c200-img-01.jpg" /></a>
+                    <a data-slide-index="1" href=""><img src="../images/c200-img-02.jpg" /></a>
+                    <a data-slide-index="2" href=""><img src="../images/c200-img-03.jpg" /></a>
+                    <a data-slide-index="3" href=""><img src="../images/c200-img-04.jpg" /></a>
+                    <a data-slide-index="4" href=""><img src="../images/c200-img-05.jpg" /></a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 product-detail">
+                <div class="detail-name-price">
+                    <p class="detail-name">@Model.Name</p>
+                    <p class="detail-price">@Model.Price</p>
+                </div>
+                <table class="detail-description">
+                    <tr>
+                        <td class="detail-title">Đời xe:</td>
+                        <td>@Model.Year</td>
+                    </tr>
+                    <tr>
+                        <td class="detail-title">Màu xe:</td>
+                        <td>@Model.Color</td>
+                    </tr>
+                    <tr>
+                        <td class="detail-title">Loại số:</td>
+                        <td>@Model.Type</td>
+                    </tr>
+                    <tr>
+                        <td class="detail-title">NL tiêu hao:</td>
+                        <td>@Model.Fuels</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="contain product-description">
+    <div class="container">
+        <h2>Thủ tục thuê xe</h2>
+        <p>- Quý khách phải có Hộ Khẩu TP.HCM, số nhà trùng số Hộ Khẩu, CMND, bằng lái photo.</p>
+        <p>- Khi giao xe,quý khách thuế chấp 15 triệu tiền mặt hoặc một xe gắn máy có giá trị tương đương 15 triệu.</p>
+        <p>- Đối với công ty thủ tục thuê cấn GPKD bản chính,15 triệu tiền mặt.</p>
+        <p>- Giá trên áp dụng thuê lẽ từng ngày,quý khách thuê dài hạn,vui lòng liên hệ phòng điều hành xe để được giá tốt nhất.</p>
+    </div>
+</section>
+<section class="contain banner-ads">
+    <div class="container">
+        <p>Đẳng Cấp. Cao Cấp. Chuyên Nghiệp.</p>
+        <a href="@Url.RouteUrl("Contact")" class="btn btn-site">Liên Hệ Ngay</a>
+    </div>
+</section>
+

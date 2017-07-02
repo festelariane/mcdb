@@ -1,7 +1,85 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Giới thiệu";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+@*<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>*@
 
-<p>Use this area to provide additional information.</p>
+<div class="page-banner about-page-bg">
+    <div class="container">
+        <h1>Về Chúng Tôi</h1>
+    </div>
+</div>
+<section class="contain">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <p class="big-slogan">Mercedes,<br />cho thuê xe<br />là phải sang</p>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <p>Chúng tôi là đối tác chiến lược của công ty Mercedes Benz tại Đức.</p>
+                <p>Chúng tôi đang triển khai dịch vụ cho thuê dòng xe Mercedes Benz cao cấp tại Việt Nam.</p>
+                <p>Rất hân hạnh được phục vụ  quý khách.</p>
+                <p>Mercedes-Benz là nhà phát minh chiếc ô tô đầu tiên trên thế giới cách đây 130 năm. Thương hiệu “Ngôi sao ba cánh” luôn được xem là biểu tượng cho sự thành công của những người thành đạt trong xã hội trên toàn thế giới.</p>
+                <p>Mercedes-Benz liên tục dẫn đầu thị trường xe sang ở Việt Nam trong 21 năm vừa qua với thị phần hơn 50%, hoàn thiện giấc mơ sở hữu một chiếc xe sang trọng của hơn 25.000 khách hàng Việt Nam và trở thành một nhân tố chủ chốt của ngành ô tô Việt Nam.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="bg-darkgray text-center">
+    <div class="about-product-bg"></div>
+    <div class="container about-product-wrap">
+        <ul class="row product-wrap-list">
+            <li class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <img src="../images/car-c.png" alt="Mercedes Benz C-Class" class="img-responsive" />
+                <p class="product-wrap-name"><span>Mercedes Benz</span>C-Class</p>
+                <a href="@Url.RouteUrl("VehicleSeries",new { id = "1", type = "C-Class" })" class="btn btn-site">Xem Thêm</a>
+            </li>
+            <li class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <img src="../images/car-e.png" alt="Mercedes Benz E-Class" class="img-responsive" />
+                <p class="product-wrap-name"><span>Mercedes Benz</span>E-Class</p>
+                <a href="@Url.RouteUrl("VehicleSeries",new { id = "2", type = "E-Class" })" class="btn btn-site">Xem Thêm</a>
+            </li>
+            <li class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <img src="../images/car-s.png" alt="Mercedes Benz S-Class" class="img-responsive" />
+                <p class="product-wrap-name"><span>Mercedes Benz</span>S-Class</p>
+                <a href="@Url.RouteUrl("VehicleSeries",new { id = "3", type = "S-Class" })" class="btn btn-site">Xem Thêm</a>
+            </li>
+        </ul>
+    </div>
+</section>
+<section class="contain bg-darkgray">
+    <div class="container">
+        <h2>Thư Viện Ảnh</h2>
+        <ul class="row gallery-contain">
+            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                <a href="../images/about-gallery-01.jpg" data-fancybox="group"><img src="../images/about-gallery-01.jpg" alt="Giới Thiệu Về Xe Mercedes Benz" class="img-responsive" /></a>
+            </li>
+            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                <a href="../images/about-gallery-02.jpg" data-fancybox="group"><img src="../images/about-gallery-02.jpg" alt="Giới Thiệu Về Xe Mercedes Benz" class="img-responsive" /></a>
+            </li>
+            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                <a href="../images/about-gallery-03.jpg" data-fancybox="group"><img src="../images/about-gallery-03.jpg" alt="Giới Thiệu Về Xe Mercedes Benz" class="img-responsive" /></a>
+            </li>
+            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                <a href="../images/about-gallery-04.jpg" data-fancybox="group"><img src="../images/about-gallery-04.jpg" alt="Giới Thiệu Về Xe Mercedes Benz" class="img-responsive" /></a>
+            </li>
+            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                <a href="../images/about-gallery-05.jpg" data-fancybox="group"><img src="../images/about-gallery-05.jpg" alt="Giới Thiệu Về Xe Mercedes Benz" class="img-responsive" /></a>
+            </li>
+            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                <a href="../images/about-gallery-06.jpg" data-fancybox="group"><img src="../images/about-gallery-06.jpg" alt="Giới Thiệu Về Xe Mercedes Benz" class="img-responsive" /></a>
+            </li>
+            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                <a href="../images/about-gallery-07.jpg" data-fancybox="group"><img src="../images/about-gallery-07.jpg" alt="Giới Thiệu Về Xe Mercedes Benz" class="img-responsive" /></a>
+            </li>
+            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                <a href="../images/about-gallery-08.jpg" data-fancybox="group"><img src="../images/about-gallery-08.jpg" alt="Giới Thiệu Về Xe Mercedes Benz" class="img-responsive" /></a>
+            </li>
+            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                <a href="../images/about-gallery-09.jpg" data-fancybox="group"><img src="../images/about-gallery-09.jpg" alt="Giới Thiệu Về Xe Mercedes Benz" class="img-responsive" /></a>
+            </li>
+        </ul>
+    </div>
+</section>
+

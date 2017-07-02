@@ -18,23 +18,23 @@ namespace Mercedes.Web.Controllers
         public ActionResult Index()
         {
             //Test
-            var manufacture1 = _carService.GetManufacturerById(1);
-            var allManufactures = _carService.GetAllManufacturers();
+            //var manufacture1 = _carService.GetManufacturerById(1);
+            //var allManufactures = _carService.GetAllManufacturers();
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            //ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            //ViewBag.Message = "Your contact page.";
 
             return View();
-        }
+        }        
     }
 }

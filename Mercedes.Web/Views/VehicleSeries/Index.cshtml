@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "";  
+}
+@using Mercedes.Web.Models
+@model List<CarModel>
+
+<div class="page-banner product-page-bg">
+    <div class="container">
+        <h1>@ViewBag.Message</h1>
+    </div>
+</div>
+
+<section class="contain">
+    <div class="container">
+        <h2>Mercedes Benz</h2>
+        <ul class="row product-wrap-list">                    
+            @if (Model != null && Model.Count > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <li class="col-lg-6 col-md-6 col-sm-6 col-xs-12 product-wrapper">
+                        <a href="@Url.RouteUrl("Detail",new { code = item.Code })" class="product-list-img">
+                            <img src="../images/@Url.Content(@item.UrlImage)" alt="@item.Name" class="img-responsive" />
+                        </a>
+                        <p class="product-list-name">
+                            <a href="@Url.RouteUrl("Detail",new { code = item.Code })">@Url.Content(@item.Name)</a>
+                        </p>
+                        <p class="product-list-price">@Url.Content(@item.Price)</p>                        
+                    </li>                    
+                }
+            }
+        </ul>
+    </div>
+</section>
+<section class="contain banner-ads">
+    <div class="container">
+        <p>Đẳng Cấp. Cao Cấp. Chuyên Nghiệp.</p>
+        <a href="@Url.RouteUrl("Contact")" class="btn btn-site">Liên Hệ Ngay</a>
+    </div>
+</section>

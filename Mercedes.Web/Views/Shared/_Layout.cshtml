@@ -2,43 +2,100 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @*<title>@ViewBag.Title - Thuê Xe | Mercedes Benz - Chuyên cho thuê xe sang</title>*@
+    <title>Thuê Xe | Mercedes Benz - Chuyên cho thuê xe sang</title>
+    
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="./images/favicon.ico" />
 
+    @Styles.Render("~/Content/css")         
+    @Styles.Render("~/Content/cssmer")         
+
+    @*<link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/jquery.bxslider.css" rel="stylesheet" />
+    <link href="../Content/jquery.fancybox.min.css" rel="stylesheet" />
+    <link href="../Content/mercedes-benz-style.css" rel="stylesheet" />*@   
+
+    <script src="../Scripts/jquery.min.js" type="text/javascript"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Tinos" rel="stylesheet">    
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+   
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+<body>   
+    <!-- Loader -->
+    <div class='loader'></div>
+    <!-- Header -->
+    <header>
+        <a href="@Url.RouteUrl("Homepage")" class="brand-logo"><img src="../images/main-logo.png" alt="Mercedes Benz" /></a>
+        <a href="javascript:void(0)" class="nav-button" onclick="openNav()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        <nav id="slideNav">
+            <a href="javascript:void(0)" class="nav-close-button" onclick="closeNav()"><img src="../images/nav-close-button.png" /></a>
+            <ul class="nav-menu">               
+                <li class="active"><a href="@Url.RouteUrl("Homepage")">Trang chủ</a></li>                            
+                <li><a href="@Url.RouteUrl("About")">Giới thiệu</a></li>
+                <li class="nav-menu-sub">
+                    <a href="#">Mercedes</a>
+                    <ul>
+                        <li><a href="@Url.RouteUrl("VehicleSeries",new { id = "1", type = "C-Class" })">C-Class Series</a></li>
+                        <li><a href="@Url.RouteUrl("VehicleSeries",new { id = "2", type = "E-Class" })">E-Class Series</a></li>
+                        <li><a href="@Url.RouteUrl("VehicleSeries",new { id = "3", type = "S-Class" })">S-Class Series</a></li>                                                                    
+                    </ul>                                        
+                </li>
+                <li><a href="@Url.RouteUrl("Contact")">Liên hệ</a></li>               
+            </ul>
+            <p class="hotline">0972.87.82.82</p>
+        </nav>
+    </header>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <!-- main -->
+    <main>
+        @RenderBody()
+    </main>    
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row footer-contain">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 footer-logo">
+                    <a href="@Url.RouteUrl("Homepage")"><img src="../images/main-logo.png" alt="Mercedes Benz" /></a>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 footer-info">
+                    <p>209 Nam Kỳ Khởi Nghĩa, P.7, Q.3, TP. HCM<br />0972.87.82.82 (Mr. Thân)</p>
+                    <ul class="footer-social">
+                        <li><a href="#"><img src="../images/footer-social-facebook.png" alt="Facebook" /></a></li>
+                        <li><a href="#"><img src="../images/footer-social-instagram.png" alt="Instagram" /></a></li>
+                        <li><a href="#"><img src="../images/footer-social-skype.png" alt="Skype" /></a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="copy-right">Copyright © 2017 Mercedes Benz. Allright reserved</p>
+        </div>
+    </footer>
+
+        @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
+               
+        <script src="../Scripts/bootstrap.min.js"></script>
+        <script src="../Scripts/jQuery.scrollSpeed.js" type="text/javascript"></script>
+        <script src="../Scripts/jquery.bxslider.js" type="text/javascript"></script>
+        <script src="../Scripts/jquery.fancybox.min.js" type="text/javascript"></script>
+        <script src="../Scripts/jquery.validate.js"></script>
+        <script src="../Scripts/mercedes-benz-site.js" type="text/javascript"></script>  
+     
 </body>
 </html>
