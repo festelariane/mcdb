@@ -150,6 +150,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManufacturerController.cs" />
     <Compile Include="Controllers\ModelController.cs" />
+    <Compile Include="Controllers\RentTypeController.cs" />
     <Compile Include="Mvc\Attributes\UserAdminAuthorizeAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -376,6 +377,9 @@
     <Content Include="Views\Model\Index.cshtml" />
     <Content Include="Views\Model\_UpdateModelFrom.cshtml" />
     <Content Include="Views\Model\_AddModelFrom.cshtml" />
+    <Content Include="Views\RentType\_AddRentTypeFrom.cshtml" />
+    <Content Include="Views\RentType\_UpdateRentTypeFrom.cshtml" />
+    <Content Include="Views\RentType\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
