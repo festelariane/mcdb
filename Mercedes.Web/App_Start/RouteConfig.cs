@@ -18,14 +18,7 @@ namespace Mercedes.Web
             //    defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
             //     namespaces: new[] { "Mercedes.Web.Controllers" }
             //);
-
-            routes.MapRoute(
-                name: "Default",
-                url: "",
-                defaults: new { controller = "Home", action = "Index" },
-                 namespaces: new[] { "Mercedes.Web.Controllers" }
-            );
-
+            
             routes.MapRoute(
                 name: "Homepage",
                 url: "trang-chu",
@@ -45,8 +38,15 @@ namespace Mercedes.Web
                 url: "lien-he",
                 defaults: new { controller = "Home", action = "Contact" },
                  namespaces: new[] { "Mercedes.Web.Controllers" }
+            );                       
+
+            routes.MapRoute(
+                name: "Detail",
+                 url: "chi-tiet/{code}",
+                defaults: new { controller = "VehicleSeries", action = "VehicleModelDetail", code = UrlParameter.Optional },
+                 namespaces: new[] { "Mercedes.Web.Controllers" }
             );
-           
+
             routes.MapRoute(
                 name: "VehicleSeries",
                 url: "{type}/{id}",
@@ -55,9 +55,9 @@ namespace Mercedes.Web
             );
 
             routes.MapRoute(
-                name: "Detail",
-                 url: "chi-tiet/{code}",
-                defaults: new { controller = "VehicleSeries", action = "VehicleModelDetail", code = UrlParameter.Optional },
+                name: "Default",
+                url: "",
+                defaults: new { controller = "Home", action = "Index" },
                  namespaces: new[] { "Mercedes.Web.Controllers" }
             );
         }
