@@ -588,6 +588,18 @@ label.error {
 	margin-bottom: 0;
 }
 
+.detail-description .form-check-label {
+	font-weight: normal;
+	margin-right: 20px;
+	margin-bottom: 0;
+	cursor: pointer;
+}
+
+.detail-description .form-check-label input[type='radio'] {
+	margin-right: 6px;
+	margin-top: 0;
+}
+
 .map-info {
 	font-size: 14px;
 	line-height: 30px;
@@ -790,6 +802,9 @@ footer .copy-right {
 	}
 	.google-map {
 		height: 350px;
+	}
+	.product-detail-wrap {
+		padding-top: 120px;
 	}
 }
 
