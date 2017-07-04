@@ -12,10 +12,18 @@ namespace Mercedes.Services.Impl
     public class RentService : IRentService
     {
         private readonly IRentTypeRepository _rentTypeRepository;
-        public RentService(IRentTypeRepository rentTypeRepository)
+        private readonly IPriceModelRepository _priceModelRepository;
+        public RentService(IRentTypeRepository rentTypeRepository, IPriceModelRepository priceModelRepository)
         {
             _rentTypeRepository = rentTypeRepository;
+            _priceModelRepository = priceModelRepository;
         }
+
+        public bool AddPriceModel(PriceModel priceModel)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool AddRentType(RentType rentType)
         {
             try
@@ -27,6 +35,11 @@ namespace Mercedes.Services.Impl
             {
                 return false;
             }
+        }
+
+        public bool DeletePriceModel(PriceModel priceModel)
+        {
+            throw new NotImplementedException();
         }
 
         public bool DeleteRentType(RentType rentType)
@@ -42,14 +55,34 @@ namespace Mercedes.Services.Impl
             }
         }
 
+        public IList<PriceModel> GetAllPriceModels()
+        {
+            return _priceModelRepository.GetAll().ToList();
+        }
+
+        public IList<PriceModel> GetAllPriceModelsByModelId(int modelId)
+        {
+            throw new NotImplementedException();
+        }
+
         public IList<RentType> GetAllRentTypes()
         {
             return _rentTypeRepository.GetAll().ToList();
         }
 
+        public PriceModel GetPriceModelById(int priceModelId)
+        {
+            throw new NotImplementedException();
+        }
+
         public RentType GetRentTypeById(int rentTypeId)
         {
             return _rentTypeRepository.Get(rentTypeId);
+        }
+
+        public bool UpdatePriceModel(PriceModel priceModel)
+        {
+            throw new NotImplementedException();
         }
 
         public bool UpdateRentType(RentType rentType)
