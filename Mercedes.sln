@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mercedes.Web", "Mercedes.Web\Mercedes.Web.csproj", "{5BFF7F77-21FC-408E-8D51-1CD8B4A83DC4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4B6C7A5C-07C2-4084-93A9-F63D88145459} = {4B6C7A5C-07C2-4084-93A9-F63D88145459}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mercedes.Web.Framework", "Mercedes.Web.Framework\Mercedes.Web.Framework.csproj", "{4B6C7A5C-07C2-4084-93A9-F63D88145459}"
 EndProject
