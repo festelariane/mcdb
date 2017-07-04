@@ -21,9 +21,11 @@ namespace Mercedes.Services
             builder.Register<IUserRepository, UserRepository>(Reuse.InWebRequest);
             builder.Register<IManufacturerRepository, ManufacturerRepository>(Reuse.InWebRequest);
             builder.Register<IModelRepository, ModelRepository>(Reuse.InWebRequest);
+            builder.Register<IRentTypeRepository, RentTypeRepository>(Reuse.InWebRequest);
 
             //Registera for Data Services
             builder.Register<ICarService, CarService>(Reuse.Transient);
+            builder.Register<IRentService, RentService>(Reuse.Transient);
             builder.Register<IRoleService, RoleService>(Reuse.InWebRequest);
             builder.Register<IUserManagementService, UserManagementService>(Reuse.InWebRequest);
         }

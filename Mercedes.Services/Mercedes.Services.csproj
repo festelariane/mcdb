@@ -46,10 +46,12 @@
   <ItemGroup>
     <Compile Include="CodeHelper.cs" />
     <Compile Include="Contract\ICarService.cs" />
+    <Compile Include="Contract\IRentService.cs" />
     <Compile Include="Contract\IRoleService.cs" />
     <Compile Include="Contract\IUserManagementService.cs" />
     <Compile Include="DependencyRegistrar.cs" />
     <Compile Include="Impl\CarService.cs" />
+    <Compile Include="Impl\RentService.cs" />
     <Compile Include="Impl\RoleService.cs" />
     <Compile Include="Impl\UserManagementService.cs" />
     <Compile Include="IResourceService.cs" />
