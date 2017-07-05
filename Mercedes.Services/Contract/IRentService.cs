@@ -14,5 +14,13 @@ namespace Mercedes.Services.Contract
         bool AddRentType (RentType rentType);
         bool DeleteRentType(RentType rentType);
         bool UpdateRentType(RentType rentType);
+
+        //Price Model
+        PriceModel GetPriceModelById(int priceModelId);
+        IList<PriceModel> GetAllPriceModels();
+        IList<PriceModel> GetAllPriceModelsByModelId(int modelId);
+        bool AddPriceModel(PriceModel priceModel);
+        bool DeletePriceModel(PriceModel priceModel);
+        bool UpdatePriceModel(PriceModel priceModel);
     }
 }
