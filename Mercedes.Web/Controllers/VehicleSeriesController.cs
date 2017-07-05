@@ -19,32 +19,22 @@ namespace Mercedes.Web.Controllers
         // GET: VehicleSeries
         
         [HttpGet]
-        public ActionResult Index(string id)
+        public ActionResult Index(int id = 0)
         {
             ViewBag.Message = "";
-           
-            if (!String.IsNullOrEmpty(id))
-            {
-                try {
-                    var ls = _carService.GetModelByCategoryId(int.Parse(id));
-                    return View(ls);
-                } catch { }
-            }
-             
-            return View(new List<Model>()); 
+
+            var ls = _carService.GetModelByCategoryId(id);
+            return View(ls);            
         }
 
         [HttpGet]
-        public ActionResult VehicleModelDetail(int id)
+        public ActionResult VehicleModelDetail(int id = 0)
         {
-            try {
-                var detail = _carService.GetModelDetail(id);
-                ViewBag.PriceModels = _carService.GetPriceModelByModel(id);
-                return View(detail);
-            } catch { }
-
-            return View(new Model());
+            var detail = _carService.GetModelDetail(id);
+            ViewBag.PriceModels = _carService.GetPriceModelByModel(id);
+            if (detail == null)
+                detail = new Model();
+            return View(detail);            
         }
-
     }
 }

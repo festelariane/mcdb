@@ -3,8 +3,13 @@
 @{
     ViewBag.Title = "";
     var priceModels = ViewBag.PriceModels as List<PriceModel>;
-    var priceFirst = priceModels[0];
-    var detailprice = string.Format("{0:#,###}", priceFirst.Price) + " USD / " + priceFirst.RentType.RentTypeName;
+    var priceFirst = new PriceModel();
+    var detailprice = "";
+    if (priceModels != null && priceModels.Count > 0)
+    {
+        priceFirst = priceModels[0];
+        detailprice = string.Format("{0:#,###}", priceFirst.Price) + " USD / " + priceFirst.RentType.RentTypeName;
+    }
 }
 
 <section class="product-detail-wrap">

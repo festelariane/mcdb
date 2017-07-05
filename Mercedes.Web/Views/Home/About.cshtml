@@ -36,7 +36,7 @@
                     <li class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <img src="@Url.Content(@item.ImageUrl)" alt="Mercedes Benz C-Class" class="img-responsive" />
                         <p class="product-wrap-name"><span>@item.Manufacturer.Name</span>@item.Code</p>
-                        <a href="@Url.RouteUrl("VehicleSeries",new { id = @item.Id.ToString(), type = @item.Code })" class="btn btn-site">Xem Thêm</a>
+                        <a href="@Url.RouteUrl("VehicleSeries",new { id = @item.Id, type = @item.Code })" class="btn btn-site">Xem Thêm</a>
                     </li>                    
                 }
             }                     

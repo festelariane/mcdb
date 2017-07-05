@@ -20,11 +20,11 @@
                 foreach (var item in Model)
                 {
                     <li class="col-lg-6 col-md-6 col-sm-6 col-xs-12 product-wrapper">
-                        <a href="@Url.RouteUrl("Detail",new { id = item.Id.ToString(), code = item.Code })" class="product-list-img">
+                        <a href="@Url.RouteUrl("Detail",new { id = item.Id, code = item.Code })" class="product-list-img">
                             <img src="@Url.Content(@item.ImageUrl)" alt="@item.Name" class="img-responsive" />
                         </a>
                         <p class="product-list-name">
-                            <a href="@Url.RouteUrl("Detail",new { id = item.Id.ToString(), code = item.Code })">@Url.Content(@item.Name)</a>
+                            <a href="@Url.RouteUrl("Detail",new { id = item.Id, code = item.Code })">@Url.Content(@item.Name)</a>
                         </p>
                         <p class="product-list-price">@Url.Content(string.Format("{0:#,###}", @item.PriceModel.Price)) USD / @item.RentType.RentTypeName</p>                        
                     </li>                    
