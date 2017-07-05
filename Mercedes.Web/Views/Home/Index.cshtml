@@ -1,7 +1,9 @@
-﻿@{
-    ViewBag.Title = "Trang chủ";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@using Mercedes.Core.Domain
+@model IList<Category>
+@{
+    ViewBag.Title = "Trang chủ";   
 }
+
 <div class="home-banner">
     <h1>Thuê Xe Mercedes Benz<br />Sang Trọng. Quý Phái. Lịch Lãm.</h1>
     <ul class="bxslider">
@@ -22,38 +24,22 @@
   
 <div class="home-product-wrapper">
     <ul>
-        <li>
-            <div class="home-product-bg" style="background-image: url('../images/product-01-c-class-feature.jpg');"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 home-product-wrap">
-                        <p class="product-wrap-name"><span>Mercedes Benz</span>C-Class</p>
-                        <a href="@Url.RouteUrl("VehicleSeries",new { id = "1", type = "C-Class" })" class="btn btn-site">Xem Thêm</a>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                <li>
+                    <div class="home-product-bg" style="background-image: url('@Url.Content(@item.ImageUrl)');"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 home-product-wrap">
+                                <p class="product-wrap-name"><span>@item.Manufacturer.Name</span>@item.Code</p>
+                                <a href="@Url.RouteUrl("VehicleSeries",new { id = @item.Id.ToString(), type = @item.Code })" class="btn btn-site">Xem Thêm</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="home-product-bg" style="background-image: url('../images/product-02-e-class-feature.jpg');" ></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 home-product-wrap">
-                        <p class="product-wrap-name"><span>Mercedes Benz</span>E-Class</p>
-                        <a href="@Url.RouteUrl("VehicleSeries",new { id = "2", type = "E-Class" })" class="btn btn-site">Xem Thêm</a>
-                    </div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <div class="home-product-bg" style="background-image: url('../images/product-03-s-class-feature.jpg');"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 home-product-wrap">
-                        <p class="product-wrap-name"><span>Mercedes Benz</span>S-Class</p>
-                        <a href="@Url.RouteUrl("VehicleSeries",new { id = "3", type = "S-Class" })" class="btn btn-site">Xem Thêm</a>
-                    </div>
-                </div>
-            </div>
-        </li>
+                </li>
+            }
+        }         
     </ul>
 </div>

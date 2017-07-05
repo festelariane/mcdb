@@ -8,9 +8,14 @@ namespace Mercedes.Core.Domain
 {
     public class Model : BaseEntity
     {
-        public Manufacturer Manufacturer { get; set; }
-        public int ManufacturerId { get; set; }
+        public Category Category { get; set; }
+        public RentType RentType { get; set; }
+        public PriceModel PriceModel { get; set; }
+        
+        public int CategoryId { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
+        public string ImageUrl { get; set; }
+       
     }
 }

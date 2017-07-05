@@ -48,7 +48,7 @@ namespace Mercedes.Admin.Controllers
         public ActionResult Update(int Id)
         {
             var model = _carService.GetModelById(Id);
-            ViewBag.Manufacturers = _carService.GetAllManufacturers();
+            ViewBag.Categories = _carService.GetAllCategory();
             return View("_UpdateModelFrom", model);
         }
     }

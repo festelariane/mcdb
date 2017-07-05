@@ -1,9 +1,8 @@
-﻿@{
-    ViewBag.Title = "Giới thiệu";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@using Mercedes.Core.Domain
+@model IList<Category>
+@{
+    ViewBag.Title = "Giới thiệu"; 
 }
-@*<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>*@
 
 <div class="page-banner about-page-bg">
     <div class="container">
@@ -30,21 +29,17 @@
     <div class="about-product-bg"></div>
     <div class="container about-product-wrap">
         <ul class="row product-wrap-list">
-            <li class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <img src="../images/car-c.png" alt="Mercedes Benz C-Class" class="img-responsive" />
-                <p class="product-wrap-name"><span>Mercedes Benz</span>C-Class</p>
-                <a href="@Url.RouteUrl("VehicleSeries",new { id = "1", type = "C-Class" })" class="btn btn-site">Xem Thêm</a>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <img src="../images/car-e.png" alt="Mercedes Benz E-Class" class="img-responsive" />
-                <p class="product-wrap-name"><span>Mercedes Benz</span>E-Class</p>
-                <a href="@Url.RouteUrl("VehicleSeries",new { id = "2", type = "E-Class" })" class="btn btn-site">Xem Thêm</a>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <img src="../images/car-s.png" alt="Mercedes Benz S-Class" class="img-responsive" />
-                <p class="product-wrap-name"><span>Mercedes Benz</span>S-Class</p>
-                <a href="@Url.RouteUrl("VehicleSeries",new { id = "3", type = "S-Class" })" class="btn btn-site">Xem Thêm</a>
-            </li>
+            @if (Model != null && Model.Count > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <li class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <img src="@Url.Content(@item.ImageUrl)" alt="Mercedes Benz C-Class" class="img-responsive" />
+                        <p class="product-wrap-name"><span>@item.Manufacturer.Name</span>@item.Code</p>
+                        <a href="@Url.RouteUrl("VehicleSeries",new { id = @item.Id.ToString(), type = @item.Code })" class="btn btn-site">Xem Thêm</a>
+                    </li>                    
+                }
+            }                     
         </ul>
     </div>
 </section>

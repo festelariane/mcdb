@@ -1,9 +1,11 @@
-﻿
+﻿@using Mercedes.Core.Domain
+@model Model
 @{
     ViewBag.Title = "";
+    var priceModels = ViewBag.PriceModels as List<PriceModel>;
+    var priceFirst = priceModels[0];
+    var detailprice = string.Format("{0:#,###}", priceFirst.Price) + " USD / " + priceFirst.RentType.RentTypeName;
 }
-@using Mercedes.Web.Models
-@model ModelDetail
 
 <section class="product-detail-wrap">
     <div class="container">
@@ -28,25 +30,54 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 product-detail">
                 <div class="detail-name-price">
                     <p class="detail-name">@Model.Name</p>
-                    <p class="detail-price">@Model.Price</p>
+                    <p class="detail-price">@detailprice</p>                   
                 </div>
                 <table class="detail-description">
                     <tr>
                         <td class="detail-title">Đời xe:</td>
-                        <td>@Model.Year</td>
+                        <td>2017</td>
                     </tr>
                     <tr>
                         <td class="detail-title">Màu xe:</td>
-                        <td>@Model.Color</td>
+                        <td>Bạc - Đen - Xám</td>
                     </tr>
                     <tr>
                         <td class="detail-title">Loại số:</td>
-                        <td>@Model.Type</td>
+                        <td>Số tự động</td>
                     </tr>
-                    <tr>
-                        <td class="detail-title">NL tiêu hao:</td>
-                        <td>@Model.Fuels</td>
-                    </tr>
+                    @if (priceModels.Count > 1)
+                    {
+                        <tr>
+                            <td class="detail-title">Thuê xe:</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <table>
+                                    @{
+                                        var temp = "";
+                                        foreach (var item in priceModels)
+                                        {
+                                            temp = string.Format("{0:#,###}", item.Price) + " USD / " + item.RentType.RentTypeName;
+                                            <tr>
+                                                <td class="detail-title">+ @item.RentType.RentTypeName: </td>
+                                                <td>@temp</td>
+                                            </tr>
+                                        }
+                                    }
+                                </table>
+                            </td>
+                        </tr>                        
+                    }
+                    else
+                    {
+                        <tr>
+                            <td class="detail-title">Thuê xe:</td>
+                            <td>@detailprice</td>
+                        </tr>
+                    }
+                    
                 </table>
             </div>
         </div>
