@@ -62,7 +62,7 @@ namespace Mercedes.Services.Impl
 
         public IList<PriceModel> GetAllPriceModelsByModelId(int modelId)
         {
-            throw new NotImplementedException();
+            return _priceModelRepository.GetAllPriceModelsByModelId(modelId).ToList();
         }
 
         public IList<RentType> GetAllRentTypes()

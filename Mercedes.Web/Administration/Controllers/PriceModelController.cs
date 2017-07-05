@@ -23,6 +23,8 @@ namespace Mercedes.Admin.Controllers
             var models = _carService.GetAllModel();
             models.Insert(0, new Model { Id=0,Name="All Model"});
             ViewBag.Models = models;
+            var rentTypes = _rentService.GetAllRentTypes();
+            ViewBag.RentTypes = rentTypes;
             return View();
         }
         [HttpPost]
