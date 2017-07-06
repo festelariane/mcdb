@@ -186,6 +186,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\CarRentalData.mdf" />
+    <Content Include="App_Data\CarRentalData_log.ldf">
+      <DependentUpon>CarRentalData.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\script.sql" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
