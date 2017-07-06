@@ -11,8 +11,8 @@ namespace Mercedes.Web
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");            
-            
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
             routes.MapRoute(
                 name: "Homepage",
                 url: "trang-chu",
@@ -26,7 +26,7 @@ namespace Mercedes.Web
                 defaults: new { controller = "Home", action = "About" },
                  namespaces: new[] { "Mercedes.Web.Controllers" }
             );
-            
+
             routes.MapRoute(
                 name: "Contact",
                 url: "lien-he",
@@ -40,13 +40,13 @@ namespace Mercedes.Web
                 defaults: new { controller = "Home", action = "SendContact", httpMethod = new HttpMethodConstraint("POST") },
                  namespaces: new[] { "Mercedes.Web.Controllers" }
             );
-            
+
             routes.MapRoute(
                 name: "Detail",
                  url: "chi-tiet/{code}",
                 defaults: new { controller = "VehicleSeries", action = "VehicleModelDetail", code = UrlParameter.Optional },
                  namespaces: new[] { "Mercedes.Web.Controllers" }
-            );            
+            );
 
             routes.MapRoute(
                 name: "Category",
@@ -69,7 +69,7 @@ namespace Mercedes.Web
                  namespaces: new[] { "Mercedes.Web.Controllers" }
             );
 
-           
+
         }
     }
 }
