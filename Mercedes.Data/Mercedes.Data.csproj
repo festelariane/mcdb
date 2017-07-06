@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\Contract\IContactRepository.cs" />
     <Compile Include="Repositories\Contract\ICategoryRepository.cs" />
     <Compile Include="Repositories\Contract\IPriceModelRepository.cs" />
     <Compile Include="Repositories\Contract\IRentTypeRepository.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Repositories\Contract\IManufacturerRepository.cs" />
     <Compile Include="Repositories\Contract\IRoleRepository.cs" />
     <Compile Include="Repositories\Contract\IUserRepository.cs" />
+    <Compile Include="Repositories\Impl\ContactRepository.cs" />
     <Compile Include="Repositories\Impl\CategoryRepository.cs" />
     <Compile Include="Repositories\Impl\PriceModelRepository.cs" />
     <Compile Include="Repositories\Impl\RentTypeRepository.cs" />

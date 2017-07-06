@@ -1,4 +1,5 @@
-﻿using Mercedes.Core.Infrastructure;
+﻿using Mercedes.Core.Domain;
+using Mercedes.Core.Infrastructure;
 using Mercedes.Services.Contract;
 using Mercedes.Web.Models;
 using System;
@@ -12,10 +13,12 @@ namespace Mercedes.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ICarService _carService;
-       
-        public HomeController(ICarService carService)
+        private readonly IContactService _contactService;       
+
+        public HomeController(ICarService carService, IContactService contactService)
         {
             _carService = carService;
+            _contactService = contactService;
         }
         public ActionResult Index()
         {           
@@ -39,13 +42,15 @@ namespace Mercedes.Web.Controllers
         }       
 
         [HttpPost]
-        public JsonResult SendContact(ContactModel info)
+        public JsonResult SendContact(Contact info)
         {
-            string Mess = "success";
-           
+            string Mess = "error";
+            
             if (info != null)
-            {               
-                // update
+            {
+                // add/update
+                if (_contactService.AddContact(info))
+                    Mess = "success";
             }
 
             return Json(Mess);

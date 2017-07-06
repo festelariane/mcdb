@@ -1,9 +1,8 @@
-﻿@{
+﻿@using Mercedes.Core.Domain;
+@model Contact
+@{
     ViewBag.Title = "Liên hệ";   
 }
-
-@using Mercedes.Web.Models
-@model ContactModel
 
 <script type="text/javascript">
     $().ready(function () {
@@ -36,6 +35,7 @@
                 if (data && data == 'success') {
                     alert("Gửi mail thành công.");
                     $('#contactForm input:text, #txtMessage').val('');
+                    $('#contactForm #txtEmail').val('');
                 } else {
                     alert("Gửi mail thành công. Vui lòng thử lại.");
                 }
@@ -71,27 +71,27 @@
                     <li><a href="#"><img src="../images/footer-social-skype.png" alt="Skype" /></a></li>
                 </ul>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">               
+                
                 @using (Html.BeginForm("", "", FormMethod.Post, new { id = "contactForm" }))
                 {
                     // Name
-                    @Html.TextBoxFor(m => m.Name, new { @class = "textbox", name = "txtName", id = "txtName", placeholder = "Họ và tên (*)", required = "required" })
+                    @Html.TextBoxFor(m => m.Name, new { @class = "textbox", name = "txtName", id = "txtName", type = "text", placeholder = "Họ và tên (*)", required = "required" })
 
                     // Email
-                    @Html.TextBoxFor(m => m.Email, new { @class = "textbox", name = "txtEmail", id = "txtEmail", placeholder = "Email (*)", required = "required" })
+                    @Html.TextBoxFor(m => m.Email, new { @class = "textbox", name = "txtEmail", id = "txtEmail", type = "email", placeholder = "Email (*)", required = "required" })
 
                     // Title
-                    @Html.TextBoxFor(m => m.Email, new { @class = "textbox", name = "txtTitle", id = "txtTitle", placeholder = "Tiêu đề (*)", required = "required" })
+                    @Html.TextBoxFor(m => m.Title, new { @class = "textbox", name = "txtTitle", id = "txtTitle", type = "text", placeholder = "Tiêu đề (*)", required = "required" })
 
                     // Message
-                    @Html.TextAreaFor(m => m.Message, new { @class = "textboxMessage", name = "txtMessage", id = "txtMessage", rows = "5"
+                    @Html.TextAreaFor(m => m.Message, new { @class = "textboxMessage", name = "txtMessage", id = "txtMessage", rows = "5", type = "text"
                    , placeholder = "Nội dung liên hệ (*)", required = "required" })
                     
                     <input type="submit" id="btnSend" value="Gửi" class="btn btn-page" />
                 }
-                                           
-                @*<form id="contactForm" method="post" action="SendContact">
+                                   
+                @*<form id="contactForm" method="post" action="">
                     <input type="text" name="txtName" id="txtName" placeholder="Họ và tên (*)" class="textbox" required />
                     <input type="email" name="txtEmail" id="txtEmail" placeholder="Email (*)" class="textbox" required />
                     <input type="text" name="txtTitle" id="txtTitle" placeholder="Tiêu đề (*)" class="textbox" required />
