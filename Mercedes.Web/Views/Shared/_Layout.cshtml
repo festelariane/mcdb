@@ -48,12 +48,8 @@
                 <li class="active"><a href="@Url.RouteUrl("Homepage")">Trang chủ</a></li>                            
                 <li><a href="@Url.RouteUrl("About")">Giới thiệu</a></li>
                 <li class="nav-menu-sub">
-                    <a href="#">Mercedes</a>
-                    <ul>
-                        <li><a href="@Url.RouteUrl("VehicleSeries",new { id = "1", type = "C-Class" })">C-Class Series</a></li>
-                        <li><a href="@Url.RouteUrl("VehicleSeries",new { id = "2", type = "E-Class" })">E-Class Series</a></li>
-                        <li><a href="@Url.RouteUrl("VehicleSeries",new { id = "3", type = "S-Class" })">S-Class Series</a></li>                                                                    
-                    </ul>                                        
+                    <a href="#">Mercedes</a>                                       
+                    @Html.Action("Category", "Category")                                      
                 </li>
                 <li><a href="@Url.RouteUrl("Contact")">Liên hệ</a></li>               
             </ul>

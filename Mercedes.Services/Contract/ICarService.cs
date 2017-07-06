@@ -20,5 +20,18 @@ namespace Mercedes.Services.Contract
         bool AddModel(Model model);
         bool DeleteModel(Model model);
         bool UpdateModel(Model model);
+
+        IList<Model> GetModelByCategoryId(int categoryId);
+        Model GetModelDetail(int id);        
+
+        // Category
+        Category GetCategoryById(int categoryId);
+        IList<Category> GetAllCategory();
+        bool AddCategory(Category category);
+        bool DeleteCategory(Category category);
+        bool UpdateCategory(Category category);
+
+        //PriceModel
+        IList<PriceModel> GetPriceModelByModel(int modelid);
     }
 }

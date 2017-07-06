@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mercedes.Data.Repositories.Contract
 {
-    public interface IModelRepository : IGenericRepository<Model>
+    public interface IContactRepository : IGenericRepository<Contact>
     {
-        IEnumerable<Model> GetByCategoryId(int categoryId);
     }
 }

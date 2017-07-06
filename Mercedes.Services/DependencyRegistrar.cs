@@ -23,10 +23,13 @@ namespace Mercedes.Services
             builder.Register<IModelRepository, ModelRepository>(Reuse.InWebRequest);
             builder.Register<IRentTypeRepository, RentTypeRepository>(Reuse.InWebRequest);
             builder.Register<IPriceModelRepository, PriceModelRepository>(Reuse.InWebRequest);
+            builder.Register<ICategoryRepository, CategoryRepository>(Reuse.InWebRequest);
+            builder.Register<IContactRepository, ContactRepository>(Reuse.InWebRequest);
 
             //Registera for Data Services
             builder.Register<ICarService, CarService>(Reuse.Transient);
             builder.Register<IRentService, RentService>(Reuse.Transient);
+            builder.Register<IContactService, ContactService>(Reuse.Transient);
             builder.Register<IRoleService, RoleService>(Reuse.InWebRequest);
             builder.Register<IUserManagementService, UserManagementService>(Reuse.InWebRequest);
         }

@@ -1,11 +1,10 @@
-﻿@{
-    ViewBag.Title = "Liên hệ";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@using Mercedes.Core.Domain;
+@model Contact
+@{
+    ViewBag.Title = "Liên hệ";   
 }
-@*<h2>@ViewBag.Title</h2>
-<h3>@ViewBag.Message</h3>*@
 
-<script>
+<script type="text/javascript">
     $().ready(function () {
         // validate the comment form when it is submitted
         $("#contactForm").validate({
@@ -15,8 +14,40 @@
                 txtTitle: "Vui lòng nhập tiêu đề",
                 txtMessage: "Vui lòng nhập nội dung"
             }
+            ,submitHandler: function () {
+                uploadContact();
+            }
         });
     });
+
+    function uploadContact() {       
+        var formData = $("#contactForm").serialize();
+        $("#btnSend").prop("disabled", true);
+
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: '@Url.RouteUrl("ContactAdmin")',
+            data: formData,           
+            processData: false,
+            success: function (data) {
+               
+                if (data && data == 'success') {
+                    alert("Gửi mail thành công.");
+                    $('#contactForm input:text, #txtMessage').val('');
+                    $('#contactForm #txtEmail').val('');
+                } else {
+                    alert("Gửi mail thành công. Vui lòng thử lại.");
+                }
+                $("#btnSend").prop("disabled", false);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                $("#btnSend").prop("disabled", false);
+                console.log(xhr.responeText);
+            }
+        });
+    }
+   
 </script>
 
 <div class="page-banner contact-page-bg">
@@ -40,22 +71,41 @@
                     <li><a href="#"><img src="../images/footer-social-skype.png" alt="Skype" /></a></li>
                 </ul>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <form id="contactForm" method="get" action="">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">               
+                
+                @using (Html.BeginForm("", "", FormMethod.Post, new { id = "contactForm" }))
+                {
+                    // Name
+                    @Html.TextBoxFor(m => m.Name, new { @class = "textbox", name = "txtName", id = "txtName", type = "text", placeholder = "Họ và tên (*)", required = "required" })
+
+                    // Email
+                    @Html.TextBoxFor(m => m.Email, new { @class = "textbox", name = "txtEmail", id = "txtEmail", type = "email", placeholder = "Email (*)", required = "required" })
+
+                    // Title
+                    @Html.TextBoxFor(m => m.Title, new { @class = "textbox", name = "txtTitle", id = "txtTitle", type = "text", placeholder = "Tiêu đề (*)", required = "required" })
+
+                    // Message
+                    @Html.TextAreaFor(m => m.Message, new { @class = "textboxMessage", name = "txtMessage", id = "txtMessage", rows = "5", type = "text"
+                   , placeholder = "Nội dung liên hệ (*)", required = "required" })
+                    
+                    <input type="submit" id="btnSend" value="Gửi" class="btn btn-page" />
+                }
+                                   
+                @*<form id="contactForm" method="post" action="">
                     <input type="text" name="txtName" id="txtName" placeholder="Họ và tên (*)" class="textbox" required />
                     <input type="email" name="txtEmail" id="txtEmail" placeholder="Email (*)" class="textbox" required />
                     <input type="text" name="txtTitle" id="txtTitle" placeholder="Tiêu đề (*)" class="textbox" required />
-                    <textarea rows="5" name="txtMessage" id="txtMessage" placeholder="Nội dung liên hệ (*)" class="textboxMessage" required></textarea>
-                    <input type="submit" value="Gửi" class="btn btn-page" />
-                </form>
+                    <textarea rows="5" name="txtMessage" id="txtMessage" placeholder="Nội dung liên hệ (*)" class="textboxMessage" required></textarea>                    
+                    <input type="submit" id="btnSend" value="Gửi" class="btn btn-page" />
+                </form>*@                
             </div>
         </div>
     </div>
 </section>
+
 <section class="google-map">
     <div id="map"></div>
-    <script type="text/javascript" src="../Scripts/infobubble.js"></script>
-    @*<script type="text/javascript" src="https://cdn.rawgit.com/googlemaps/js-info-bubble/gh-pages/src/infobubble.js"></script>*@
+    <script type="text/javascript" src="../Scripts/infobubble.js"></script>   
     <script type="text/javascript">
        
           function initMap() {

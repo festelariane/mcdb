@@ -10,17 +10,21 @@ namespace Mercedes.Data.Repositories.Impl
     {
         public Model Get(int Id)
         {
-            using (var conn = CreateConnection())
-            {
-                conn.Open();
-                var query = "select * from Model lrs inner join Manufacturer l on l.Id=lrs.ManufacturerId where lrs.Id=@Id";
-                var result = conn.Query<Model, Manufacturer, Model>(query, (item, manufacturer) =>
+            try {
+                using (var conn = CreateConnection())
                 {
-                    item.Manufacturer = manufacturer;
-                    return item;
-                }, new { Id = Id }).FirstOrDefault();
-                return result;
-            }
+                    conn.Open();
+                    var query = "select * from Model lrs inner join Category l on l.Id=lrs.CategoryId where lrs.Id=@Id";
+                    var result = conn.Query<Model, Category, Model>(query, (item, category) =>
+                    {
+                        item.Category = category;
+                        return item;
+                    }, new { Id = Id }).FirstOrDefault();
+                    return result;
+                }
+            } catch { }
+
+            return new Model();
         }
 
         public IEnumerable<Model> GetAll()
@@ -28,10 +32,10 @@ namespace Mercedes.Data.Repositories.Impl
             using (var conn = CreateConnection())
             {
                 conn.Open();
-                var query = "select * from Model lrs inner join Manufacturer l on l.Id=lrs.ManufacturerId";
-                var result = conn.Query<Model, Manufacturer, Model>(query, (item, manufacturer) =>
+                var query = "select * from Model lrs inner join Category l on l.Id=lrs.CategoryId";
+                var result = conn.Query<Model, Category, Model>(query, (item, category) =>
                 {
-                    item.Manufacturer = manufacturer;
+                    item.Category = category;
                     return item;
                 });
                 return result;
@@ -43,8 +47,8 @@ namespace Mercedes.Data.Repositories.Impl
             using (var conn = CreateConnection())
             {
                 conn.Open();
-                var query = "insert into Model (ManufacturerId,Code,Name) values (@ManufacturerId,@Code,@Name)";
-                var result = conn.Query(query, new { Code = entity.Code, Name = entity.Name,ManufacturerId=entity.ManufacturerId });
+                var query = "insert into Model (CategoryID,Code,Name) values (@Category,@Code,@Name)";
+                var result = conn.Query(query, new { Code = entity.Code, Name = entity.Name, CategoryID = entity.CategoryId });
             }
         }
 
@@ -63,9 +67,55 @@ namespace Mercedes.Data.Repositories.Impl
             using (var conn = CreateConnection())
             {
                 conn.Open();
-                var query = "update Model set ManufacturerId=@ManufacturerId, Code=@Code, Name=@Name where Id=@Id";
-                var result = conn.Query(query, new { Code = entity.Code, Name = entity.Name, Id = entity.Id,ManufacturerId=entity.ManufacturerId });
+                var query = "update Model set CategoryID=@CategoryId, Code=@Code, Name=@Name where Id=@Id";
+                var result = conn.Query(query, new { Code = entity.Code, Name = entity.Name, Id = entity.Id, CategoryId = entity.CategoryId });
             }
+        }
+
+        public IEnumerable<Model> GetByCategoryId(int categoryId)
+        {
+            try {
+                using (var conn = CreateConnection())
+                {
+                    conn.Open();
+                    var query = "select * from Model m left join PriceModel P on m.Id=p.VehicleModelId";
+                    query += " left join RentType r on r.Id=p.RentTypeId where m.CategoryId=@CategoryId and r.RentTypeSystemName= 'ByMonth'";
+
+                    var result = conn.Query<Model, PriceModel, RentType, Model>(query, (item, priceModel, rentType) =>
+                    {
+                        item.RentType = rentType;
+                        item.PriceModel = priceModel;
+                        return item;
+                    }, new { CategoryId = categoryId });
+
+                    return result;
+                }
+            } catch { }
+
+            return new List<Model>();
+        }
+
+        public Model GetModelDetail(int id)
+        {
+            try {
+                using (var conn = CreateConnection())
+                {
+                    conn.Open();
+                    var query = "select * from Model m left join PriceModel P on m.Id=p.VehicleModelId";
+                    query += " left join RentType r on r.Id=p.RentTypeId where m.Id=@id";
+
+                    var result = conn.Query<Model, PriceModel, RentType, Model>(query, (item, priceModel, rentType) =>
+                    {
+                        item.RentType = rentType;
+                        item.PriceModel = priceModel;
+                        return item;
+                    }, new { Id = id }).FirstOrDefault();
+
+                    return result;
+                }
+            } catch { }
+
+            return new Model();
         }
     }
 }

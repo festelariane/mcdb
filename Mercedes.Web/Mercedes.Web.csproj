@@ -170,6 +170,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\VehicleSeriesController.cs" />
@@ -228,6 +229,9 @@
     <Content Include="images\car-e.png" />
     <Content Include="images\car-s.png" />
     <Content Include="images\controls.png" />
+    <Content Include="images\e200-img-01.jpg" />
+    <Content Include="images\e250-img-01.jpg" />
+    <Content Include="images\e300-img-01.jpg" />
     <Content Include="images\favicon.ico" />
     <Content Include="images\footer-social-facebook.png" />
     <Content Include="images\footer-social-instagram.png" />
@@ -243,6 +247,8 @@
     <Content Include="images\product-01-c-class-feature.jpg" />
     <Content Include="images\product-02-e-class-feature.jpg" />
     <Content Include="images\product-03-s-class-feature.jpg" />
+    <Content Include="images\s400-img-01.jpg" />
+    <Content Include="images\s500-img-01.jpg" />
     <Content Include="images\sub-menu-icon-hover.png" />
     <Content Include="images\sub-menu-icon.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -307,9 +313,9 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\SubMenu.cshtml" />
     <Content Include="Views\VehicleSeries\Index.cshtml" />
     <Content Include="Views\VehicleSeries\VehicleModelDetail.cshtml" />
+    <Content Include="Views\Category\Category.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

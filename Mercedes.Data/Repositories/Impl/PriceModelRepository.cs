@@ -40,9 +40,40 @@ namespace Mercedes.Data.Repositories.Impl
             }
         }
 
+        public IEnumerable<PriceModel> GetPriceModelByModel(int modelid)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var query = @"select * from PriceModel lrs inner join RentType l on l.Id=lrs.RentTypeId where lrs.VehicleModelId = @modelid";
+                var result = conn.Query<PriceModel, RentType, PriceModel>(query, (item, rentType) =>
+                {
+                    item.RentType = rentType;                 
+                    return item;
+                }, new { ModelId = modelid });
+                return result;
+            }
+        }
+
         public void Update(PriceModel entity)
         {
             throw new NotImplementedException();
+        }
+        public IEnumerable<PriceModel> GetAllPriceModelsByModelId(int modelId)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var query = @"select * from PriceModel lrs inner join RentType l on l.Id=lrs.RentTypeId 
+                    inner join Model m on lrs.VehicleModelId = m.Id where lrs.VehicleModelId=@ModelId";
+                var result = conn.Query<PriceModel, RentType, Model, PriceModel>(query, (item, rentType, model) =>
+                {
+                    item.RentType = rentType;
+                    item.Model = model;
+                    return item;
+                },new { ModelId=modelId});
+                return result;
+            }
         }
     }
 }

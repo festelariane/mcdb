@@ -86,6 +86,8 @@
     <Compile Include="Common\DefaultValueDictionary.cs" />
     <Compile Include="Common\PagedData.cs" />
     <Compile Include="Domain\BaseEntity.cs" />
+    <Compile Include="Domain\Category.cs" />
+    <Compile Include="Domain\Contact.cs" />
     <Compile Include="Domain\Model.cs" />
     <Compile Include="Domain\PriceModel.cs" />
     <Compile Include="Domain\RentType.cs" />
