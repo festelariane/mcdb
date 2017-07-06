@@ -1,0 +1,13 @@
+﻿
+@using Mercedes.Core.Domain
+@model List<Category>
+
+<ul>
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            <li><a href="@Url.RouteUrl("VehicleSeries",new { id = item.Id, type = item.Code })">@item.Name</a></li>
+        }
+    }    
+</ul>  
