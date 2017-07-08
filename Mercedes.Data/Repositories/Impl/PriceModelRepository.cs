@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Dapper;
 using Mercedes.Core.Domain;
+using System.Linq;
 
 namespace Mercedes.Data.Repositories.Impl
 {
@@ -10,17 +11,40 @@ namespace Mercedes.Data.Repositories.Impl
     {
         public void Add(PriceModel entity)
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var query = "insert into PriceModel (RentTypeId,VehicleModelId,Price) values (@RentTypeId,@VehicleModelId,@Price)";
+                var result = conn.Query(query, new { RentTypeId = entity.RentTypeId, VehicleModelId = entity.ModelId, Price = entity.Price });
+            }
         }
 
         public void Delete(PriceModel entity)
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var query = "delete PriceModel where Id=@Id";
+                var result = conn.Query(query, new { Id = entity.Id });
+            }
         }
 
         public PriceModel Get(int Id)
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var query = @"select * from PriceModel lrs inner join RentType l on l.Id=lrs.RentTypeId 
+                    inner join Model m on lrs.VehicleModelId = m.Id where lrs.Id=@Id";
+                var result = conn.Query<PriceModel, RentType, Model, PriceModel>(query, (item, rentType, model) =>
+                {
+                    item.RentType = rentType;
+                    item.Model = model;
+                    return item;
+                }, new { Id = Id }).FirstOrDefault();
+                return result;
+            }
+
         }
 
         public IEnumerable<PriceModel> GetAll()
@@ -57,7 +81,12 @@ namespace Mercedes.Data.Repositories.Impl
 
         public void Update(PriceModel entity)
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var query = "update PriceModel set RentTypeId=@RentTypeId, VehicleModelId=@VehicleModelId, Price=@Price where Id=@Id";
+                var result = conn.Query(query, new { RentTypeId = entity.RentTypeId, VehicleModelId = entity.ModelId, Id = entity.Id, Price = entity.Price   });
+            }
         }
         public IEnumerable<PriceModel> GetAllPriceModelsByModelId(int modelId)
         {

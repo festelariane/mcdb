@@ -21,7 +21,15 @@ namespace Mercedes.Services.Impl
 
         public bool AddPriceModel(PriceModel priceModel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _priceModelRepository.Add(priceModel);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }            
         }
 
         public bool AddRentType(RentType rentType)
@@ -39,7 +47,15 @@ namespace Mercedes.Services.Impl
 
         public bool DeletePriceModel(PriceModel priceModel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _priceModelRepository.Delete(priceModel);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         public bool DeleteRentType(RentType rentType)
@@ -72,7 +88,7 @@ namespace Mercedes.Services.Impl
 
         public PriceModel GetPriceModelById(int priceModelId)
         {
-            throw new NotImplementedException();
+            return _priceModelRepository.Get(priceModelId);
         }
 
         public RentType GetRentTypeById(int rentTypeId)
@@ -82,7 +98,15 @@ namespace Mercedes.Services.Impl
 
         public bool UpdatePriceModel(PriceModel priceModel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _priceModelRepository.Update(priceModel);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         public bool UpdateRentType(RentType rentType)

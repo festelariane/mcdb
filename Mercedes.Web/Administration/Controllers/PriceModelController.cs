@@ -21,7 +21,7 @@ namespace Mercedes.Admin.Controllers
         public ActionResult Index()
         {
             var models = _carService.GetAllModel();
-            models.Insert(0, new Model { Id=0,Name="All Model"});
+            models.Insert(0, new Model { Id=0,Name="---Select a model---"});
             ViewBag.Models = models;
             var rentTypes = _rentService.GetAllRentTypes();
             ViewBag.RentTypes = rentTypes;
@@ -33,7 +33,7 @@ namespace Mercedes.Admin.Controllers
             IList<PriceModel> ls = null;
             if (modelId == 0)
             {
-                ls = _rentService.GetAllPriceModels();
+                ls = new List<PriceModel>();// _rentService.GetAllPriceModels();
             }
             else
             {
@@ -41,24 +41,24 @@ namespace Mercedes.Admin.Controllers
             }
             return Json(new { data = ls });
         }
-        //[HttpPost]
-        //public JsonResult Add(Model model)
-        //{
-        //    var rs = _rentService.AddModel(model);
-        //    return Json(rs);
-        //}
-        //[HttpPost]
-        //public JsonResult Delete(int Id)
-        //{
-        //    var rs = _rentService.DeleteModel(new Model { Id = Id });
-        //    return Json(rs);
-        //}
-        //[HttpPost]
-        //public JsonResult Update(Model model)
-        //{
-        //    var rs = _rentService.UpdateModel(model);
-        //    return Json(rs);
-        //}
+        [HttpPost]
+        public JsonResult Add(PriceModel model)
+        {
+            var rs = _rentService.AddPriceModel(model);
+            return Json(rs);
+        }
+        [HttpPost]
+        public JsonResult Delete(int Id)
+        {
+            var rs = _rentService.DeletePriceModel(new PriceModel { Id = Id });
+            return Json(rs);
+        }
+        [HttpPost]
+        public JsonResult Update(PriceModel model)
+        {
+            var rs = _rentService.UpdatePriceModel(model);
+            return Json(rs);
+        }
         //[HttpGet]
         //public ActionResult Update(int Id)
         //{

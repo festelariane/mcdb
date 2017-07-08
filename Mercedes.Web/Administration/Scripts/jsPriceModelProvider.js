@@ -5,6 +5,7 @@
         linkGetAjax: "#linkGetAjax",
         linkUpdateAjax: "#linkUpdateAjax",
         linkDeleteAjax: "#linkDeleteAjax",
+        linkAddAjax: "#linkAddAjax",
         btnNew: "#btnNew",
         btnSave:""
     };
@@ -21,7 +22,8 @@ PriceModelProvider.prototype.Init = function () {
     var linkGetPrice = $(me.selectors.linkGetAjax).val();
     var linkUpdatePrice = $(me.selectors.linkUpdateAjax).val();
     var linkDeletePrice = $(me.selectors.linkDeleteAjax).val();
-    this.datatable = $(me.selectors.tbPriceModel).dataTable(
+    var linkAddPrice = $(me.selectors.linkAddAjax).val();
+    this.datatable = $(me.selectors.tbPriceModel).DataTable(
             {
                 paging: false,
                 ajax:
@@ -32,7 +34,7 @@ PriceModelProvider.prototype.Init = function () {
                 },
                 columns: [
                     {
-                        title: "Loại hình thuê", data: function (data, type, fullObject) {
+                        title: "Loại hình thuê", data: function (data, type, value) {
                             if (null != data.RentType) {
                                 return data.RentType.RentTypeName
                             } else {
@@ -52,9 +54,9 @@ PriceModelProvider.prototype.Init = function () {
                     {
                         //Edit column
                         mRender: function (data, type, fullObject) {
-                            //var Id = fullObject.Id;
+                            var Id = fullObject.Id;
                             //var url = linkUpdatePrice +'/?Id=' + Id;
-                            return '<a class="edit" href="javascript:;"> Edit </a>';
+                            return '<a class="edit" priceModelId="'+Id+'" href="javascript:;"> Edit </a>';
                         }
                     },
                     {
@@ -63,7 +65,7 @@ PriceModelProvider.prototype.Init = function () {
                             var Id = fullObject.Id;
                             var url = linkDeletePrice + '/?Id=' + Id;
                             //return '<a class="delete" onclick="deleteResource(\'' + url + '\')" href=""> Delete </a>';
-                            return ' <a class="delete" href="javascript:;"> Delete </a>';
+                            return ' <a class="delete" priceModelId="'+Id+'" href="javascript:;"> Delete </a>';
                         }
                     }
                 ],
@@ -72,6 +74,36 @@ PriceModelProvider.prototype.Init = function () {
     $(me.selectors.ModelId).change(function () {
         var modelId = this.value;
         me.datatable.ajax.url(linkGetPrice + '/?modelId=' + modelId).load();
+    });
+    me.datatable.on('click', '.delete', function (e) {
+        e.preventDefault();
+
+        if (confirm("Are you sure to delete this row ?") == false) {
+            return;
+        }
+
+        var nRow = $(this).parents('tr')[0];
+        var id = $(this).attr("priceModelId");
+        //alert("Deleted! Do not forget to do some ajax to sync with backend :)");
+        $.ajax({
+            cache: false,
+            type: "POST",
+            dataType: "json",
+            url: linkDeletePrice,
+            data: { "Id": id },
+            success: function (data) {
+                if (data) {
+                    alert('Delete Successful!');
+                    me.datatable.row(nRow).remove().draw();
+                }
+                else {
+                    alert('Delete Fail!');
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('getRes(Server_Error)');
+            }
+        });
     });
     me.datatable.on('click', '.edit', function (e) {
         e.preventDefault();
@@ -86,12 +118,48 @@ PriceModelProvider.prototype.Init = function () {
             nEditing = nRow;
         } else if (nEditing == nRow && this.innerHTML == "Save") {
             /* Editing this row and want to save it */
-            saveRow(me.datatable, nEditing);
+           
+            var jqInputs = $('input,select', nEditing);
+            var modelPriceId = $(this).attr("modelpriceid");
+            saveRow(me.datatable, nEditing);           
             nEditing = null;
             //alert("Updated! Do not forget to do some ajax to sync with backend :)");
+            var rentTypeSelected = $(jqInputs[0]).find(":selected");
+            var data = {};
+            data.RentTypeId = rentTypeSelected.val();
+            data.ModelId = $(me.selectors.ModelId).val();
+            data.Price = jqInputs[1].value;
+            //var json = JSON.parse('{"RentType":{"RentTypeName":"' + rentTypeSelected.text() + '"},"Price":"' + jqInputs[1].value + '","RentTypeId":"' + rentTypeSelected.val() + '"}');
+            var urlPost = "";
+            if (null === modelPriceId || undefined === modelPriceId) {
+                 urlPost = linkAddPrice;
+             } else {
+                 urlPost = linkUpdatePrice;
+                 data.Id = modelPriceId;
+             }
+            $.ajax({
+                cache: false,
+                type: "POST",
+                dataType: "json",
+                url: urlPost,
+                data: data,
+                success: function (data) {
+                    if (data) {
+                        alert('Update Successful!');
+                    }
+                    else {
+                        alert('Update Fail!');
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError)
+                {
+                    alert('getRes(Server_Error)');
+                }
+            });
         } else {
             /* No edit in progress - let's start one */
-            editRow(me.datatable, nRow);
+            var id = $(this).attr("priceModelId");
+            editRow(me.datatable, nRow,id);
             nEditing = nRow;
         }
     });
@@ -106,7 +174,8 @@ PriceModelProvider.prototype.Init = function () {
                 nNew = false;
 
             } else {
-                me.datatable.fnDeleteRow(nEditing); // cancel
+                //  me.datatable.fnDeleteRow(nEditing); // cancel
+                me.datatable.row(nEditing).remove().draw();
                 nEditing = null;
                 nNew = false;
 
@@ -114,8 +183,8 @@ PriceModelProvider.prototype.Init = function () {
             }
         }
         var emptyItem = JSON.parse('{"RentType":{"RentTypeName":""},"Price":"0","RentTypeId":"1"}');
-        var aiNew = me.datatable.fnAddData(emptyItem);
-        var nRow = me.datatable.fnGetNodes(aiNew[0]);
+        var aiNew = me.datatable.row.add(emptyItem).draw(); // me.datatable.fnAddData(emptyItem);
+        var nRow = aiNew.node(); // me.datatable.fnGetNodes(aiNew[0]);
         editRow(me.datatable, nRow);
         nEditing = nRow;
         nNew = true;
@@ -144,45 +213,43 @@ function deleteResource(url) {
 }
 
 function restoreRow(oTable, nRow) {
-    var aData = oTable.fnGetData(nRow);
-    var jqTds = $('>td', nRow);
-
-    for (var i = 0, iLen = jqTds.length; i < iLen; i++) {
-        oTable.fnUpdate(aData[i], nRow, i, false);
-    }
-
-    oTable.fnDraw();
+    var aData = oTable.row(nRow).data();
+    oTable.row(nRow).data(aData).draw();
 }
 
-function editRow(oTable, nRow) {
-    var aData = oTable.fnGetData(nRow);
+function editRow(oTable, nRow,id) {
+    var aData = oTable.row(nRow).data();
     var jqTds = $('>td', nRow);
     jqTds[0].innerHTML = document.getElementById("RentTypes_T").outerHTML.replace("RentTypes_T", "RentTypes").replace("hiddenfield", ""); // '<input type="text" class="form-control input-small" value="' + aData[0] + '">';
     $("#RentTypes").val(aData.RentTypeId);
     jqTds[1].innerHTML = '<input type="text" class="form-control input-small" value="' + aData.Price + '">';
     //jqTds[2].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[2] + '">';
     //jqTds[3].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[3] + '">';
-    jqTds[2].innerHTML = '<a class="edit" href="">Save</a>';
+    if (null != id && undefined !=id) {
+        jqTds[2].innerHTML = '<a class="edit" modelPriceId="'+id+'" href="">Save</a>';
+    }else {
+        jqTds[2].innerHTML = '<a class="edit" href="">Save</a>';
+    }    
     jqTds[3].innerHTML = '<a class="cancel" href="">Cancel</a>';
 }
 
 function saveRow(oTable, nRow) {
     var jqInputs = $('input,select', nRow);
-    oTable.fnUpdate($("#RentTypes option:selected").text(), nRow, 0, false);
-    oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
+    var rentTypeSelected = $(jqInputs[0]).find(":selected");
+    var json = JSON.parse('{"RentType":{"RentTypeName":"' + rentTypeSelected.text() + '"},"Price":"' + jqInputs[1].value + '","RentTypeId":"' + rentTypeSelected.val() + '"}');
+    oTable.row(nRow).data(json).draw();
+    //oTable.fnUpdate(json, nRow, 0, false);
+    //oTable.fnUpdate(json, nRow, 1, false);
     //oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
     //oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-    oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 2, false);
-    oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 3, false);
-    oTable.fnDraw();
+    //oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 2, false);
+    //oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 3, false);
+    //oTable.fnDraw();
 }
 
 function cancelEditRow(oTable, nRow) {
-    var jqInputs = $('input', nRow);
-    oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
-    oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
-    //oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
-    //oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-    oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 3, false);
-    oTable.fnDraw();
+    var jqInputs = $('input,select', nRow);
+    var rentTypeSelected = $(jqInputs[0]).find(":selected");
+    var json = JSON.parse('{"RentType":{"RentTypeName":"' + rentTypeSelected.text() + '"},"Price":"' + jqInputs[1].value + '","RentTypeId":"' + rentTypeSelected.val() + '"}');
+    oTable.row(nRow).data(json).draw();
 }
