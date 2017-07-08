@@ -26,7 +26,8 @@
                         <p class="product-list-name">
                             <a href="@Url.RouteUrl("Detail",new { id = item.Id, code = item.Code })">@Url.Content(@item.Name)</a>
                         </p>
-                        <p class="product-list-price">@Url.Content(string.Format("{0:#,###}", @item.PriceModel.Price)) USD / @item.RentType.RentTypeName</p>                        
+                        @*<p class="product-list-price">@Url.Content(string.Format("{0:#,###}", @item.PriceModel.Price)) USD / @item.RentType.RentTypeName</p>*@    
+                        <p class="product-list-price">@Url.Content(string.Format("{0:#,###}", @item.PriceModel.Price)) USD / Tháng</p>                    
                     </li>                    
                 }
             }

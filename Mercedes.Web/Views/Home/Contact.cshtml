@@ -65,11 +65,7 @@
                     209 Nam Kỳ Khởi Nghĩa, P.7, Q.3, TP. HCM<br />
                     0972.87.82.82 (Mr. Thân)
                 </p>
-                <ul class="contact-social">
-                    <li><a href="#"><img src="../images/footer-social-facebook.png" alt="Facebook" /></a></li>
-                    <li><a href="#"><img src="../images/footer-social-instagram.png" alt="Instagram" /></a></li>
-                    <li><a href="#"><img src="../images/footer-social-skype.png" alt="Skype" /></a></li>
-                </ul>
+                @Html.Partial("ContactSocial")                
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">               
                 
@@ -89,15 +85,7 @@
                    , placeholder = "Nội dung liên hệ (*)", required = "required" })
                     
                     <input type="submit" id="btnSend" value="Gửi" class="btn btn-page" />
-                }
-                                   
-                @*<form id="contactForm" method="post" action="">
-                    <input type="text" name="txtName" id="txtName" placeholder="Họ và tên (*)" class="textbox" required />
-                    <input type="email" name="txtEmail" id="txtEmail" placeholder="Email (*)" class="textbox" required />
-                    <input type="text" name="txtTitle" id="txtTitle" placeholder="Tiêu đề (*)" class="textbox" required />
-                    <textarea rows="5" name="txtMessage" id="txtMessage" placeholder="Nội dung liên hệ (*)" class="textboxMessage" required></textarea>                    
-                    <input type="submit" id="btnSend" value="Gửi" class="btn btn-page" />
-                </form>*@                
+                }                                                      
             </div>
         </div>
     </div>

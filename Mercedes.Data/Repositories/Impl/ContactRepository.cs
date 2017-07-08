@@ -28,7 +28,7 @@ namespace Mercedes.Data.Repositories.Impl
             using (var conn = CreateConnection())
             {
                 conn.Open();
-                var query = "select * from Contact";
+                var query = "select top 1000 * from Contact order by [datetime] desc";
                 var result = conn.Query<Contact>(query);
                 return result;
             }            

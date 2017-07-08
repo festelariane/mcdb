@@ -49,7 +49,7 @@
                 <li><a href="@Url.RouteUrl("About")">Giới thiệu</a></li>
                 <li class="nav-menu-sub">
                     <a href="#">Mercedes</a>                                       
-                    @*@Html.Action("Category", "Category")*@                                      
+                    @Html.Action("Category", "Category")                                      
                 </li>
                 <li><a href="@Url.RouteUrl("Contact")">Liên hệ</a></li>               
             </ul>
@@ -71,11 +71,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 footer-info">
                     <p>209 Nam Kỳ Khởi Nghĩa, P.7, Q.3, TP. HCM<br />0972.87.82.82 (Mr. Thân)</p>
-                    <ul class="footer-social">
-                        <li><a href="#"><img src="../images/footer-social-facebook.png" alt="Facebook" /></a></li>
-                        <li><a href="#"><img src="../images/footer-social-instagram.png" alt="Instagram" /></a></li>
-                        <li><a href="#"><img src="../images/footer-social-skype.png" alt="Skype" /></a></li>
-                    </ul>
+                    @Html.Partial("ContactSocial")
                 </div>
             </div>
             <p class="copy-right">Copyright © 2017 Mercedes Benz. Allright reserved</p>

@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Administration/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Administration/assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Administration/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Thông tin khách hàng đăng ký</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="row">            
+            <div class="col-md-6"></div>
+        </div>
+        <br />
+        <table id="tb-clientinfo" class="table table-bordered table-striped"></table>
+    </div>
+    <!-- /.box-body -->
+</div>
+<div id="frm-upd-new-clientinfo" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="edit-form"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    var resourceTable = null;       
+    $(function () {
+        resourceTable = $('#tb-clientinfo').DataTable(
+               {
+                   paging: true,
+                   ajax:
+                   {
+                       url: '@Url.Action("List")',
+                       type: "POST",
+                       contentType: "application/json; charset=utf-8"
+                   },
+                   "pageLength": 20,
+                   "lengthMenu": [
+                       [10, 15, 20, -1],
+                       [10, 15, 20, "All"] // change per page values here
+                   ],
+                   columns: [
+                       { title: "Id", data: "Id" },
+                       { title: "Họ & Tên", data: "Name" },
+                       { title: "Email", data: "Email" },
+                       { title: "Tiêu đề", data: "Title" },
+                       { title: "Nội dung", data: "Message" }
+                       //{ title: "Ngày đăng", data: "datetime" }
+                       @*{
+                           //Edit column
+                           mRender: function (data, type, fullObject) {
+                               var Id = fullObject.Id;
+                               var url = '@Url.Action("Update")/?Id=' + Id;
+                               return '<a id="btn-update" data-toggle="modal" href="#" class="edit"> Edit </a>';
+                           }
+                       },
+                       {
+                           //Delete column
+                           mRender: function (data, type, fullObject) {
+                               var Id = fullObject.Id;
+                               var url = '@Url.Action("Delete")/?Id=' + Id;
+                               return '<a class="delete" href="#"> Delete </a>';
+                           }
+                       }*@
+                   ],
+               });
+    });
+</script>
+
+

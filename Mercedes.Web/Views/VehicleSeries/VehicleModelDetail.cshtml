@@ -8,7 +8,8 @@
     if (priceModels != null && priceModels.Count > 0)
     {
         priceFirst = priceModels[0];
-        detailprice = string.Format("{0:#,###}", priceFirst.Price) + " USD / " + priceFirst.RentType.RentTypeName;
+        //detailprice = string.Format("{0:#,###}", priceFirst.Price) + " USD / " + priceFirst.RentType.RentTypeName;
+        detailprice = string.Format("{0:#,###}", priceFirst.Price) + " USD / Tháng"; 
     }
 }
 
@@ -50,39 +51,30 @@
                         <td class="detail-title">Loại số:</td>
                         <td>Số tự động</td>
                     </tr>
-                    @if (priceModels.Count > 1)
-                    {
-                        <tr>
-                            <td class="detail-title">Thuê xe:</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <table>
-                                    @{
-                                        var temp = "";
-                                        foreach (var item in priceModels)
-                                        {
-                                            temp = string.Format("{0:#,###}", item.Price) + " USD / " + item.RentType.RentTypeName;
-                                            <tr>
-                                                <td class="detail-title">+ @item.RentType.RentTypeName: </td>
-                                                <td>@temp</td>
-                                            </tr>
-                                        }
+                    <tr>
+                        <td class="detail-title">Thuê xe:</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <table>
+                                @{
+                                    var temp = "";
+                                    foreach (var item in priceModels)
+                                    {
+                                        //temp = string.Format("{0:#,###}", item.Price) + " USD / " + item.RentType.RentTypeName;
+                                        temp = string.Format("{0:#,###}", item.Price) + " USD";
+                                        <tr>
+                                            <td class="detail-title">+ @item.RentType.RentTypeName: </td>
+                                            <td>@temp</td>
+                                        </tr>
                                     }
-                                </table>
-                            </td>
-                        </tr>                        
-                    }
-                    else
-                    {
-                        <tr>
-                            <td class="detail-title">Thuê xe:</td>
-                            <td>@detailprice</td>
-                        </tr>
-                    }
-                    
+                                }
+                            </table>
+                        </td>
+                    </tr>
+
                 </table>
             </div>
         </div>

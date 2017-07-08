@@ -149,6 +149,7 @@
   <ItemGroup>
     <Compile Include="AdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClientContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManufacturerController.cs" />
     <Compile Include="Controllers\ModelController.cs" />
@@ -384,6 +385,7 @@
     <Content Include="Views\RentType\_UpdateRentTypeFrom.cshtml" />
     <Content Include="Views\RentType\Index.cshtml" />
     <Content Include="Views\PriceModel\Index.cshtml" />
+    <Content Include="Views\ClientContact\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,16 +1,18 @@
 ﻿@using Mercedes.Core.Domain
 @model IList<Category>
 @{
-    ViewBag.Title = "Trang chủ";   
+    ViewBag.Title = "Trang chủ";
+    var banners = ViewBag.Homebanners as List<string>;
 }
 
 <div class="home-banner">
     <h1>Thuê Xe Mercedes Benz<br />Sang Trọng. Quý Phái. Lịch Lãm.</h1>
-    <ul class="bxslider">
-        <li><img src="../images/home-banner-bg-01.jpg" /></li>
-        <li><img src="../images/home-banner-bg-02.jpg" /></li>
-        <li><img src="../images/home-banner-bg-03.jpg" /></li>
-    </ul>
+    <ul class="bxslider">       
+        @foreach (var item in banners)
+        {
+            <li><img src="@Url.Content(item)" /></li>            
+        }
+    </ul>    
 </div>
 
 <section class="contain text-center left-contain">

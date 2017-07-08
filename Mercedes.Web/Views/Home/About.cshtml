@@ -1,7 +1,8 @@
 ﻿@using Mercedes.Core.Domain
 @model IList<Category>
 @{
-    ViewBag.Title = "Giới thiệu"; 
+    ViewBag.Title = "Giới thiệu";
+    var gallerys = ViewBag.AboutGallery as List<string>;
 }
 
 <div class="page-banner about-page-bg">
@@ -46,35 +47,17 @@
 <section class="contain bg-darkgray">
     <div class="container">
         <h2>Thư Viện Ảnh</h2>
-        <ul class="row gallery-contain">
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                <a href="../images/about-gallery-01.jpg" data-fancybox="group"><img src="../images/about-gallery-01.jpg" alt="Giới Thiệu Về Xe Mercedes Benz" class="img-responsive" /></a>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                <a href="../images/about-gallery-02.jpg" data-fancybox="group"><img src="../images/about-gallery-02.jpg" alt="Giới Thiệu Về Xe Mercedes Benz" class="img-responsive" /></a>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                <a href="../images/about-gallery-03.jpg" data-fancybox="group"><img src="../images/about-gallery-03.jpg" alt="Giới Thiệu Về Xe Mercedes Benz" class="img-responsive" /></a>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                <a href="../images/about-gallery-04.jpg" data-fancybox="group"><img src="../images/about-gallery-04.jpg" alt="Giới Thiệu Về Xe Mercedes Benz" class="img-responsive" /></a>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                <a href="../images/about-gallery-05.jpg" data-fancybox="group"><img src="../images/about-gallery-05.jpg" alt="Giới Thiệu Về Xe Mercedes Benz" class="img-responsive" /></a>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                <a href="../images/about-gallery-06.jpg" data-fancybox="group"><img src="../images/about-gallery-06.jpg" alt="Giới Thiệu Về Xe Mercedes Benz" class="img-responsive" /></a>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                <a href="../images/about-gallery-07.jpg" data-fancybox="group"><img src="../images/about-gallery-07.jpg" alt="Giới Thiệu Về Xe Mercedes Benz" class="img-responsive" /></a>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                <a href="../images/about-gallery-08.jpg" data-fancybox="group"><img src="../images/about-gallery-08.jpg" alt="Giới Thiệu Về Xe Mercedes Benz" class="img-responsive" /></a>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                <a href="../images/about-gallery-09.jpg" data-fancybox="group"><img src="../images/about-gallery-09.jpg" alt="Giới Thiệu Về Xe Mercedes Benz" class="img-responsive" /></a>
-            </li>
-        </ul>
-    </div>
+        @if (gallerys != null && gallerys.Count > 0)
+        {
+            <ul class="row gallery-contain">
+                @foreach (var item in gallerys)
+                {
+                    <li class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                        <a href="@Url.Content(item)" data-fancybox="group"><img src="@Url.Content(item)" alt="Giới Thiệu Về Xe Mercedes Benz" class="img-responsive" /></a>
+                    </li>
+                }
+            </ul>
+        }                
+</div>
 </section>
 
