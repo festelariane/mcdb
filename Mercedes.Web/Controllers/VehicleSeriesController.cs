@@ -24,6 +24,14 @@ namespace Mercedes.Web.Controllers
             ViewBag.Message = "";
 
             var ls = _carService.GetModelByCategoryId(id);
+            if (ls != null)
+            {
+                foreach (var item in ls)
+                {
+                    item.ImageURLs = _carService.GetVehicleModelImageUrl(item.Id);                   
+                }
+            }
+
             return View(ls);            
         }
 
@@ -34,6 +42,9 @@ namespace Mercedes.Web.Controllers
             ViewBag.PriceModels = _carService.GetPriceModelByModel(id);
             if (detail == null)
                 detail = new Model();
+            else
+                detail.ImageURLs = _carService.GetVehicleModelImageUrl(detail.Id);
+
             return View(detail);            
         }
     }

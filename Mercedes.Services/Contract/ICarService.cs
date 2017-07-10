@@ -33,5 +33,7 @@ namespace Mercedes.Services.Contract
 
         //PriceModel
         IList<PriceModel> GetPriceModelByModel(int modelid);
+
+        IList<Model_Image_Mapping> GetVehicleModelImageUrl(int vehicleModelId);
     }
 }

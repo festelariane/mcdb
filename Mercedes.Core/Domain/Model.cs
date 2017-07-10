@@ -11,11 +11,10 @@ namespace Mercedes.Core.Domain
         public Category Category { get; set; }
         public RentType RentType { get; set; }
         public PriceModel PriceModel { get; set; }
-        
+        public IList<Model_Image_Mapping> ImageURLs { get; set; }
+
         public int CategoryId { get; set; }
         public string Code { get; set; }
-        public string Name { get; set; }
-        public string ImageUrl { get; set; }
-       
+        public string Name { get; set; }       
     }
 }
