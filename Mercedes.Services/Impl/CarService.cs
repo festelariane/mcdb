@@ -192,5 +192,10 @@ namespace Mercedes.Services.Impl
         {
             return _modelRepository.GetVehicleModelImageUrl(vehicleModelId).ToList();
         }
+
+        public Manufacturer GetManufacturerByModelId(int modelId)
+        {
+            return _manufactureRepository.GetManufacturerByModelId(modelId);
+        }
     }
 }
