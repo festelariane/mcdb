@@ -2,7 +2,6 @@
     var defaultSelectors = {
         ModelId: "#ModelId",
         tbPriceModel: "#tb-price-model",
-        lblNSX:"#lblNSX",
         linkGetAjax: "#linkGetAjax",
         linkUpdateAjax: "#linkUpdateAjax",
         linkDeleteAjax: "#linkDeleteAjax",
@@ -75,25 +74,6 @@ PriceModelProvider.prototype.Init = function () {
     $(me.selectors.ModelId).change(function () {
         var modelId = this.value;
         me.datatable.ajax.url(linkGetPrice + '/?modelId=' + modelId).load();
-
-        $.ajax({
-            cache: false,
-            type: "POST",
-            dataType: "json",
-            url: window.applicationBaseUrl + "Admin/PriceModel/GetManufactureByModelId",
-            data: { "modelId": modelId },
-            success: function (data) {
-                if (data) {
-                    $(me.selectors.lblNSX).text(data.Name);
-                }
-                else {
-                    $(me.selectors.lblNSX).text("...");
-                }
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                alert('getRes(Server_Error)');
-            }
-        });        
     });
     me.datatable.on('click', '.delete', function (e) {
         e.preventDefault();

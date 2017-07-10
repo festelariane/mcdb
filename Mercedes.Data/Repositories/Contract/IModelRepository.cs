@@ -10,5 +10,6 @@ namespace Mercedes.Data.Repositories.Contract
     public interface IModelRepository : IGenericRepository<Model>
     {
         IEnumerable<Model> GetByCategoryId(int categoryId);
+        IEnumerable<Model_Image_Mapping> GetVehicleModelImageUrl(int vehicleModelId);
     }
 }

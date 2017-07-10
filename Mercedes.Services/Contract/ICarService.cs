@@ -9,8 +9,7 @@ namespace Mercedes.Services.Contract
 {
     public interface ICarService
     {
-        Manufacturer GetManufacturerById(int manufacturerId);
-        Manufacturer GetManufacturerByModelId(int modelId);
+        Manufacturer GetManufacturerById(int manufacturerId);        
         IList<Manufacturer> GetAllManufacturers();
         bool AddManufacturer(Manufacturer manufacturer);
         bool DeleteManufacturer(Manufacturer manufacturer);
@@ -33,5 +32,7 @@ namespace Mercedes.Services.Contract
 
         //PriceModel
         IList<PriceModel> GetPriceModelByModel(int modelid);
+
+        IList<Model_Image_Mapping> GetVehicleModelImageUrl(int vehicleModelId);
     }
 }

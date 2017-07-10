@@ -72,22 +72,39 @@ namespace Mercedes.Data.Repositories.Impl
             }
         }
 
+        public IEnumerable<Model_Image_Mapping> GetVehicleModelImageUrl(int vehicleModelId)
+        {           
+            try
+            {
+                using (var conn = CreateConnection())
+                {
+                    conn.Open();
+                    var query = "select * from Model_Image_Mapping where VehicleModelId=@vehicleModelId order by DisplayOrder";
+                    var result = conn.Query<Model_Image_Mapping>(query, new { VehicleModelId = vehicleModelId });
+                    return result;
+                }
+            }
+            catch (System.Exception ex){ }
+
+            return null;
+        }
+
         public IEnumerable<Model> GetByCategoryId(int categoryId)
         {
             try {
                 using (var conn = CreateConnection())
                 {
                     conn.Open();
-                    var query = "select * from Model m left join PriceModel P on m.Id=p.VehicleModelId";
+                    var query = "select * from Model m left join PriceModel P on m.Id=p.VehicleModelId";                   
                     query += " left join RentType r on r.Id=p.RentTypeId where m.CategoryId=@CategoryId and r.RentTypeSystemName= 'ByMonth'";
 
                     var result = conn.Query<Model, PriceModel, RentType, Model>(query, (item, priceModel, rentType) =>
                     {
                         item.RentType = rentType;
-                        item.PriceModel = priceModel;
+                        item.PriceModel = priceModel;                      
                         return item;
                     }, new { CategoryId = categoryId });
-
+                    
                     return result;
                 }
             } catch { }
@@ -110,7 +127,7 @@ namespace Mercedes.Data.Repositories.Impl
                         item.PriceModel = priceModel;
                         return item;
                     }, new { Id = id }).FirstOrDefault();
-
+                   
                     return result;
                 }
             } catch { }

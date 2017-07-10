@@ -170,18 +170,11 @@ namespace Mercedes.Services.Impl
             }
         }
 
-        public bool SaveCategory(Category category)
+        public bool UpdateCategory(Category category)
         {
             try
             {
-                if(category.Id > 0)
-                {
-                    _categoryRepository.Update(category);
-                }
-                else
-                {
-                    _categoryRepository.Add(category);
-                }
+                _categoryRepository.Update(category);
                 return true;
             }
             catch (Exception ex)
@@ -195,9 +188,9 @@ namespace Mercedes.Services.Impl
             return _priceModelRepository.GetPriceModelByModel(modelid).ToList();
         }
 
-        public Manufacturer GetManufacturerByModelId(int modelId)
+        public IList<Model_Image_Mapping> GetVehicleModelImageUrl(int vehicleModelId)
         {
-            return _manufactureRepository.GetManufacturerByModelId(modelId);
-        }
+            return _modelRepository.GetVehicleModelImageUrl(vehicleModelId).ToList();
+        }       
     }
 }

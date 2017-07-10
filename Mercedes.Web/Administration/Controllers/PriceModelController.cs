@@ -25,15 +25,7 @@ namespace Mercedes.Admin.Controllers
             ViewBag.Models = models;
             var rentTypes = _rentService.GetAllRentTypes();
             ViewBag.RentTypes = rentTypes;
-            //var manufacturers = _carService.GetAllManufacturers();
-            //ViewBag.Manufacturers = manufacturers;
             return View();
-        }
-        [HttpPost]
-        public JsonResult GetManufactureByModelId(int modelId)
-        {
-            var manufacturer = _carService.GetManufacturerByModelId(modelId);
-            return Json(manufacturer);
         }
         [HttpPost]
         public JsonResult List(int modelId=0)

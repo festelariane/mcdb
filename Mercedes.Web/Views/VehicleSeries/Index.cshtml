@@ -1,7 +1,7 @@
 ﻿@using Mercedes.Core.Domain
 @model List<Model>
 @{
-    ViewBag.Title = "";  
+    ViewBag.Title = "";    
 }
 
 
@@ -13,20 +13,19 @@
 
 <section class="contain">
     <div class="container">
-        <h2>Mercedes Benz</h2>
+        <h2>Mercedes Benz</h2>          
         <ul class="row product-wrap-list">                    
             @if (Model != null && Model.Count > 0)
             {
                 foreach (var item in Model)
-                {
+                {                    
                     <li class="col-lg-6 col-md-6 col-sm-6 col-xs-12 product-wrapper">
-                        <a href="@Url.RouteUrl("Detail",new { id = item.Id, code = item.Code })" class="product-list-img">
-                            <img src="@Url.Content(@item.ImageUrl)" alt="@item.Name" class="img-responsive" />
+                        <a href="@Url.RouteUrl("Detail",new { id = item.Id, code = item.Code })" class="product-list-img">                                                                                                        
+                            <img src="@Url.Content(@item.ImageURLs[0].FullImageUrl)" alt="@item.Name" class="img-responsive" />                       
                         </a>
                         <p class="product-list-name">
                             <a href="@Url.RouteUrl("Detail",new { id = item.Id, code = item.Code })">@Url.Content(@item.Name)</a>
-                        </p>
-                        @*<p class="product-list-price">@Url.Content(string.Format("{0:#,###}", @item.PriceModel.Price)) USD / @item.RentType.RentTypeName</p>*@    
+                        </p>                         
                         <p class="product-list-price">@Url.Content(string.Format("{0:#,###}", @item.PriceModel.Price)) USD / Tháng</p>                    
                     </li>                    
                 }

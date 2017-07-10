@@ -9,6 +9,5 @@ namespace Mercedes.Data.Repositories.Contract
 {
     public interface IManufacturerRepository : IGenericRepository<Manufacturer>
     {
-        Manufacturer GetManufacturerByModelId(int modelId);
     }
 }

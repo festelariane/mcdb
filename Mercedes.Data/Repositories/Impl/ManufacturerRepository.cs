@@ -59,19 +59,5 @@ namespace Mercedes.Data.Repositories.Impl
                 var result = conn.Query(query, new { Code = entity.Code, Name = entity.Name, Id = entity.Id });
             }
         }
-
-        public Manufacturer GetManufacturerByModelId(int modelId)
-        {
-            using (var conn = CreateConnection())
-            {
-                conn.Open();
-                var query = @"select m.* from Manufacturer m 
-                              inner join Category c on m.Id=c.ManufacturerId
-                              inner join Model md on c.Id=md.CategoryId
-                              where md.Id=@Id";
-                var result = conn.QueryFirst<Manufacturer>(query, new { Id = modelId });
-                return result;
-            }
-        }
     }
 }
