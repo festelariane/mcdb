@@ -17,7 +17,7 @@ namespace Mercedes.Admin.Controllers
         }
         public ActionResult Index()
         {
-            ViewBag.Manufacturers = _carService.GetAllManufacturers();
+            ViewBag.Categories = _carService.GetAllCategory();
             return View(new Model());
         }
         [HttpPost]
