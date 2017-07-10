@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mercedes.Web", "Mercedes.Web\Mercedes.Web.csproj", "{5BFF7F77-21FC-408E-8D51-1CD8B4A83DC4}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -17,6 +17,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mercedes.Data", "Mercedes.Data\Mercedes.Data.csproj", "{C180C2FE-65E7-4702-9C85-3593DF7CE361}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mercedes.Admin", "Mercedes.Web\Administration\Mercedes.Admin.csproj", "{0AB026F3-1FE4-4955-BBDB-600F5ABBD83E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4B6C7A5C-07C2-4084-93A9-F63D88145459} = {4B6C7A5C-07C2-4084-93A9-F63D88145459}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

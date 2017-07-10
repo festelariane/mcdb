@@ -1,0 +1,70 @@
+﻿@using Mercedes.Admin.Models;
+@model CategoryModel
+@Html.ValidationSummary(false)
+@Html.HiddenFor(model => model.Id)
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+    <h4 class="modal-title">Category Information</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="form-group">
+            <label class="col-md-3 control-label">Category</label>
+            <div class="col-md-9">
+                @Html.DropDownListFor(m=>m.SelectedManufactureId, Model.AllManufacturers, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Code</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.Code, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Name</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Image Url</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.ImageUrl, new { @class = "form-control" })
+                <button class="btn" data-toggle="modal" href="#modal-roxyfileman" type="button">Launch modal</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Published</label>
+            <div class="col-md-9">
+                @Html.CheckBoxFor(m => m.Published)
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn btn-default" id="btn-Close">Close</button>
+    <button type="button" class="btn btn-success" onclick="saveCategory()" id="btn-update">Update</button>
+</div>
+
+<!--Roxy fileman-->
+
+<script>
+</script>
+
+<div id="modal-roxyfileman" class="modal fade" tabindex="-1" aria-hidden="true" data-backdrop="static" style="border:solid 1px red;">
+    <div class="modal-dialog">
+        <div class="modal-content" id="modal-roxyfileman-form">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <iframe src="/administration/fileman/index.html?integration=custom&type=file&txtFieldId=ImageUrl" style="width:100%;height:100%" frameborder="0"></iframe>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+

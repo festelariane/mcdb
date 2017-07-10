@@ -316,7 +316,9 @@
     <Content Include="Views\VehicleSeries\VehicleModelDetail.cshtml" />
     <Content Include="Views\Shared\ContactSocial.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Uploads\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

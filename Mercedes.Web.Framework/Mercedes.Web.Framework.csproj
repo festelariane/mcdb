@@ -89,6 +89,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AjaxDataSource\DataSourceRequest.cs" />
+    <Compile Include="AjaxDataSource\DataSourceResult.cs" />
     <Compile Include="DependencyRegistrar.cs" />
     <Compile Include="Localization\ILocalizedModel.cs" />
     <Compile Include="Localization\ILocalizedModelLocal.cs" />
@@ -98,6 +100,7 @@
     <Compile Include="Menu\XmlSiteMap.cs" />
     <Compile Include="Mvc\ActionResults\DownloadResult.cs" />
     <Compile Include="Mvc\Attributes\UserAuthorizeAttribute.cs" />
+    <Compile Include="Mvc\BaseModel.cs" />
     <Compile Include="Mvc\Controllers\BaseController.cs" />
     <Compile Include="Mvc\Infrastructure\MercedesViewEngine.cs" />
     <Compile Include="Mvc\Infrastructure\ThemeableVirtualPathProviderViewEngine.cs" />

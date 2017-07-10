@@ -47,8 +47,9 @@ namespace Mercedes.Data.Repositories.Impl
             using (var conn = CreateConnection())
             {
                 conn.Open();
-                var query = "insert into Category (ManufacturerId,Code,Name) values (@ManufacturerId,@Code,@Name)";
-                var result = conn.Query(query, new { Code = entity.Code, Name = entity.Name,ManufacturerId=entity.ManufacturerId });
+                var query = "insert into Category (ManufacturerId,Code,Name,ImageUrl,ImageUrl_2,Published,Deleted,DisplayOrder,CreatedOn,UpdatedOn) values (@ManufacturerId,@Code,@Name,@ImageUrl,@ImageUrl_2,@Published,@Deleted,@DisplayOrder,@CreatedOn,@UpdatedOn)";
+                var result = conn.Query(query, new { Code = entity.Code, Name = entity.Name,ManufacturerId=entity.ManufacturerId, ImageUrl = entity.ImageUrl, ImageUrl_2 = entity.ImageUrl_2, Published = entity.Published,
+                    Deleted = entity.Deleted, DisplayOrder = entity.DisplayOrder, CreatedOn = entity.CreatedOn, UpdatedOn=entity.UpdatedOn });
             }
         }
 
@@ -67,8 +68,11 @@ namespace Mercedes.Data.Repositories.Impl
             using (var conn = CreateConnection())
             {
                 conn.Open();
-                var query = "update Category set ManufacturerId=@ManufacturerId, Code=@Code, Name=@Name where Id=@Id";
-                var result = conn.Query(query, new { Code = entity.Code, Name = entity.Name, Id = entity.Id,ManufacturerId=entity.ManufacturerId });
+                var query = "update Category set ManufacturerId=@ManufacturerId, Code=@Code, Name=@Name, ImageUrl=@ImageUrl,ImageUrl_2=@ImageUrl_2, Published=@Published,Deleted=@Deleted,DisplayOrder=@DisplayOrder, CreatedOn=@CreatedOn, UpdatedOn=@UpdatedOn where Id=@Id";
+                var result = conn.Query(query, new { Code = entity.Code, Name = entity.Name, Id = entity.Id,ManufacturerId=entity.ManufacturerId,
+                ImageUrl=entity.ImageUrl,ImageUrl_2=entity.ImageUrl_2,Published=entity.Published,Deleted=entity.Deleted,DisplayOrder=entity.DisplayOrder,
+                    CreatedOn = entity.CreatedOn,
+                    UpdatedOn = entity.UpdatedOn});
             }
         }
     }

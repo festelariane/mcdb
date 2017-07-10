@@ -28,9 +28,8 @@ namespace Mercedes.Services.Contract
         // Category
         Category GetCategoryById(int categoryId);
         IList<Category> GetAllCategory();
-        bool AddCategory(Category category);
         bool DeleteCategory(Category category);
-        bool UpdateCategory(Category category);
+        bool SaveCategory(Category category);
 
         //PriceModel
         IList<PriceModel> GetPriceModelByModel(int modelid);

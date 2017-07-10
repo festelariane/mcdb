@@ -3,3 +3,14 @@
 ################################################################################
 
 /.vs
+/Mercedes.Data/bin/Debug
+/packages
+/Mercedes.Core/bin/Debug
+/Mercedes.Core/obj/Debug
+/Mercedes.Services/bin/Debug
+/Mercedes.Services/obj/Debug
+/Mercedes.Web/Administration/obj/Debug
+/Mercedes.Web/bin
+/Mercedes.Web/obj/Debug
+/Mercedes.Web.Framework/bin/Debug
+/Mercedes.Web.Framework/obj/Debug

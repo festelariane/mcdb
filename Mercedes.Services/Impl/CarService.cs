@@ -170,11 +170,18 @@ namespace Mercedes.Services.Impl
             }
         }
 
-        public bool UpdateCategory(Category category)
+        public bool SaveCategory(Category category)
         {
             try
             {
-                _categoryRepository.Update(category);
+                if(category.Id > 0)
+                {
+                    _categoryRepository.Update(category);
+                }
+                else
+                {
+                    _categoryRepository.Add(category);
+                }
                 return true;
             }
             catch (Exception ex)
