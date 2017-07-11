@@ -238,6 +238,7 @@
     <Content Include="images\HomeBanner\home-banner-bg-02.jpg" />
     <Content Include="images\HomeBanner\home-banner-bg-03.jpg" />
     <Content Include="images\icon-phone.png" />
+    <Content Include="images\image_not_available.jpg" />
     <Content Include="images\img-home-01.jpg" />
     <Content Include="images\loading.gif" />
     <Content Include="images\main-logo.png" />

@@ -7,35 +7,3 @@
 {
     @Html.Partial("_CreateOrUpdate", Model)
 }
-<script type="text/javascript">
-    function saveCategory() {
-        var frmCategory = $("#category-form");
-        var formData = frmCategory.serialize();
-        $("#btn-update").attr("disabled", "disabled");
-        $.ajax({
-            cache: false,
-            type: "POST",
-            url: '@Url.Action("Update")',
-            data: formData,
-            success: function (data) {
-                if (data) {
-                    alert("Save category successfully");
-                    resourceTable.ajax.reload();
-                    $('#frm-upd-new-model').modal('toggle');
-                } else {
-                    alert("Cannot save category information. Please check again!");
-                }
-                $("#btn-update").removeAttr("disabled");
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                alert(xhr.responeText);
-                $("#btn-update").removeAttr("disabled");
-            }
-        });
-    }
-    $(function () {
-        $("#btn-update").click(function () {
-
-        });
-    });
-</script>

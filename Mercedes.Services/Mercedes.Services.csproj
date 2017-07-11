@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="CodeHelper.cs" />
     <Compile Include="Contract\ICarService.cs" />
+    <Compile Include="Contract\IPictureService.cs" />
     <Compile Include="Contract\IRentService.cs" />
     <Compile Include="Contract\IContactService.cs" />
     <Compile Include="Contract\IRoleService.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="DependencyRegistrar.cs" />
     <Compile Include="Impl\CarService.cs" />
     <Compile Include="Impl\ContactService.cs" />
+    <Compile Include="Impl\PictureService.cs" />
     <Compile Include="Impl\RentService.cs" />
     <Compile Include="Impl\RoleService.cs" />
     <Compile Include="Impl\UserManagementService.cs" />

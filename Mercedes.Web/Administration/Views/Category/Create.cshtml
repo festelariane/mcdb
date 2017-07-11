@@ -1,1 +1,9 @@
-﻿
+﻿@using Mercedes.Admin.Models
+@model CategoryModel
+@{
+    Layout = "";
+}
+@using (Html.BeginForm("", "", FormMethod.Post, new { id = "category-form" }))
+{
+    @Html.Partial("_CreateOrUpdate", Model)
+}

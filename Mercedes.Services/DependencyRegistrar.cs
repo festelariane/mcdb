@@ -32,6 +32,7 @@ namespace Mercedes.Services
             builder.Register<IContactService, ContactService>(Reuse.Transient);
             builder.Register<IRoleService, RoleService>(Reuse.InWebRequest);
             builder.Register<IUserManagementService, UserManagementService>(Reuse.InWebRequest);
+            builder.Register<IPictureService, PictureService>(Reuse.InWebRequest);
         }
     }
 }

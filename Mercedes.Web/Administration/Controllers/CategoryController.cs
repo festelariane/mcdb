@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Mercedes.Admin.Extensions;
 
 namespace Mercedes.Admin.Controllers
 {
@@ -31,7 +32,19 @@ namespace Mercedes.Admin.Controllers
         public JsonResult List(DataSourceRequest command, CategoryListModel model)
         {
             var ls = _carService.GetAllCategory();
-            return Json(new { data = ls });
+            var dataModel = ls.Select(x=> {
+                var categoryModel = x.ToModel();
+                if(!string.IsNullOrEmpty(x.ImageUrl))
+                {
+                    categoryModel.ImageUrl = Url.Content(x.ImageUrl);
+                }
+                if (!string.IsNullOrEmpty(x.ImageUrl_2))
+                {
+                    categoryModel.ImageUrl_2 = Url.Content(x.ImageUrl_2);
+                }
+                return categoryModel;
+            });
+            return Json(new { data = dataModel });
         }
         [HttpGet]
         public ActionResult Add()
@@ -42,7 +55,7 @@ namespace Mercedes.Admin.Controllers
             {
                 model.AllManufacturers.Add(new SelectListItem() { Text = manufacture.Code, Value = manufacture.Id.ToString() });
             }
-            return View("Edit", model);
+            return View("Create", model);
         }
         [HttpGet]
         public ActionResult Update(int Id)
@@ -50,6 +63,10 @@ namespace Mercedes.Admin.Controllers
             var currentCategory = _carService.GetCategoryById(Id);
             var model = TypeAdapter.Adapt<Category, CategoryModel>(currentCategory);
             model.SelectedManufactureId = currentCategory.ManufacturerId;
+            if (!string.IsNullOrEmpty(model.ImageUrl))
+            {
+                model.ImageUrl = Url.Content(model.ImageUrl); 
+            }
             var allManufacturers = _carService.GetAllManufacturers();
             foreach (var manufacture in allManufacturers)
             {

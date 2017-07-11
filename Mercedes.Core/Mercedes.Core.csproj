@@ -84,10 +84,12 @@
     <Compile Include="Caching\NopNullCache.cs" />
     <Compile Include="Caching\PerRequestCacheManager.cs" />
     <Compile Include="Common\DefaultValueDictionary.cs" />
+    <Compile Include="Common\MimeTypes.cs" />
     <Compile Include="Common\PagedData.cs" />
     <Compile Include="Domain\BaseEntity.cs" />
     <Compile Include="Domain\Category.cs" />
     <Compile Include="Domain\Contact.cs" />
+    <Compile Include="Domain\Media\Picture.cs" />
     <Compile Include="Domain\Model.cs" />
     <Compile Include="Domain\Model_Image_Mapping.cs" />
     <Compile Include="Domain\PriceModel.cs" />
