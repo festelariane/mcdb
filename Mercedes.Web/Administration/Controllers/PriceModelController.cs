@@ -21,14 +21,22 @@ namespace Mercedes.Admin.Controllers
         public ActionResult Index()
         {
             var models = _carService.GetAllModel();
-            models.Insert(0, new Model { Id=0,Name="---Select a model---"});
+            models.Insert(0, new Model { Id = 0, Name = "---Select a model---" });
             ViewBag.Models = models;
             var rentTypes = _rentService.GetAllRentTypes();
             ViewBag.RentTypes = rentTypes;
+            //var manufacturers = _carService.GetAllManufacturers();
+            //ViewBag.Manufacturers = manufacturers;
             return View();
         }
         [HttpPost]
-        public JsonResult List(int modelId=0)
+        public JsonResult GetManufactureByModelId(int modelId)
+        {
+            var manufacturer = _carService.GetManufacturerByModelId(modelId);
+            return Json(new { Data= manufacturer } );
+        }
+        [HttpPost]
+        public JsonResult List(int modelId = 0)
         {
             IList<PriceModel> ls = null;
             if (modelId == 0)

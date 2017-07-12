@@ -2,12 +2,13 @@
     var defaultSelectors = {
         ModelId: "#ModelId",
         tbPriceModel: "#tb-price-model",
+        lblNSX: "#lblNSX",
         linkGetAjax: "#linkGetAjax",
         linkUpdateAjax: "#linkUpdateAjax",
         linkDeleteAjax: "#linkDeleteAjax",
         linkAddAjax: "#linkAddAjax",
         btnNew: "#btnNew",
-        btnSave:""
+        btnSave: ""
     };
 
     this.selectors = defaultSelectors;
@@ -56,7 +57,7 @@ PriceModelProvider.prototype.Init = function () {
                         mRender: function (data, type, fullObject) {
                             var Id = fullObject.Id;
                             //var url = linkUpdatePrice +'/?Id=' + Id;
-                            return '<a class="edit" priceModelId="'+Id+'" href="javascript:;"> Edit </a>';
+                            return '<a class="edit" priceModelId="' + Id + '" href="javascript:;"> Edit </a>';
                         }
                     },
                     {
@@ -65,7 +66,7 @@ PriceModelProvider.prototype.Init = function () {
                             var Id = fullObject.Id;
                             var url = linkDeletePrice + '/?Id=' + Id;
                             //return '<a class="delete" onclick="deleteResource(\'' + url + '\')" href=""> Delete </a>';
-                            return ' <a class="delete" priceModelId="'+Id+'" href="javascript:;"> Delete </a>';
+                            return ' <a class="delete" priceModelId="' + Id + '" href="javascript:;"> Delete </a>';
                         }
                     }
                 ],
@@ -74,6 +75,25 @@ PriceModelProvider.prototype.Init = function () {
     $(me.selectors.ModelId).change(function () {
         var modelId = this.value;
         me.datatable.ajax.url(linkGetPrice + '/?modelId=' + modelId).load();
+
+        $.ajax({
+            cache: false,
+            type: "POST",
+            dataType: "json",
+            url: window.applicationBaseUrl + "Admin/PriceModel/GetManufactureByModelId",
+            data: { "modelId": modelId },
+            success: function (d) {
+                if (null !== d && null !== d.Data ) {
+                    $(me.selectors.lblNSX).text(d.Data.Name);
+                }
+                else {
+                    $(me.selectors.lblNSX).text("...");
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('getRes(Server_Error)');
+            }
+        });
     });
     me.datatable.on('click', '.delete', function (e) {
         e.preventDefault();
@@ -118,10 +138,10 @@ PriceModelProvider.prototype.Init = function () {
             nEditing = nRow;
         } else if (nEditing == nRow && this.innerHTML == "Save") {
             /* Editing this row and want to save it */
-           
+
             var jqInputs = $('input,select', nEditing);
             var modelPriceId = $(this).attr("modelpriceid");
-            saveRow(me.datatable, nEditing);           
+            saveRow(me.datatable, nEditing);
             nEditing = null;
             //alert("Updated! Do not forget to do some ajax to sync with backend :)");
             var rentTypeSelected = $(jqInputs[0]).find(":selected");
@@ -132,11 +152,11 @@ PriceModelProvider.prototype.Init = function () {
             //var json = JSON.parse('{"RentType":{"RentTypeName":"' + rentTypeSelected.text() + '"},"Price":"' + jqInputs[1].value + '","RentTypeId":"' + rentTypeSelected.val() + '"}');
             var urlPost = "";
             if (null === modelPriceId || undefined === modelPriceId) {
-                 urlPost = linkAddPrice;
-             } else {
-                 urlPost = linkUpdatePrice;
-                 data.Id = modelPriceId;
-             }
+                urlPost = linkAddPrice;
+            } else {
+                urlPost = linkUpdatePrice;
+                data.Id = modelPriceId;
+            }
             $.ajax({
                 cache: false,
                 type: "POST",
@@ -151,15 +171,14 @@ PriceModelProvider.prototype.Init = function () {
                         alert('Update Fail!');
                     }
                 },
-                error: function (xhr, ajaxOptions, thrownError)
-                {
+                error: function (xhr, ajaxOptions, thrownError) {
                     alert('getRes(Server_Error)');
                 }
             });
         } else {
             /* No edit in progress - let's start one */
             var id = $(this).attr("priceModelId");
-            editRow(me.datatable, nRow,id);
+            editRow(me.datatable, nRow, id);
             nEditing = nRow;
         }
     });
@@ -217,7 +236,7 @@ function restoreRow(oTable, nRow) {
     oTable.row(nRow).data(aData).draw();
 }
 
-function editRow(oTable, nRow,id) {
+function editRow(oTable, nRow, id) {
     var aData = oTable.row(nRow).data();
     var jqTds = $('>td', nRow);
     jqTds[0].innerHTML = document.getElementById("RentTypes_T").outerHTML.replace("RentTypes_T", "RentTypes").replace("hiddenfield", ""); // '<input type="text" class="form-control input-small" value="' + aData[0] + '">';
@@ -225,11 +244,11 @@ function editRow(oTable, nRow,id) {
     jqTds[1].innerHTML = '<input type="text" class="form-control input-small" value="' + aData.Price + '">';
     //jqTds[2].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[2] + '">';
     //jqTds[3].innerHTML = '<input type="text" class="form-control input-small" value="' + aData[3] + '">';
-    if (null != id && undefined !=id) {
-        jqTds[2].innerHTML = '<a class="edit" modelPriceId="'+id+'" href="">Save</a>';
-    }else {
+    if (null != id && undefined != id) {
+        jqTds[2].innerHTML = '<a class="edit" modelPriceId="' + id + '" href="">Save</a>';
+    } else {
         jqTds[2].innerHTML = '<a class="edit" href="">Save</a>';
-    }    
+    }
     jqTds[3].innerHTML = '<a class="cancel" href="">Cancel</a>';
 }
 

@@ -752,9 +752,6 @@
     <Content Include="sitemap.config" />
     <Content Include="assets\plugins\bootstrap-touchspin\LICENSE.md" />
     <Content Include="assets\plugins\bootstrap-touchspin\README.md" />
-    <Content Include="Views\Model\_CreateOrUpdate.cshtml" />
-    <Content Include="Views\Model\Create.cshtml" />
-    <Content Include="Views\Model\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
