@@ -173,6 +173,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\plugins\bootstrap-touchspin\bootstrap.touchspin.css" />
+    <Content Include="assets\plugins\bootstrap-touchspin\bootstrap.touchspin.js" />
+    <Content Include="assets\plugins\bootstrap-touchspin\bootstrap.touchspin.min.css" />
+    <Content Include="assets\plugins\bootstrap-touchspin\bootstrap.touchspin.min.js" />
     <Content Include="assets\plugins\datatables\dataTables.bootstrap.css" />
     <Content Include="assets\plugins\datatables\dataTables.bootstrap.js" />
     <Content Include="assets\plugins\datatables\dataTables.bootstrap.min.js" />
@@ -745,6 +749,8 @@
     <Content Include="Scripts\fine-uploader\LICENSE" />
     <Content Include="Views\Shared\Menu.cshtml" />
     <Content Include="sitemap.config" />
+    <Content Include="assets\plugins\bootstrap-touchspin\LICENSE.md" />
+    <Content Include="assets\plugins\bootstrap-touchspin\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
