@@ -169,6 +169,7 @@
     <Compile Include="Extensions\MappingExtensions.cs" />
     <Compile Include="Models\CategoryListModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\ModelViewModel.cs" />
     <Compile Include="Mvc\Attributes\UserAdminAuthorizeAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -751,6 +752,9 @@
     <Content Include="sitemap.config" />
     <Content Include="assets\plugins\bootstrap-touchspin\LICENSE.md" />
     <Content Include="assets\plugins\bootstrap-touchspin\README.md" />
+    <Content Include="Views\Model\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\Model\Create.cshtml" />
+    <Content Include="Views\Model\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
