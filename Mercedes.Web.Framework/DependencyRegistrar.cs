@@ -1,4 +1,5 @@
 ﻿using DryIoc;
+using Mercedes.Core;
 using Mercedes.Core.DryIoc;
 using Mercedes.Core.Fakes;
 using Mercedes.Framework.UI;
@@ -28,6 +29,8 @@ namespace Mercedes.Framework
             builder.RegisterDelegate<HttpServerUtilityBase>(c => c.Resolve<HttpContextBase>().Server, Reuse.InResolutionScope);
 
             builder.RegisterDelegate<HttpSessionStateBase>(c => c.Resolve<HttpContextBase>().Session, Reuse.InResolutionScope);
+
+            builder.Register<IWebHelper,WebHelper>(Reuse.Singleton);
         }
     }
 }

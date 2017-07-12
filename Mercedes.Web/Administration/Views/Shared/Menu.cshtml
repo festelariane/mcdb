@@ -1,0 +1,86 @@
+﻿@using Mercedes.Core.Infrastructure;
+@using Mercedes.Framework.Menu
+@using System.Linq
+@{
+    var siteMap = IocHelper.Resolve<XmlSiteMap>("adminsitemap");
+    var currentNode = siteMap.CurrentNode;
+}  
+
+@helper RenderMenuItem(Mercedes.Framework.Menu.SiteMapNode item, Mercedes.Framework.Menu.SiteMapNode currentNode)
+{
+    string url = null;
+    if (!string.IsNullOrEmpty(item.ControllerName) && !string.IsNullOrEmpty(item.ActionName))
+    {
+        url = Url.Action(item.ActionName, item.ControllerName, item.RouteValues, null, null);
+    }
+    else if (!string.IsNullOrEmpty(item.Url))
+    {
+        url = item.Url.StartsWith("~/", StringComparison.Ordinal) ? Url.Content(item.Url) : item.Url;
+    }
+    var liclass = "";
+    if (currentNode != null && item == currentNode.ParentNode || item == currentNode)
+    {
+        liclass += "active open";
+    }
+    <li class="@liclass">
+        @if(string.IsNullOrEmpty(url))
+        {
+            url = "javascript:;";
+        }
+        @{
+            var classname = "nav-link ";
+            if (item.ChildNodes.Count > 0)
+            {
+                classname = "nav-link nav-toggle";
+            }
+        }
+
+        <a href="@url" class="@classname">
+            <i class="@item.ImageUrl"></i>
+            <span class="title">@item.Title</span>
+            @if (item.ChildNodes.Count > 0)
+            {
+                if (currentNode != null && item == currentNode.ParentNode)
+                {
+                    <span class="selected"></span>
+                    <span class="arrow open"></span>
+                }
+                else
+                {
+                    <span class="arrow"></span>
+                }
+            }
+            @if (item == currentNode)
+            {
+                <span class="selected"></span>
+            }
+        </a>
+       
+        @if (item.ChildNodes.Count > 0)
+        {
+            var childNodes = item.ChildNodes.Where(x => x.Visible).ToList();
+            <ul class="sub-menu">
+                @foreach (var childItem in childNodes)
+                {
+                    @RenderMenuItem(childItem, currentNode)
+                }
+            </ul>
+        }
+    </li>
+}
+
+<ul class="sidebar-menu">
+    <li class="header">MAIN NAVIGATION</li>
+
+    @foreach (var item in siteMap.RootNode.ChildNodes.Where(x => x.Visible))
+    {
+        if (item.Visible)
+        {
+            @RenderMenuItem(item, currentNode)
+        }
+    }
+    <li class="header">LABELS</li>
+    <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+    <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+    <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+</ul>

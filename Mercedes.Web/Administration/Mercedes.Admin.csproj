@@ -47,6 +47,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DryIoc, Version=2.11.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\DryIoc.dll.2.11.3\lib\net45\DryIoc.dll</HintPath>
+    </Reference>
     <Reference Include="FastMapper, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\FastMapper.1.2.0\lib\net40\FastMapper.dll</HintPath>
       <Private>True</Private>
@@ -161,6 +165,7 @@
     <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Controllers\PriceModelController.cs" />
     <Compile Include="Controllers\RentTypeController.cs" />
+    <Compile Include="DependencyRegistrar.cs" />
     <Compile Include="Extensions\MappingExtensions.cs" />
     <Compile Include="Models\CategoryListModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
@@ -738,6 +743,8 @@
     <Content Include="Scripts\fine-uploader\jquery.fine-uploader.js.map" />
     <Content Include="Scripts\fine-uploader\jquery.fine-uploader.min.js.map" />
     <Content Include="Scripts\fine-uploader\LICENSE" />
+    <Content Include="Views\Shared\Menu.cshtml" />
+    <Content Include="sitemap.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
