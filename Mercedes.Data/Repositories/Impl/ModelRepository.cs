@@ -135,5 +135,15 @@ namespace Mercedes.Data.Repositories.Impl
 
             return new Model();
         }
+
+        public void AddModelImage(Model_Image_Mapping entity)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var query = "insert into [Model_Image_Mapping] ([VehicleModelId],[FullImageUrl],[ThumbImageUrl],[DisplayOrder]) values (@VehicleModelId,@FullImageUrl,@ThumbImageUrl,@DisplayOrder)";
+                var result = conn.Query(query, new { VehicleModelId = entity.VehicleModelId, FullImageUrl = entity.FullImageUrl, ThumbImageUrl = entity.ThumbImageUrl, DisplayOrder = entity.DisplayOrder });
+            }
+        }
     }
 }

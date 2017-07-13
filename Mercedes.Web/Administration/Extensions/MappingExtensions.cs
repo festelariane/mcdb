@@ -23,5 +23,19 @@ namespace Mercedes.Admin.Extensions
         {
             return TypeAdapter.Adapt(model,destination);
         }
+
+        public static VehiclePictureModel ToModel(this Model_Image_Mapping entity)
+        {
+            return TypeAdapter.Adapt<Model_Image_Mapping, VehiclePictureModel>(entity);
+        }
+        public static Model_Image_Mapping ToEntity(this VehiclePictureModel model)
+        {
+            return TypeAdapter.Adapt<VehiclePictureModel, Model_Image_Mapping>(model);
+        }
+
+        public static Model_Image_Mapping ToEntity(this VehiclePictureModel model, Model_Image_Mapping destination)
+        {
+            return TypeAdapter.Adapt(model, destination);
+        }
     }
 }

@@ -1,10 +1,12 @@
-﻿using Mercedes.Core.Domain;
+﻿using Mercedes.Admin.Models;
+using Mercedes.Core.Domain;
 using Mercedes.Services.Contract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Mercedes.Admin.Extensions;
 
 namespace Mercedes.Admin.Controllers
 {
@@ -50,6 +52,29 @@ namespace Mercedes.Admin.Controllers
             var model = _carService.GetModelById(Id);
             ViewBag.Categories = _carService.GetAllCategory();
             return View("_UpdateModelFrom", model);
+        }
+
+        public ActionResult ModelPictures(int modelId)
+        {
+            var model = new ManageVehiclePictureModel();
+            model.VehicleModelId = modelId;
+            model.NewPictureModel.VehicleModelId = modelId;
+            var allImages = _carService.GetVehicleModelImageUrl(modelId);
+            foreach(var imgEntity in allImages)
+            {
+                var imgModel = imgEntity.ToModel();
+                imgModel.FullImageUrl = Url.Content(imgModel.FullImageUrl);
+                imgModel.ThumbImageUrl = Url.Content(imgModel.ThumbImageUrl);
+                model.VehiclePictures.Add(imgModel);
+            }
+            return View(model);   
+        }
+        [HttpPost]
+        public JsonResult AddModelImage(VehiclePictureModel model)
+        {
+            var entity = model.ToEntity();
+            var rs = _carService.AddModelImage(entity);
+            return Json(rs);
         }
     }
 }

@@ -169,7 +169,9 @@
     <Compile Include="Extensions\MappingExtensions.cs" />
     <Compile Include="Models\CategoryListModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\ManageVehiclePictureModel.cs" />
     <Compile Include="Models\ModelViewModel.cs" />
+    <Compile Include="Models\VehiclePictureModel.cs" />
     <Compile Include="Mvc\Attributes\UserAdminAuthorizeAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -364,6 +366,7 @@
     <Content Include="assets\plugins\datatables\jquery.dataTables.min.js" />
     <Content Include="assets\plugins\datatables\jquery.dataTables_themeroller.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\thumbnail-gallery.css" />
     <Content Include="fileman\css\images\animated-overlay.gif" />
     <Content Include="fileman\css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="fileman\css\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -752,6 +755,7 @@
     <Content Include="sitemap.config" />
     <Content Include="assets\plugins\bootstrap-touchspin\LICENSE.md" />
     <Content Include="assets\plugins\bootstrap-touchspin\README.md" />
+    <Content Include="Views\Model\ModelPictures.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

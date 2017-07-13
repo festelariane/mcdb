@@ -76,6 +76,10 @@
         });
     }
     $(function () {
+        $('#frm-upd-new-model').on('hidden.bs.modal', function (e) {
+            //remove all html code:
+            $("#edit-form").html('');
+        })
         resourceTable = $('#tb-model').DataTable(
                {
                    paging: true,
@@ -100,6 +104,13 @@
                        { title: "Name", data: "Name" },
                        { title: "Publised", data: "Published" },
                        { title: "Display Order", data: "DisplayOrder" },
+                       {
+                           mRender: function (data, type, fullObject) {
+                               var Id = fullObject.Id;
+                               var url = '@Url.Action("ModelPictures")/?modelId=' + Id;
+                               return '<a id="btn-manage" data-toggle="modal" onclick="getResource(\'' + url + '\')" href="#frm-upd-new-model" class="edit"> Manage Pictures </a>';
+                           }
+                       },
                        {
                            //Edit column
                            mRender: function (data, type, fullObject) {
