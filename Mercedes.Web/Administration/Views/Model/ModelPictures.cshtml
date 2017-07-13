@@ -4,15 +4,7 @@
 @{
     Layout = "";
 }
-<style type="text/css">
-    .thumb {
-        margin-bottom: 30px;
-    }
-
-    footer {
-        margin: 50px 0;
-    }
-</style>
+<script src="~/Administration/Scripts/jsrender.min.js"></script>
 
 @Html.Hidden("VehicleModelId",@Model.VehicleModelId, new { id= "VehicleModelId" })
 <div class="modal-header">
@@ -20,15 +12,7 @@
     <h4 class="modal-title">Manage Pictures</h4>
 </div>
 <div class="modal-body">
-    <div class="row" style="height:420px; overflow-y:scroll; border:solid 2px gray;">
-        @foreach (var picModel in Model.VehiclePictures)
-        {
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="@picModel.FullImageUrl" alt="">
-                </a>
-            </div>
-        }
+    <div id="grid-pictures" class="row" style="height:420px; overflow-y:scroll; border:solid 2px gray;">
     </div>
 
 
@@ -57,13 +41,41 @@
     <button type="button" class="btn btn-success" onclick="saveCategory()" id="btn-update">Update</button>
 </div>
 
+<script id="tmpl-model-picture" type="text/x-jsrender">
+    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+        <a class="thumbnail" href="javascript:void(0)">
+            <img class="img-responsive" src="{{>FullImageUrl}}" alt="">
+        </a>
+    </div>
+</script>
+
 
 <script type="text/javascript">
+    function loadModelImageGrid()
+    {
+        var postData = {
+            modelId: $("#@Html.FieldIdFor(m => m.VehicleModelId)").val() };
+
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "@(Url.Action("LoadModelPictures", "Model"))",
+            data: postData,
+        success: function(data) {
+            var grid = $("#grid-pictures");
+            grid.html($("#tmpl-model-picture").render(data));
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert('Failed to load model picture.');
+        }
+    });
+    }
     $(document).ready(function() {
+        loadModelImageGrid();
         $('#btn-addimage').click(function() {
             @*var pictureUrl = $("#@Html.FieldIdFor(model => m.NewPictureModel.FullImageUrl)").val();
             var displayOrder = $("#@Html.FieldIdFor(model => m.NewPictureModel.DisplayOrder)").val();*@
-
+    
             var pictureUrl = $("#NewPictureModel_FullImageUrl").val();
             var displayOrder = $("#NewPictureModel_DisplayOrder").val();
             if (pictureUrl == '') {
@@ -77,8 +89,7 @@
                 FullImageUrl: pictureUrl,
                 ThumbImageUrl: pictureUrl,
                 DisplayOrder: displayOrder,
-                VehicleModelId: @Model.VehicleModelId
-                };
+                VehicleModelId: @Model.VehicleModelId};
 
             $.ajax({
                 cache: false,
@@ -87,12 +98,12 @@
                 data: postData,
                 success: function(data) {
                     var grid = $("#productpictures-grid");
-                    grid.data('kendoGrid').dataSource.read();
+                    loadModelImageGrid();
                     $('#addProductPicture').attr('disabled', false);
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
-                    alert('Failed to add product picture.');
-                    $('#addProductPicture').attr('disabled', false);
+                    alert('Failed to add model picture.');
+                    $('#btn-addimage').attr('disabled', false);
                 }
             });
         });

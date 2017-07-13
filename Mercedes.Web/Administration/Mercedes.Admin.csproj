@@ -670,6 +670,7 @@
     <Content Include="Scripts\fine-uploader\templates\simple-thumbnails.html" />
     <Content Include="Scripts\fine-uploader\trash.gif" />
     <Content Include="Scripts\jsPriceModelProvider.js" />
+    <Content Include="Scripts\jsrender.min.js" />
     <Content Include="Views\Model\ModelPictures.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />

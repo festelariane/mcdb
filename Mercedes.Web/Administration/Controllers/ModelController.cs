@@ -70,6 +70,22 @@ namespace Mercedes.Admin.Controllers
             return View(model);   
         }
         [HttpPost]
+        public JsonResult LoadModelPictures(int modelId)
+        {
+            var model = new ManageVehiclePictureModel();
+            model.VehicleModelId = modelId;
+            model.NewPictureModel.VehicleModelId = modelId;
+            var allImages = _carService.GetVehicleModelImageUrl(modelId);
+
+            var dataModel = allImages.Select(x => {
+                var imgModel = x.ToModel();
+                imgModel.FullImageUrl = Url.Content(imgModel.FullImageUrl);
+                imgModel.ThumbImageUrl = Url.Content(imgModel.ThumbImageUrl);
+                return imgModel;
+            });
+            return Json(dataModel);
+        }
+        [HttpPost]
         public JsonResult AddModelImage(VehiclePictureModel model)
         {
             var entity = model.ToEntity();
