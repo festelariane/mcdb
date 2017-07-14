@@ -101,6 +101,7 @@
     <Compile Include="Menu\XmlSiteMap.cs" />
     <Compile Include="Mvc\ActionResults\DownloadResult.cs" />
     <Compile Include="Mvc\Attributes\AjaxOnlyAttribute.cs" />
+    <Compile Include="Mvc\Attributes\UserAdminAuthorizeAttribute.cs" />
     <Compile Include="Mvc\Attributes\UserAuthorizeAttribute.cs" />
     <Compile Include="Mvc\BaseModel.cs" />
     <Compile Include="Mvc\Controllers\BaseController.cs" />

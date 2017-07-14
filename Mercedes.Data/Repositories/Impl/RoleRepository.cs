@@ -4,35 +4,62 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using Dapper;
 
 namespace Mercedes.Data.Repositories.Impl
 {
-    public class RoleRepository : IRoleRepository
+    public class RoleRepository : BaseRepository,IRoleRepository
     {
         public UserRole Get(int Id)
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var query = "select * from UserRole where Id=@Id";
+                var result = conn.QueryFirstOrDefault<UserRole>(query, new { Id = Id });
+                return result;
+            }
         }
 
         public IEnumerable<UserRole> GetAll()
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var query = "select * from UserRole";
+                var result = conn.Query<UserRole>(query);
+                return result;
+            }
         }
 
         public void Add(UserRole entity)
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var query = "insert into UserRole (Name,Guid,CreatedOn,UpdatedOn,IsDeleted) values (@Name,@Guid,@CreatedOn,@UpdatedOn,@IsDeleted)";
+                var result = conn.Query(query, new {Name = entity.Name,Guid=Guid.NewGuid(),CreatedOn = DateTime.Now,UpdatedOn=DateTime.Now,IsDeleted=false });
+            }
         }
 
         public void Delete(UserRole entity)
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var query = "delete UserRole where Id=@Id";
+                var result = conn.Query(query, new { Id = entity.Id });
+            }
         }
 
         public void Update(UserRole entity)
         {
-            throw new NotImplementedException();
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var query = "update UserRole set Name=@Name,UpdatedOn=@UpdatedOn,IsDeleted=@IsDeleted where Id=@Id";
+                var result = conn.Query(query, new { Name = entity.Name,UpdatedOn=DateTime.Now,IsDeleted=entity.IsDeleted, Id = entity.Id });
+            }
         }
     }
 }

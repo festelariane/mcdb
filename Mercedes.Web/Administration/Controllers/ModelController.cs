@@ -7,9 +7,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Mercedes.Admin.Extensions;
+using Mercedes.Admin.Mvc.Attributes;
 
 namespace Mercedes.Admin.Controllers
 {
+    [UserAdminAuthorize]
     public class ModelController : Controller
     {
         private readonly ICarService _carService;

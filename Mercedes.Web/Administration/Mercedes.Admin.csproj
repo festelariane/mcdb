@@ -165,12 +165,16 @@
     <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Controllers\PriceModelController.cs" />
     <Compile Include="Controllers\RentTypeController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="DependencyRegistrar.cs" />
     <Compile Include="Extensions\MappingExtensions.cs" />
     <Compile Include="Models\CategoryListModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\ManageVehiclePictureModel.cs" />
     <Compile Include="Models\ModelViewModel.cs" />
+    <Compile Include="Models\RoleListModel.cs" />
+    <Compile Include="Models\RoleViewModel.cs" />
+    <Compile Include="Models\UserLoginViewModel.cs" />
     <Compile Include="Models\VehiclePictureModel.cs" />
     <Compile Include="Mvc\Attributes\UserAdminAuthorizeAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -366,7 +370,7 @@
     <Content Include="assets\plugins\datatables\jquery.dataTables.min.js" />
     <Content Include="assets\plugins\datatables\jquery.dataTables_themeroller.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\thumbnail-gallery.css" />
+    <Content Include="Content\style.css" />
     <Content Include="fileman\css\images\animated-overlay.gif" />
     <Content Include="fileman\css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="fileman\css\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -687,7 +691,6 @@
     <Folder Include="fileman\tmp\" />
     <Folder Include="fileman\Uploads\Documents\" />
     <Folder Include="fileman\Uploads\FLV\" />
-    <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -757,6 +760,11 @@
     <Content Include="sitemap.config" />
     <Content Include="assets\plugins\bootstrap-touchspin\LICENSE.md" />
     <Content Include="assets\plugins\bootstrap-touchspin\README.md" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Role\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Role\Edit.cshtml" />
+    <Content Include="Views\Role\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

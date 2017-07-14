@@ -16,18 +16,29 @@ namespace Mercedes.Services.Impl
         {
             _roleRepository = roleRepository;
         }
-        public void AddRole(UserRole role)
+        public bool SaveRole(UserRole role)
         {
-            throw new NotImplementedException();
-        }
-        public void SaveRole(UserRole role)
-        {
-            throw new NotImplementedException();
+            try
+            {
+                if (role.Id > 0)
+                {
+                    _roleRepository.Update(role);
+                }
+                else
+                {
+                    _roleRepository.Add(role);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         public IEnumerable<UserRole> GetAllRoles()
         {
-            throw new NotImplementedException();
+            return _roleRepository.GetAll().ToList();
         }
 
         public UserRole GetRoleByName(string name)
@@ -35,9 +46,17 @@ namespace Mercedes.Services.Impl
             throw new NotImplementedException();
         }
 
-        public void DeleteRole(UserRole role)
+        public bool DeleteRole(UserRole role)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _roleRepository.Delete(role);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         public bool IsOnlyAdmin(User user)
@@ -52,7 +71,7 @@ namespace Mercedes.Services.Impl
 
         public UserRole GetRole(int id)
         {
-            throw new NotImplementedException();
+            return _roleRepository.Get(id);
         }
     }
 }
