@@ -38,5 +38,6 @@ namespace Mercedes.Services.Contract
 
         IList<Model_Image_Mapping> GetModelPictures(int modelId);
         bool AddModelImage(Model_Image_Mapping picture);
+        bool DeleteModelImage(int Id);
     }
 }

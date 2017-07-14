@@ -214,5 +214,17 @@ namespace Mercedes.Services.Impl
             _modelRepository.AddModelImage(picture);
             return true;
         }
+        public bool DeleteModelImage(int Id)
+        {
+            try
+            {
+                _modelRepository.DeleteModelImage(new Model_Image_Mapping() {Id = Id });
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

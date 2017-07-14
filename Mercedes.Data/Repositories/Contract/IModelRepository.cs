@@ -12,5 +12,6 @@ namespace Mercedes.Data.Repositories.Contract
         IEnumerable<Model> GetByCategoryId(int categoryId);
         IEnumerable<Model_Image_Mapping> GetVehicleModelImageUrl(int vehicleModelId);
         void AddModelImage(Model_Image_Mapping entity);
+        void DeleteModelImage(Model_Image_Mapping entity);
     }
 }

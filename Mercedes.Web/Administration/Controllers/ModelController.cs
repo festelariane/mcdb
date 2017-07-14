@@ -82,7 +82,7 @@ namespace Mercedes.Admin.Controllers
                 imgModel.FullImageUrl = Url.Content(imgModel.FullImageUrl);
                 imgModel.ThumbImageUrl = Url.Content(imgModel.ThumbImageUrl);
                 return imgModel;
-            });
+            }).OrderBy(x=> x.DisplayOrder);
             return Json(dataModel);
         }
         [HttpPost]
@@ -90,6 +90,12 @@ namespace Mercedes.Admin.Controllers
         {
             var entity = model.ToEntity();
             var rs = _carService.AddModelImage(entity);
+            return Json(rs);
+        }
+        [HttpPost]
+        public JsonResult RemoveModelPicture(int Id)
+        {
+            var rs = _carService.DeleteModelImage(Id);
             return Json(rs);
         }
     }

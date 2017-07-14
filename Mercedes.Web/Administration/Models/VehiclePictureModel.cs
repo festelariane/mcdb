@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Mercedes.Admin.Models
 {
-    public class VehiclePictureModel: BaseModel
+    public class VehiclePictureModel: BaseEntityModel
     {
         public int VehicleModelId { get; set; }
         [UIHint("Picture")]

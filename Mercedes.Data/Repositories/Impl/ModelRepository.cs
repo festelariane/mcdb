@@ -145,5 +145,14 @@ namespace Mercedes.Data.Repositories.Impl
                 var result = conn.Query(query, new { VehicleModelId = entity.VehicleModelId, FullImageUrl = entity.FullImageUrl, ThumbImageUrl = entity.ThumbImageUrl, DisplayOrder = entity.DisplayOrder });
             }
         }
+        public void DeleteModelImage(Model_Image_Mapping entity)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var query = "DELETE FROM [dbo].[Model_Image_Mapping] WHERE Id=@Id ";
+                var result = conn.Query(query, new { Id = entity.Id});
+            }
+        }
     }
 }
