@@ -64,8 +64,14 @@ namespace Mercedes.Admin.Controllers
         public ActionResult Update(int Id)
         {
             var model = _carService.GetModelById(Id);
-            ViewBag.Categories = _carService.GetAllCategory();
-            return View("_UpdateModelFrom", model);
+            var viewModel = new ModelViewModel();
+            var m = TypeAdapter.Adapt<Model, ModelViewModel>(model,viewModel);
+            var allCategories = _carService.GetAllCategory();
+            foreach (var category in allCategories)
+            {
+                viewModel.AllCategories.Add(new SelectListItem() { Text = category.Name, Value = category.Id.ToString() });
+            }
+            return View("_UpdateModelFrom", m);
         }
 
         public ActionResult ModelPictures(int modelId)
