@@ -1,4 +1,5 @@
-﻿using Mercedes.Core.Domain;
+﻿using Mercedes.Admin.Mvc.Attributes;
+using Mercedes.Core.Domain;
 using Mercedes.Services.Contract;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Mercedes.Admin.Controllers
 {
+    [UserAdminAuthorize]
     public class ClientContactController : Controller
     {
         private readonly IContactService _contactService;

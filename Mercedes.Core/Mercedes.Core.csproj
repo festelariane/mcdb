@@ -91,6 +91,7 @@
     <Compile Include="Domain\Contact.cs" />
     <Compile Include="Domain\Media\Picture.cs" />
     <Compile Include="Domain\Model.cs" />
+    <Compile Include="Domain\ModelPicture.cs" />
     <Compile Include="Domain\Model_Image_Mapping.cs" />
     <Compile Include="Domain\PriceModel.cs" />
     <Compile Include="Domain\RentType.cs" />

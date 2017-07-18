@@ -198,6 +198,33 @@ namespace Mercedes.Services.Impl
         public IList<Model_Image_Mapping> GetVehicleModelImageUrl(int vehicleModelId)
         {
             return _modelRepository.GetVehicleModelImageUrl(vehicleModelId).ToList();
-        }       
+        }
+        public Manufacturer GetManufacturerByModelId(int modelId)
+        {
+            return _manufactureRepository.GetManufacturerByModelId(modelId);
+        }
+
+        public IList<Model_Image_Mapping> GetModelPictures(int modelId)
+        {
+            return _modelRepository.GetVehicleModelImageUrl(modelId).ToList();
+        }
+
+        public bool AddModelImage(Model_Image_Mapping picture)
+        {
+            _modelRepository.AddModelImage(picture);
+            return true;
+        }
+        public bool DeleteModelImage(int Id)
+        {
+            try
+            {
+                _modelRepository.DeleteModelImage(new Model_Image_Mapping() {Id = Id });
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

@@ -131,17 +131,23 @@
                                {
                                    return '<img class="thumbnail-image" src="@Url.Content("~/images/image_not_available.jpg")"/>';
                                }
-                               
+
                            }
                        },
-                       { title: "Publised", data: "Published" },
                        {
-                           title: "Display Order", data: "DisplayOrder",
-                           mRender: function(data, type, fullObject)
-                           {
-                               return '<input id="touchspin_' + fullObject.Id + '" type="text" value="' + data + '" name="touchspin_' + fullObject.Id + '" class="touchspin_displayorder"> </div>';
+                           title: "Publised", data: "Published",
+                           mRender: function (data, type, fullObject) {
+                               if (data == true) {
+                                   return '<input type="checkbox" checked disabled="disabled">';
+                               }
+                               else {
+                                   return '<input type="checkbox" disabled="disabled">';
+                               }
+
                            }
                        },
+                       {
+                           title: "Display Order", data: "DisplayOrder"},
                        {
                            //Edit column
                            mRender: function (data, type, fullObject) {
@@ -163,7 +169,7 @@
                    {
                        //$("touchspin_" + aData.Id).TouchSpin({ initval: aData.DisplayOrder });
                    },
-                   "fnDrawCallback": function (oSettings) 
+                   "fnDrawCallback": function (oSettings)
                    {
                        $(".touchspin_displayorder").TouchSpin();
                    }

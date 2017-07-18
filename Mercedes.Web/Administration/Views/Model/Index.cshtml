@@ -7,6 +7,9 @@
 <link href="~/Administration/assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" />
 <script src="~/Administration/assets/plugins/datatables/jquery.dataTables.min.js"></script>
 
+<link href="~/Administration/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.css" rel="stylesheet" type="text/css" />
+<script src="~/Administration/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script>
+
 @Html.Partial("_AddModelFrom",Model)
 <div class="box">
     <div class="box-header">
@@ -76,6 +79,10 @@
         });
     }
     $(function () {
+        $('#frm-upd-new-model').on('hidden.bs.modal', function (e) {
+            //remove all html code:
+            $("#edit-form").html('');
+        })
         resourceTable = $('#tb-model').DataTable(
                {
                    paging: true,
@@ -100,6 +107,13 @@
                        { title: "Name", data: "Name" },
                        { title: "Publised", data: "Published" },
                        { title: "Display Order", data: "DisplayOrder" },
+                       {
+                           mRender: function (data, type, fullObject) {
+                               var Id = fullObject.Id;
+                               var url = '@Url.Action("ModelPictures")/?modelId=' + Id;
+                               return '<a id="btn-manage" data-toggle="modal" onclick="getResource(\'' + url + '\')" href="#frm-upd-new-model" class="edit"> Manage Pictures </a>';
+                           }
+                       },
                        {
                            //Edit column
                            mRender: function (data, type, fullObject) {

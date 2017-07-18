@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Mercedes.Core.Domain;
 using Dapper;
+using System;
 
 namespace Mercedes.Data.Repositories.Impl
 {
@@ -47,8 +48,8 @@ namespace Mercedes.Data.Repositories.Impl
             using (var conn = CreateConnection())
             {
                 conn.Open();
-                var query = "insert into Model (CategoryID,Code,Name) values (@Category,@Code,@Name)";
-                var result = conn.Query(query, new { Code = entity.Code, Name = entity.Name, CategoryID = entity.CategoryId });
+                var query = "insert into Model (CategoryID,Code,Name,Published,DisplayOrder,CreatedOn,UpdatedOn) values (@CategoryID,@Code,@Name,@Published,@DisplayOrder,@CreatedOn,@UpdatedOn)";
+                var result = conn.Query(query, new { Code = entity.Code, Name = entity.Name, CategoryID = entity.CategoryId, Published = entity.Published, DisplayOrder = entity.DisplayOrder, CreatedOn = DateTime.Now, UpdatedOn = DateTime.Now});
             }
         }
 
@@ -57,7 +58,7 @@ namespace Mercedes.Data.Repositories.Impl
             using (var conn = CreateConnection())
             {
                 conn.Open();
-                var query = "delete Model where Id=@Id";
+                var query = "update Model set Deleted=1 where Id=@Id";
                 var result = conn.Query(query, new { Id = entity.Id });
             }
         }
@@ -67,8 +68,8 @@ namespace Mercedes.Data.Repositories.Impl
             using (var conn = CreateConnection())
             {
                 conn.Open();
-                var query = "update Model set CategoryID=@CategoryId, Code=@Code, Name=@Name where Id=@Id";
-                var result = conn.Query(query, new { Code = entity.Code, Name = entity.Name, Id = entity.Id, CategoryId = entity.CategoryId });
+                var query = "update Model set CategoryID=@CategoryId, Code=@Code, Name=@Name,Published=@Published, DisplayOrder=@DisplayOrder,UpdatedOn=@UpdatedOn where Id=@Id";
+                var result = conn.Query(query, new { Code = entity.Code, Name = entity.Name, Id = entity.Id, CategoryId = entity.CategoryId, Published = entity.Published, DisplayOrder  = entity.DisplayOrder, UpdatedOn = DateTime.Now});
             }
         }
 
@@ -133,6 +134,25 @@ namespace Mercedes.Data.Repositories.Impl
             } catch { }
 
             return new Model();
+        }
+
+        public void AddModelImage(Model_Image_Mapping entity)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var query = "insert into [Model_Image_Mapping] ([VehicleModelId],[FullImageUrl],[ThumbImageUrl],[DisplayOrder]) values (@VehicleModelId,@FullImageUrl,@ThumbImageUrl,@DisplayOrder)";
+                var result = conn.Query(query, new { VehicleModelId = entity.VehicleModelId, FullImageUrl = entity.FullImageUrl, ThumbImageUrl = entity.ThumbImageUrl, DisplayOrder = entity.DisplayOrder });
+            }
+        }
+        public void DeleteModelImage(Model_Image_Mapping entity)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var query = "DELETE FROM [dbo].[Model_Image_Mapping] WHERE Id=@Id ";
+                var result = conn.Query(query, new { Id = entity.Id});
+            }
         }
     }
 }
