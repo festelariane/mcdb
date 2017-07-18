@@ -41,6 +41,30 @@
                     @*<input type="text" class="form-control" name="Name" placeholder="Name" />*@
                 </div>
             </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Year</label>
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.Year, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Color</label>
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.Color, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Gear</label>
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.Gear, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Fuel</label>
+                <div class="col-md-9">
+                    @Html.TextBoxFor(m => m.FuelUsed, new { @class = "form-control" })
+                </div>
+            </div>
         </div>
     </div>
     <div class="modal-footer">

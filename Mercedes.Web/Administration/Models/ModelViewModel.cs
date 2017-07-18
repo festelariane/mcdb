@@ -17,6 +17,10 @@ namespace Mercedes.Admin.Models
         public int? SelectedCategoryId { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
+        public int? Year { get; set; }
+        public string Color { get; set; }
+        public string Gear { get; set; }
+        public string FuelUsed { get; set; }
         public bool Published { get; set; }
         public int DisplayOrder { get; set; }
     }

@@ -1,4 +1,6 @@
-﻿using Mercedes.Core.Domain;
+﻿using FastMapper;
+using Mercedes.Admin.Models;
+using Mercedes.Core.Domain;
 using Mercedes.Services.Contract;
 using System;
 using System.Collections.Generic;
@@ -27,9 +29,14 @@ namespace Mercedes.Admin.Controllers
             return Json(new { data = ls });
         }
         [HttpPost]
-        public JsonResult Add(Model model)
+        public JsonResult Add(ModelViewModel model)
         {
-            var rs = _carService.AddModel(model);
+            Model currentModel = new Model();
+            currentModel.CreatedOn = DateTime.UtcNow;
+            currentModel.UpdatedOn = currentModel.CreatedOn;
+
+            var m = TypeAdapter.Adapt<ModelViewModel, Model>(model, currentModel);
+            var rs = _carService.AddModel(m);
             return Json(rs);
         }
         [HttpPost]
