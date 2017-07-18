@@ -1,0 +1,14 @@
+﻿.pos-relative{
+    position: relative;
+}
+.no-padding{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+.img-captcha.captcha-register{
+    position: absolute;
+    top: -34px;
+    right: -317px;
+    height: 36px;
+    max-height: 30px;
+}
