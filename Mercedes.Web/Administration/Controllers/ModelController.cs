@@ -22,8 +22,13 @@ namespace Mercedes.Admin.Controllers
         }
         public ActionResult Index()
         {
-            ViewBag.Categories = _carService.GetAllCategory();
-            return View(new Model());
+            var model = new ModelViewModel();
+            var allCategories = _carService.GetAllCategory();
+            foreach (var category in allCategories)
+            {
+                model.AllCategories.Add(new SelectListItem() { Text = category.Name, Value = category.Id.ToString() });
+            }
+            return View(model);
         }
         [HttpPost]
         public JsonResult List()
@@ -39,6 +44,7 @@ namespace Mercedes.Admin.Controllers
             currentModel.UpdatedOn = currentModel.CreatedOn;
 
             var m = TypeAdapter.Adapt<ModelViewModel, Model>(model, currentModel);
+            m.CategoryId = model.SelectedCategoryId.GetValueOrDefault();
             var rs = _carService.AddModel(m);
             return Json(rs);
         }

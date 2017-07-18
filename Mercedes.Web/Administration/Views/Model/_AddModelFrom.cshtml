@@ -1,8 +1,5 @@
-﻿@using Mercedes.Core.Domain
-@model Model
-@{ 
-    var categories = ViewBag.Categories as IList<Category>;
-}
+﻿@using Mercedes.Admin.Models
+@model ModelViewModel
 @using (Html.BeginForm("", "", FormMethod.Post, new { id = "add-model-form" }))
 {
     <div id="frm-add-new-model" class="modal fade" tabindex="-1" aria-hidden="true">
@@ -17,7 +14,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Category</label>
                             <div class="col-md-9">
-                                @Html.DropDownListFor(m => m.CategoryId, new SelectList(categories, "Id", "Name"), new { @class = "form-control" })
+                                @Html.DropDownListFor(m => m.SelectedCategoryId, Model.AllCategories, new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="form-group">

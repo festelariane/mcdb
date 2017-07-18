@@ -49,7 +49,7 @@ namespace Mercedes.Data.Repositories.Impl
             {
                 conn.Open();
                 var query = "insert into Model (CategoryID,Code,Name,[Year],[Color],[Gear],[FuelUsed],[Published],[Deleted],[DisplayOrder],[CreatedOn],[UpdatedOn]) values (@CategoryID,@Code,@Name,@Year,@Color,@Gear,@FuelUsed,@Published,@Deleted,@DisplayOrder,@CreatedOn,@UpdatedOn)";
-                var result = conn.Query(query, new {CategoryId = entity.CategoryId, Code = entity.Code, Name = entity.Name, CategoryID = entity.CategoryId, Year = entity.Year, Color = entity.Color,
+                var result = conn.Query(query, new {CategoryId = entity.CategoryId, Code = entity.Code, Name = entity.Name, Year = entity.Year, Color = entity.Color,
                 Gear = entity.Gear, FuelUsed = entity.FuelUsed, Published = entity.Published, Deleted = entity.IsDeleted, DisplayOrder = entity.DisplayOrder,
                 CreatedOn = entity.CreatedOn, UpdatedOn = entity.UpdatedOn});
             }
