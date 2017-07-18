@@ -1,0 +1,52 @@
+﻿@using Mercedes.Admin.Models;
+@model RoleViewModel
+@Html.ValidationSummary(false)
+@Html.HiddenFor(model => model.Id)
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+    <h4 class="modal-title">Role Information</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="form-group">
+            <label class="col-md-3 control-label">Name</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn btn-default" id="btn-Close">Close</button>
+    <button type="button" class="btn btn-success" onclick="saveRole()" id="btn-update">Update</button>
+</div>
+
+<script type="text/javascript">
+    function saveRole() {
+        var frmRole = $("#role-form");
+        var formData = frmRole.serialize();
+        $("#btn-update").attr("disabled", "disabled");
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: '@Url.Action("Update")',
+            data: formData,
+            success: function (data) {
+                if (data) {
+                    alert("Save role successfully");
+                    resourceTable.ajax.reload();
+                    jQuery.noConflict();
+                    $('#frm-edit-role').modal('toggle');
+                } else {
+                    alert("Cannot save role information. Please check again!");
+                }
+                $("#btn-update").removeAttr("disabled");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.responeText);
+                $("#btn-update").removeAttr("disabled");
+            }
+        });
+    }
+</script>

@@ -1,42 +1,45 @@
-﻿@using Mercedes.Core.Domain
-@model Model
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Administration/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Administration/assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" />
 <script src="~/Administration/assets/plugins/datatables/jquery.dataTables.min.js"></script>
 
-<link href="~/Administration/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.css" rel="stylesheet" type="text/css" />
-<script src="~/Administration/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script>
+<style type="text/css">
+    img.thumbnail-image {
+        width: 100px;
+        height: 100px;
+    }
+</style>
 
-@Html.Partial("_AddModelFrom",Model)
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Model List </h3>
+        <h3 class="box-title">Role List </h3>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
         <div class="row">
             <div class="col-md-6">
                 <div class="btn-group">
-                    <a class="btn btn-danger" data-toggle="modal" href="#frm-add-new-model"> Add new <i class="fa fa-plus"></i> </a>
+                    <a class="btn btn-danger" data-toggle="modal" href="#frm-edit-role" id="btn-add-role"> Add new <i class="fa fa-plus"></i> </a>
                 </div>
             </div>
             <div class="col-md-6">
             </div>
         </div>
         <br />
-        <table id="tb-model" class="table table-bordered table-striped"></table>
+        <table id="tb-role" class="table table-bordered table-striped">
+          
+        </table>
     </div>
     <!-- /.box-body -->
 </div>
-<div id="frm-upd-new-model" class="modal fade" tabindex="-1" aria-hidden="true">
+<div id="frm-edit-role" class="modal fade" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content" id="edit-form">
-
-        </div>
-    </div>
+                <div class="modal-content" id="edit-form">
+                  
+                </div>
+            </div>
 </div>
 <script type="text/javascript">
     var resourceTable = null;
@@ -68,9 +71,6 @@
             dataType: "html",
             contentType: "application/json; charset=utf-8",
             success: function (data) {
-                //Bind data
-                //var htmlTable = $("#resource-string-tmpl").render(data);
-                //$("#bodytable").html(htmlTable);
                 $("#edit-form").html(data);
             },
             error: function (xhr, status, errThrow) {
@@ -79,11 +79,15 @@
         });
     }
     $(function () {
-        $('#frm-upd-new-model').on('hidden.bs.modal', function (e) {
+        $('#frm-edit-role').on('hidden.bs.modal', function (e) {
             //remove all html code:
             $("#edit-form").html('');
         })
-        resourceTable = $('#tb-model').DataTable(
+        $("#btn-add-role").click(function () {
+            var newItemUrl = '@Url.Action("Add")';
+            getResource(newItemUrl);
+        });
+        resourceTable = $('#tb-role').DataTable(
                {
                    paging: true,
                    ajax:
@@ -98,28 +102,14 @@
                        [10, 15, 20, "All"] // change per page values here
                    ],
                    columns: [
-                       {
-                           title: "Category", data: function (data, type, fullObject) {
-                               return data.Category.Name
-                           }
-                       },
-                       {title:"Code", data: "Code" },
+                       { title: "Id", data: "Id" },
                        { title: "Name", data: "Name" },
-                       { title: "Publised", data: "Published" },
-                       { title: "Display Order", data: "DisplayOrder" },
-                       {
-                           mRender: function (data, type, fullObject) {
-                               var Id = fullObject.Id;
-                               var url = '@Url.Action("ModelPictures")/?modelId=' + Id;
-                               return '<a id="btn-manage" data-toggle="modal" onclick="getResource(\'' + url + '\')" href="#frm-upd-new-model" class="edit"> Manage Pictures </a>';
-                           }
-                       },
                        {
                            //Edit column
                            mRender: function (data, type, fullObject) {
                                var Id = fullObject.Id;
                                var url = '@Url.Action("Update")/?Id=' + Id;
-                               return '<a id="btn-update" data-toggle="modal" onclick="getResource(\'' + url + '\')" href="#frm-upd-new-model" class="edit"> Edit </a>';
+                               return '<a id="btn-update" data-toggle="modal" onclick="getResource(\'' + url + '\')" href="#frm-edit-role" class="edit"> Edit </a>';
                            }
                        },
                        {
@@ -131,6 +121,13 @@
                            }
                        }
                    ],
+                   "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull )
+                   {
+                       //$("touchspin_" + aData.Id).TouchSpin({ initval: aData.DisplayOrder });
+                   },
+                   "fnDrawCallback": function (oSettings)
+                   {
+                   }
                });
     });
 </script>
