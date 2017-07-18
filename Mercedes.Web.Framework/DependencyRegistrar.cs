@@ -31,6 +31,6 @@ namespace Mercedes.Framework
             builder.RegisterDelegate<HttpSessionStateBase>(c => c.Resolve<HttpContextBase>().Session, Reuse.InResolutionScope);
 
             builder.Register<IWebHelper,WebHelper>(Reuse.Singleton);
-    builder.Register<IWebHelper, WebHelper>(Reuse.Singleton);    }
+		}
     }
 }
