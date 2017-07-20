@@ -39,15 +39,19 @@
                 <table class="detail-description">
                     <tr>
                         <td class="detail-title">Đời xe:</td>
-                        <td>2017</td>
+                        <td>@Model.Year.ToString()</td>
                     </tr>
                     <tr>
                         <td class="detail-title">Màu xe:</td>
-                        <td>Bạc - Đen - Xám</td>
+                        <td>@Model.Color</td>
                     </tr>
                     <tr>
                         <td class="detail-title">Loại số:</td>
-                        <td>Số tự động</td>
+                        <td>@Model.Gear</td>
+                    </tr>
+                    <tr>
+                        <td class="detail-title">NL trung bình:</td>
+                        <td>@Model.FuelUsed</td>
                     </tr>
                     <tr>
                         <td class="detail-title">Thuê xe:</td>

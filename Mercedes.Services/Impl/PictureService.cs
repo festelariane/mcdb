@@ -16,7 +16,7 @@ namespace Mercedes.Services.Impl
         public Picture InsertPicture(byte[] pictureBinary, string mimeType, string seoFilename, string fileExt, string altAttribute = null, string titleAttribute = null, bool isNew = true, bool validateBinary = true)
         {
             DateTime now = DateTime.UtcNow;
-            var folderName = string.Format("Images/{0}", now.ToString("yyyy-MM-DD"));
+            var folderName = string.Format("Images/{0}", now.ToString("yyyy-MM-dd"));
             var rootPath = HostingEnvironment.MapPath(RootFolder);
             var path = Path.Combine(rootPath, folderName);
             if (!Directory.Exists(path))

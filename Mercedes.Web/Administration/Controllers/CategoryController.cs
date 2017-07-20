@@ -69,6 +69,10 @@ namespace Mercedes.Admin.Controllers
             {
                 model.ImageUrl = Url.Content(model.ImageUrl); 
             }
+            if (!string.IsNullOrEmpty(model.ImageUrl_2))
+            {
+                model.ImageUrl_2 = Url.Content(model.ImageUrl_2);
+            }
             var allManufacturers = _carService.GetAllManufacturers();
             foreach (var manufacture in allManufacturers)
             {
