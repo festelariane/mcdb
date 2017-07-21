@@ -25,13 +25,17 @@ namespace Mercedes.Data.Repositories.Impl
 
         public IEnumerable<Contact> GetAll()
         {
-            using (var conn = CreateConnection())
-            {
-                conn.Open();
-                var query = "select top 1000 * from Contact order by [datetime] desc";
-                var result = conn.Query<Contact>(query);
-                return result;
-            }            
+            try {
+                using (var conn = CreateConnection())
+                {
+                    conn.Open();
+                    var query = "select top 1000 * from Contact order by [datetime] desc";
+                    var result = conn.Query<Contact>(query);
+                    return result;
+                }
+            } catch { }
+
+            return new List<Contact>();
         }
 
         public void Add(Contact entity)
