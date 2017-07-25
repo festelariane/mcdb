@@ -34,5 +34,10 @@ namespace Mercedes.Data.Repositories.Impl
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<User> GetAllExceptDeletedItems()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

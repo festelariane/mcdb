@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Mercedes.Core.Domain;
 using Dapper;
+using System;
 
 namespace Mercedes.Data.Repositories.Impl
 {
@@ -74,6 +75,11 @@ namespace Mercedes.Data.Repositories.Impl
                     CreatedOn = entity.CreatedOn,
                     UpdatedOn = entity.UpdatedOn});
             }
+        }
+
+        public IEnumerable<Category> GetAllExceptDeletedItems()
+        {
+            throw new NotImplementedException();
         }
     }
 }

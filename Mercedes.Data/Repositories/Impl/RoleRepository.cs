@@ -61,5 +61,10 @@ namespace Mercedes.Data.Repositories.Impl
                 var result = conn.Query(query, new { Name = entity.Name,UpdatedOn=DateTime.Now,IsDeleted=entity.IsDeleted, Id = entity.Id });
             }
         }
+
+        public IEnumerable<UserRole> GetAllExceptDeletedItems()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

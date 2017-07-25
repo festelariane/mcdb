@@ -10,6 +10,7 @@ namespace Mercedes.Data.Repositories.Contract
     {
         TEntity Get(int Id);
         IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> GetAllExceptDeletedItems();
         void Add(TEntity entity);
         void Delete(TEntity entity);
         void Update(TEntity entity);

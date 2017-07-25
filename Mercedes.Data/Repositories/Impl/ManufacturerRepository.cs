@@ -72,5 +72,10 @@ namespace Mercedes.Data.Repositories.Impl
                 return result;
             }
         }
+
+        public IEnumerable<Manufacturer> GetAllExceptDeletedItems()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

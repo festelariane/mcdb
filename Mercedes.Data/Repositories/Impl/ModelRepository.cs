@@ -70,8 +70,14 @@ namespace Mercedes.Data.Repositories.Impl
             using (var conn = CreateConnection())
             {
                 conn.Open();
-                var query = "update Model set CategoryID=@CategoryId, Code=@Code, Name=@Name,Published=@Published, DisplayOrder=@DisplayOrder,UpdatedOn=@UpdatedOn where Id=@Id";
-                var result = conn.Query(query, new { Code = entity.Code, Name = entity.Name, Id = entity.Id, CategoryId = entity.CategoryId, Published = entity.Published, DisplayOrder  = entity.DisplayOrder, UpdatedOn = DateTime.Now});
+                var query = "update Model set CategoryID=@CategoryId, Code=@Code, Name=@Name, Year=@Year, Color=@Color,Gear=@Gear,FuelUsed=@FuelUsed,Deleted=@Deleted,Published=@Published, DisplayOrder=@DisplayOrder,UpdatedOn=@UpdatedOn where Id=@Id";
+                var result = conn.Query(query, new { Code = entity.Code, Name = entity.Name, Id = entity.Id, CategoryId = entity.CategoryId, Published = entity.Published, DisplayOrder  = entity.DisplayOrder, UpdatedOn = DateTime.Now,
+                    Year = entity.Year,
+                    Color = entity.Color,
+                    Gear = entity.Gear,
+                    FuelUsed = entity.FuelUsed,
+                    Deleted = entity.IsDeleted,
+                });
             }
         }
 
@@ -154,6 +160,21 @@ namespace Mercedes.Data.Repositories.Impl
                 conn.Open();
                 var query = "DELETE FROM [dbo].[Model_Image_Mapping] WHERE Id=@Id ";
                 var result = conn.Query(query, new { Id = entity.Id});
+            }
+        }
+
+        public IEnumerable<Model> GetAllExceptDeletedItems()
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var query = "select * from Model lrs inner join Category l on l.Id=lrs.CategoryId where lrs.Deleted is null or lrs.Deleted=0";
+                var result = conn.Query<Model, Category, Model>(query, (item, category) =>
+                {
+                    item.Category = category;
+                    return item;
+                });
+                return result;
             }
         }
     }

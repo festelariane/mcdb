@@ -104,5 +104,10 @@ namespace Mercedes.Data.Repositories.Impl
                 return result;
             }
         }
+
+        public IEnumerable<PriceModel> GetAllExceptDeletedItems()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

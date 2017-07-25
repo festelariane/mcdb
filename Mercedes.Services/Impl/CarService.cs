@@ -79,9 +79,13 @@ namespace Mercedes.Services.Impl
             return _modelRepository.Get(modelId);
         }
 
-        public IList<Model> GetAllModel()
+        public IList<Model> GetAllModel(bool includeDeletedItems = false)
         {
-            return _modelRepository.GetAll().ToList();
+            if(includeDeletedItems)
+            {
+                return _modelRepository.GetAll().ToList();
+            }
+            return _modelRepository.GetAllExceptDeletedItems().ToList();
         }
 
         public IList<Model> GetModelByCategoryId(int categoryId)
@@ -93,6 +97,7 @@ namespace Mercedes.Services.Impl
         {
             return _modelRepository.Get(id);
         }
+        #region Car Model
 
         public bool AddModel(Model model)
         {
@@ -132,6 +137,27 @@ namespace Mercedes.Services.Impl
                 return false;
             }
         }
+
+        public bool AddOrUpdateCarModel(Model model)
+        {
+            try
+            {
+                if (model.Id > 0)
+                {
+                    _modelRepository.Update(model);
+                }
+                else
+                {
+                    _modelRepository.Add(model);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        } 
+        #endregion
 
         // Category
         public Category GetCategoryById(int categoryId)

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Mercedes.Core.Domain;
 using Dapper;
+using System;
 
 namespace Mercedes.Data.Repositories.Impl
 {
@@ -62,6 +63,11 @@ namespace Mercedes.Data.Repositories.Impl
                 var query = "update Category set Name=@Name, Email=@Email, Title=@Title, Message=@Message where Id=@Id";
                 var result = conn.Query(query, new { Name = entity.Name, Email = entity.Email, Title = entity.Title, Message = entity.Message });
             }
+        }
+
+        public IEnumerable<Contact> GetAllExceptDeletedItems()
+        {
+            throw new NotImplementedException();
         }
     }
 }

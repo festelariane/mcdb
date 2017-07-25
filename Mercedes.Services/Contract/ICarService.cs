@@ -17,10 +17,11 @@ namespace Mercedes.Services.Contract
         bool UpdateManufacturer(Manufacturer manufacturer);
         //Model class
         Model GetModelById(int modelId);
-        IList<Model> GetAllModel();
+        IList<Model> GetAllModel(bool includeDeleted = false);
         bool AddModel(Model model);
         bool DeleteModel(Model model);
         bool UpdateModel(Model model);
+        bool AddOrUpdateCarModel(Model category);
 
         IList<Model> GetModelByCategoryId(int categoryId);
         Model GetModelDetail(int id);        

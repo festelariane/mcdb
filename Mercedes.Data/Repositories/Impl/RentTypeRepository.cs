@@ -59,5 +59,10 @@ namespace Mercedes.Data.Repositories.Impl
                 var result = conn.Query(query, new { RentTypeSystemName = entity.RentTypeSystemName, RentTypeName = entity.RentTypeName, Published = entity.Published, DisplayOrder = entity.DisplayOrder, Id = entity.Id });
             }
         }
+
+        public IEnumerable<RentType> GetAllExceptDeletedItems()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -33,5 +33,9 @@ namespace Mercedes.Data.Repositories.Impl
         {
             throw new NotImplementedException();
         }
+        public IEnumerable<TEntity> GetAllExceptDeletedItems()
+        {
+            return GetAll();
+        }
     }
 }

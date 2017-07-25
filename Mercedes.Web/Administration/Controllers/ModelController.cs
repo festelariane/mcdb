@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Mercedes.Admin.Extensions;
 using Mercedes.Admin.Mvc.Attributes;
+using Mercedes.Web.Framework.AjaxDataSource;
 
 namespace Mercedes.Admin.Controllers
 {
@@ -22,6 +23,10 @@ namespace Mercedes.Admin.Controllers
         }
         public ActionResult Index()
         {
+            return RedirectToAction("List");
+        }
+        public ActionResult List()
+        {
             var model = new ModelViewModel();
             var allCategories = _carService.GetAllCategory();
             foreach (var category in allCategories)
@@ -30,23 +35,37 @@ namespace Mercedes.Admin.Controllers
             }
             return View(model);
         }
+
+        [HttpGet]
+        public ActionResult Add()
+        {
+            var model = new ModelViewModel();
+            var allCategories = _carService.GetAllCategory();
+            foreach (var category in allCategories)
+            {
+                model.AllCategories.Add(new SelectListItem() { Text = category.Name, Value = category.Id.ToString() });
+            }
+            return View("Create", model);
+        }
+        [HttpGet]
+        public ActionResult Update(int Id)
+        {
+            var currentModel = _carService.GetModelById(Id);
+            var model = TypeAdapter.Adapt<Model, ModelViewModel>(currentModel);
+            model.SelectedCategoryId = currentModel.CategoryId;
+            var allCategories = _carService.GetAllCategory();
+            foreach (var category in allCategories)
+            {
+                model.AllCategories.Add(new SelectListItem() { Text = category.Name, Value = category.Id.ToString() });
+            }
+            return View("Edit", model);
+        }
+        
         [HttpPost]
-        public JsonResult List()
+        public JsonResult List(DataSourceRequest command, ModelListModel model)
         {
             var ls = _carService.GetAllModel();
             return Json(new { data = ls });
-        }
-        [HttpPost]
-        public JsonResult Add(ModelViewModel model)
-        {
-            Model currentModel = new Model();
-            currentModel.CreatedOn = DateTime.UtcNow;
-            currentModel.UpdatedOn = currentModel.CreatedOn;
-
-            var m = TypeAdapter.Adapt<ModelViewModel, Model>(model, currentModel);
-            m.CategoryId = model.SelectedCategoryId.GetValueOrDefault();
-            var rs = _carService.AddModel(m);
-            return Json(rs);
         }
         [HttpPost]
         public JsonResult Delete(int Id)
@@ -55,25 +74,25 @@ namespace Mercedes.Admin.Controllers
             return Json(rs);
         }
         [HttpPost]
-        public JsonResult Update(Model model)
+        public JsonResult Update(ModelViewModel model)
         {
-            var rs = _carService.UpdateModel(model);
+            Model carModel;
+            if (model.Id > 0)
+            {
+                carModel = _carService.GetModelById((int)model.Id);
+                carModel.UpdatedOn = DateTime.UtcNow;
+            }
+            else
+            {
+                carModel = new Model();
+                carModel.CreatedOn = DateTime.UtcNow;
+                carModel.UpdatedOn = carModel.CreatedOn;
+            }
+            TypeAdapter.Adapt(model, carModel);
+            carModel.CategoryId = model.SelectedCategoryId.GetValueOrDefault();
+            var rs = _carService.AddOrUpdateCarModel(carModel);
             return Json(rs);
         }
-        [HttpGet]
-        public ActionResult Update(int Id)
-        {
-            var model = _carService.GetModelById(Id);
-            var viewModel = new ModelViewModel();
-            var m = TypeAdapter.Adapt<Model, ModelViewModel>(model,viewModel);
-            var allCategories = _carService.GetAllCategory();
-            foreach (var category in allCategories)
-            {
-                viewModel.AllCategories.Add(new SelectListItem() { Text = category.Name, Value = category.Id.ToString() });
-            }
-            return View("_UpdateModelFrom", m);
-        }
-
         public ActionResult ModelPictures(int modelId)
         {
             var model = new ManageVehiclePictureModel();
