@@ -33,11 +33,11 @@
             success: function (data) {
                
                 if (data && data == 'success') {
-                    alert("Gửi mail thành công.");
+                    alert("Thông tin đã được gửi đến nhân viện hỗ trợ, chúng tôi sẽ liên lạc với bạn trong thời gian sớm nhất.");
                     $('#contactForm input:text, #txtMessage').val('');
                     $('#contactForm #txtEmail').val('');
                 } else {
-                    alert("Gửi mail thành công. Vui lòng thử lại.");
+                    alert("Lỗi gửi thông tin liên hệ. Vui lòng thử lại.");
                 }
                 $("#btnSend").prop("disabled", false);
             },
@@ -46,8 +46,7 @@
                 console.log(xhr.responeText);
             }
         });
-    }
-   
+    }   
 </script>
 
 <div class="page-banner contact-page-bg">
