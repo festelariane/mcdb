@@ -33,7 +33,7 @@ namespace Mercedes.Data.Repositories.Impl
             using (var conn = CreateConnection())
             {
                 conn.Open();
-                var query = "select * from Category lrs inner join Manufacturer l on l.Id=lrs.ManufacturerId";
+                var query = "select * from Category lrs inner join Manufacturer l on l.Id=lrs.ManufacturerId where Published=1";
                 var result = conn.Query<Category, Manufacturer, Category>(query, (item, manufacturer) =>
                 {
                     item.Manufacturer = manufacturer;

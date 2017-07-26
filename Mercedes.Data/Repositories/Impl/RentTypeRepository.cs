@@ -24,7 +24,7 @@ namespace Mercedes.Data.Repositories.Impl
             using (var conn = CreateConnection())
             {
                 conn.Open();
-                var query = "select * from RentType";
+                var query = "select * from RentType where Published=1";
                 var result = conn.Query<RentType>(query);
                 return result;
             }

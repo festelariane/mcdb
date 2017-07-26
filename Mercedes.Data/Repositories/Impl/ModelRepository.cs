@@ -33,7 +33,7 @@ namespace Mercedes.Data.Repositories.Impl
             using (var conn = CreateConnection())
             {
                 conn.Open();
-                var query = "select * from Model lrs inner join Category l on l.Id=lrs.CategoryId";
+                var query = "select * from Model lrs inner join Category l on l.Id=lrs.CategoryId where lrs.Published=1";
                 var result = conn.Query<Model, Category, Model>(query, (item, category) =>
                 {
                     item.Category = category;
@@ -105,7 +105,7 @@ namespace Mercedes.Data.Repositories.Impl
                 {
                     conn.Open();
                     var query = "select * from Model m left join PriceModel P on m.Id=p.VehicleModelId";                   
-                    query += " left join RentType r on r.Id=p.RentTypeId where m.CategoryId=@CategoryId and r.RentTypeSystemName= 'ByMonth'";
+                    query += " left join RentType r on r.Id=p.RentTypeId where m.CategoryId=@CategoryId and m.Published=1 and r.RentTypeSystemName= 'ByMonth'";
 
                     var result = conn.Query<Model, PriceModel, RentType, Model>(query, (item, priceModel, rentType) =>
                     {
