@@ -26,22 +26,22 @@
   
 <div class="home-product-wrapper">
     <ul>
-        @*@if (Model != null && Model.Count > 0)
+        @if (Model != null && Model.Count > 0)
         {
             foreach (var item in Model)
             {
                 <li>
-                    <div class="home-product-bg" style="background-image: url('@Url.Content(@item.ImageUrl)');"></div>
+                    <div class="home-product-bg" style="background-image: url('@Url.Content(item.ImageUrl)');"></div>
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 home-product-wrap">
                                 <p class="product-wrap-name"><span>@item.Manufacturer.Name</span>@item.Code</p>
-                                <a href="@Url.RouteUrl("VehicleSeries",new { id = @item.Id, type = @item.Code })" class="btn btn-site">Xem Thêm</a>
+                                <a href="@Url.RouteUrl("VehicleSeries",new { id = item.Id, type = item.Code })" class="btn btn-site">Xem Thêm</a>
                             </div>
                         </div>
                     </div>
                 </li>
             }
-        }*@         
+        }         
     </ul>
 </div>

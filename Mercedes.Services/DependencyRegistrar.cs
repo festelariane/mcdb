@@ -15,7 +15,7 @@ namespace Mercedes.Services
     {
         protected override void Load(IRegistrator builder)
         {
-            //Registera for Data Repositories
+            //Register for Data Repositories
             builder.Register<IVehicleRepository, VehicleRepository>(Reuse.InWebRequest);
             builder.Register<IRoleRepository, RoleRepository>(Reuse.InWebRequest);
             builder.Register<IUserRepository, UserRepository>(Reuse.InWebRequest);
@@ -25,14 +25,16 @@ namespace Mercedes.Services
             builder.Register<IPriceModelRepository, PriceModelRepository>(Reuse.InWebRequest);
             builder.Register<ICategoryRepository, CategoryRepository>(Reuse.InWebRequest);
             builder.Register<IContactRepository, ContactRepository>(Reuse.InWebRequest);
+            builder.Register<ISettingRepository, SettingRepository>(Reuse.InWebRequest);
 
-            //Registera for Data Services
+            //Register for Data Services
             builder.Register<ICarService, CarService>(Reuse.Transient);
             builder.Register<IRentService, RentService>(Reuse.Transient);
             builder.Register<IContactService, ContactService>(Reuse.Transient);
             builder.Register<IRoleService, RoleService>(Reuse.InWebRequest);
             builder.Register<IUserManagementService, UserManagementService>(Reuse.InWebRequest);
             builder.Register<IPictureService, PictureService>(Reuse.InWebRequest);
+            builder.Register<ISettingService, SettingService>(Reuse.InWebRequest);
         }
     }
 }

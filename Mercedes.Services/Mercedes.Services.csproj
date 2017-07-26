@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeHelper.cs" />
+    <Compile Include="Contract\ISettingService.cs" />
     <Compile Include="Contract\ICarService.cs" />
     <Compile Include="Contract\IPictureService.cs" />
     <Compile Include="Contract\IRentService.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Impl\PictureService.cs" />
     <Compile Include="Impl\RentService.cs" />
     <Compile Include="Impl\RoleService.cs" />
+    <Compile Include="Impl\SettingService.cs" />
     <Compile Include="Impl\UserManagementService.cs" />
     <Compile Include="IResourceService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

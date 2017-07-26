@@ -26,6 +26,7 @@ namespace Mercedes.Data.Repositories.Impl
 
         public IEnumerable<Contact> GetAll()
         {
+            try {
             using (var conn = CreateConnection())
             {
                 conn.Open();
@@ -33,6 +34,9 @@ namespace Mercedes.Data.Repositories.Impl
                 var result = conn.Query<Contact>(query);
                 return result;
             }            
+            } catch { }
+
+            return new List<Contact>();
         }
 
         public void Add(Contact entity)

@@ -95,6 +95,7 @@
     <Compile Include="Domain\Model_Image_Mapping.cs" />
     <Compile Include="Domain\PriceModel.cs" />
     <Compile Include="Domain\RentType.cs" />
+    <Compile Include="Domain\Setting.cs" />
     <Compile Include="Domain\Vehicle.cs" />
     <Compile Include="Domain\Manufacturer.cs" />
     <Compile Include="Domain\UserRole.cs" />

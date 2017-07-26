@@ -166,6 +166,7 @@
     <Compile Include="Controllers\PriceModelController.cs" />
     <Compile Include="Controllers\RentTypeController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="DependencyRegistrar.cs" />
     <Compile Include="Extensions\MappingExtensions.cs" />
     <Compile Include="Models\ModelListModel.cs" />
@@ -175,6 +176,8 @@
     <Compile Include="Models\ModelViewModel.cs" />
     <Compile Include="Models\RoleListModel.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
+    <Compile Include="Models\Settings\AllSettingsListModel.cs" />
+    <Compile Include="Models\Settings\SettingModel.cs" />
     <Compile Include="Models\UserLoginViewModel.cs" />
     <Compile Include="Models\VehiclePictureModel.cs" />
     <Compile Include="Mvc\Attributes\UserAdminAuthorizeAttribute.cs" />
@@ -1461,6 +1464,10 @@
     <Content Include="Views\Model\Create.cshtml" />
     <Content Include="Views\Model\Edit.cshtml" />
     <Content Include="Views\Model\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\Setting\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\Setting\Create.cshtml" />
+    <Content Include="Views\Setting\Edit.cshtml" />
+    <Content Include="Views\Setting\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
