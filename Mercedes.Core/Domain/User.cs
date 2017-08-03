@@ -10,6 +10,7 @@ namespace Mercedes.Core.Domain
     {
         public User()
         {
+            Roles = new List<UserRole>();
         }
 
         public string FirstName { get; set; }
@@ -25,17 +26,16 @@ namespace Mercedes.Core.Domain
             }
         }
 
-        public virtual byte[] PasswordHash { get; set; }
-        public virtual byte[] PasswordSalt { get; set; }
+        public string Password { get; set; }
+        public string PasswordSalt { get; set; }
 
-        public virtual string CurrentEncryption { get; set; }
-
+        public int PasswordFormatId { get; set; }
+        public Guid UserGuid { get; set; }
         public string Email { get; set; }
+        public string UserName { get; set; }
         public bool IsActive { get; set; }
-        public virtual DateTime? LastLoginDate { get; set; }
-        public virtual int LoginAttempts { get; set; }
-
-        public Guid? ResetPasswordGuid { get; set; }
-        public virtual DateTime? ResetPasswordExpiry { get; set; }
+        public DateTime? LastLoginDate { get; set; }
+        public int LoginAttempts { get; set; }
+        public List<UserRole> Roles { get; set; }
     }
 }

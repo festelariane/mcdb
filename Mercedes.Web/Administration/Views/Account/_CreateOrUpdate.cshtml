@@ -1,0 +1,133 @@
+﻿@using Mercedes.Admin.Models.UserManagement
+@model UserModel
+@Html.ValidationSummary(false)
+@Html.HiddenFor(model => model.Id)
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+    <h4 class="modal-title">User Information</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+    @if (Model.Id == 0)
+    {
+        <div class="form-group">
+            <label class="col-md-3 control-label">User Name</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="form-group">
+            <label class="col-md-3 control-label">User Name</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+    }
+
+        <div class="form-group">
+            <label class="col-md-3 control-label">Roles</label>
+            <div class="col-md-9">
+                @Html.DropDownListFor(m=>m.SelectedRoles, Model.AllRoles,new { @class="select2-multiple", multiple = "multiple"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-3 control-label">First Name</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Last Name</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Email</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+        </div>
+        @if (Model.Id == 0)
+        {
+            <div class="form-group">
+                <label class="col-md-3 control-label">Password</label>
+                <div class="col-md-9">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                </div>
+            </div>
+        }
+        <div class="form-group">
+            <label class="col-md-3 control-label">Active</label>
+            <div class="col-md-9">
+                @Html.CheckBoxFor(m => m.IsActive)
+            </div>
+        </div>
+        @if (Model.Id > 0)
+        {
+            <div class="form-group">
+                <label class="col-md-3 control-label">Created On</label>
+                <div class="col-md-9">
+                    @Html.DisplayTextFor(m => m.CreatedOn)
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Updated On</label>
+                <div class="col-md-9">
+                    @Html.DisplayTextFor(m => m.UpdatedOn)
+                </div>
+            </div>
+        }
+        
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn btn-default" id="btn-Close">Close</button>
+    <button type="button" class="btn btn-success" onclick="saveSetting()" id="btn-update">Update</button>
+</div>
+
+<script type="text/javascript">
+    function saveSetting() {
+        var frmUser = $("#user-form");
+        var formData = frmUser.serialize();
+        $("#btn-update").attr("disabled", "disabled");
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: frmUser.attr("action"),
+            data: formData,
+            success: function (data) {
+                if (data) {
+                    alert("Save user successfully");
+                    resourceTable.ajax.reload();
+                    //jQuery.noConflict();
+                    $('#frm-edit-user').modal('toggle');
+                } else {
+                    alert("Cannot save user information. Please check again!");
+                }
+                $("#btn-update").removeAttr("disabled");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.responeText);
+                $("#btn-update").removeAttr("disabled");
+            }
+        });
+    }
+    $.fn.select2.defaults.set("theme", "bootstrap");
+    var jcboRoles = $("#@Html.IdFor(m=>m.SelectedRoles)").select2({
+        placeholder: "Select a role",
+        width: null,
+        val: [1, 2]
+    });
+    @if(Model.Roles.Count > 0)
+    {
+        <text>
+    jcboRoles.val([@string.Join(",",@Model.Roles.Select(r=>r.Id))]).trigger("change");
+        </text>
+    }
+</script>

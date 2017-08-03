@@ -9,5 +9,7 @@ namespace Mercedes.Data.Repositories.Contract
 {
     public interface IRoleRepository : IGenericRepository<UserRole>
     {
+        bool AssignUserToRole(User user, UserRole role);
+        bool RemoveUserRoles(User user, List<int> roleIdList);
     }
 }

@@ -16,5 +16,7 @@ namespace Mercedes.Services.Contract
         bool IsOnlyAdmin(User user);
         IEnumerable<UserRole> Find(string term);
         UserRole GetRole(int id);
+        bool AssignUserToRole(User user, UserRole role);
+        bool RemoveUserRoles(User user, List<int> roleIdList);
     }
 }

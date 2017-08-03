@@ -12,33 +12,52 @@ namespace Mercedes.Services.Impl
     public class UserManagementService: IUserManagementService
     {
         private readonly IUserRepository _userRepository;
-        public UserManagementService(IUserRepository userRepository)
+        private readonly IRoleRepository _roleRepository;
+        public UserManagementService(IUserRepository userRepository, IRoleRepository roleRepository)
         {
             _userRepository = userRepository;
+            _roleRepository = roleRepository;
         }
-        public void AddUser(User user)
+        public bool UpdateUser(User user)
         {
-            throw new NotImplementedException();
+            try
+            {
+                user.UpdatedOn = DateTime.Now;
+                _userRepository.Update(user);
+                
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
-        public void SaveUser(User user)
+        public User GetUser(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Core.Domain.User GetUser(int id)
-        {
-            throw new NotImplementedException();
+            return _userRepository.Get(id);
         }
 
         public void DeleteUser(User user)
         {
-            throw new NotImplementedException();
+            _userRepository.Delete(user);
         }
 
         public bool IsUniqueEmail(string email, int? id = null)
         {
             throw new NotImplementedException();
+        }
+        public IList<User> GetAll(bool includeDeletedUsers = false, int pageIndex = 0, int pageSize = 10000)
+        {
+            try
+            {
+                return _userRepository.GetAll().ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
     }
 }

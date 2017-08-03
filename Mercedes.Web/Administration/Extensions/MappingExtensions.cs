@@ -1,6 +1,7 @@
 ﻿using FastMapper;
 using Mercedes.Admin.Models;
 using Mercedes.Admin.Models.Settings;
+using Mercedes.Admin.Models.UserManagement;
 using Mercedes.Core.Domain;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,21 @@ namespace Mercedes.Admin.Extensions
         }
 
         public static Setting ToEntity(this SettingModel model, Setting destination)
+        {
+            return TypeAdapter.Adapt(model, destination);
+        }
+        #endregion
+        #region User Management
+        public static UserModel ToModel(this User entity)
+        {
+            return TypeAdapter.Adapt<User, UserModel>(entity);
+        }
+        public static User ToEntity(this UserModel model)
+        {
+            return TypeAdapter.Adapt<UserModel, User>(model);
+        }
+
+        public static User ToEntity(this UserModel model, User destination)
         {
             return TypeAdapter.Adapt(model, destination);
         }

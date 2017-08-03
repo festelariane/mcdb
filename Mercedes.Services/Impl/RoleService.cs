@@ -73,5 +73,13 @@ namespace Mercedes.Services.Impl
         {
             return _roleRepository.Get(id);
         }
+        public bool AssignUserToRole(User user, UserRole role)
+        {
+            return _roleRepository.AssignUserToRole(user, role);
+        }
+        public bool RemoveUserRoles(User user, List<int> roleIdList)
+        {
+            return _roleRepository.RemoveUserRoles(user, roleIdList);
+        }
     }
 }

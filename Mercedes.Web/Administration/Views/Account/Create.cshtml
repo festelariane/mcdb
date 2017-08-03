@@ -1,0 +1,9 @@
+﻿@using Mercedes.Admin.Models.UserManagement
+@model UserModel
+@{
+    Layout = "";
+}
+@using (Html.BeginForm("Add", "Account", FormMethod.Post, new { id = "user-form" }))
+{
+    @Html.Partial("_CreateOrUpdate", Model)
+}

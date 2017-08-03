@@ -9,6 +9,9 @@ using Mercedes.Data.Repositories.Contract;
 using Mercedes.Data.Repositories.Impl;
 using Mercedes.Services.Contract;
 using Mercedes.Services.Impl;
+using Mercedes.Services.Contract.Security;
+using Mercedes.Services.Impl.Security;
+
 namespace Mercedes.Services
 {
     public class DependencyRegistrar : DryIocModule
@@ -35,6 +38,8 @@ namespace Mercedes.Services
             builder.Register<IUserManagementService, UserManagementService>(Reuse.InWebRequest);
             builder.Register<IPictureService, PictureService>(Reuse.InWebRequest);
             builder.Register<ISettingService, SettingService>(Reuse.InWebRequest);
+            builder.Register<IEncryptionService, EncryptionService>(Reuse.Singleton);
+            builder.Register<IUserRegistrationService, UserRegistrationService>(Reuse.InWebRequest);
         }
     }
 }

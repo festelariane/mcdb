@@ -22,7 +22,7 @@ namespace Mercedes.Core.Domain
 
         public virtual DateTime CreatedOn { get; set; }
 
-        public virtual DateTime UpdatedOn { get; set; }
+        public virtual DateTime? UpdatedOn { get; set; }
 
         public virtual bool IsDeleted { get; set; }
 

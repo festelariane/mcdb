@@ -58,13 +58,39 @@ namespace Mercedes.Data.Repositories.Impl
             {
                 conn.Open();
                 var query = "update UserRole set Name=@Name,UpdatedOn=@UpdatedOn,IsDeleted=@IsDeleted where Id=@Id";
-                var result = conn.Query(query, new { Name = entity.Name,UpdatedOn=DateTime.Now,IsDeleted=entity.IsDeleted, Id = entity.Id });
+                var result = conn.Execute(query, new { Name = entity.Name,UpdatedOn=DateTime.Now,IsDeleted=entity.IsDeleted, Id = entity.Id });
             }
         }
 
         public IEnumerable<UserRole> GetAllExceptDeletedItems()
         {
             throw new NotImplementedException();
+        }
+        public bool AssignUserToRole(User user, UserRole role)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var sb = new StringBuilder();
+                
+                sb.Append("if not exists(select * from [UsersToRoles] with (updlock, serializable) where UserId = @UserId and UserRoleId=@UserRoleId) ");
+                sb.Append("insert into [UsersToRoles](UserId, UserRoleId ) values (@UserId, @UserRoleId) ");
+                
+                var result = conn.Execute(sb.ToString(), new { UserId = user.Id, UserRoleId = role.Id});
+                return true;
+            }
+        }
+        public bool RemoveUserRoles(User user, List<int> roleIdList)
+        {
+            using (var conn = CreateConnection())
+            {
+                conn.Open();
+                var sb = new StringBuilder();
+                sb.AppendFormat("delete from UsersToRoles where Userid=@UserId and UserRoleId in ({0})", string.Join(",", roleIdList));
+
+                var result = conn.Execute(sb.ToString(), new { UserId = user.Id });
+                return true;
+            }
         }
     }
 }

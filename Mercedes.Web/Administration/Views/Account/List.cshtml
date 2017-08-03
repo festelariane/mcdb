@@ -1,0 +1,175 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Administration/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Administration/assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Administration/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+
+<link href="~/Administration/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.css" rel="stylesheet" type="text/css" />
+<script src="~/Administration/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script>
+
+<link href="~/Administration/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+<link href="~/Administration/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+
+<style type="text/css">
+    img.thumbnail-image {
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">All Users</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="btn-group">
+                    <a class="btn btn-danger" data-toggle="modal" href="#frm-edit-user" id="btn-add-user"> Add new <i class="fa fa-plus"></i> </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+        <br />
+        <table id="tb-setting" class="table table-bordered table-striped">
+          
+        </table>
+    </div>
+    <!-- /.box-body -->
+</div>
+<div id="frm-edit-user" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+                <div class="modal-content" id="edit-form">
+                  
+                </div>
+            </div>
+</div>
+<script type="text/javascript">
+    var resourceTable = null;
+    function deleteResource(url) {
+        if (confirm('Delete this record?')) {
+            $.ajax({
+                url: url,
+                type: "post",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    if (data) {
+                        alert("Delete Successful");
+                        resourceTable.ajax.reload();
+                    } else {
+                        alert("Delete Fail");
+                    }
+                },
+                error: function (xhr, status, errThrow) {
+                    alert(errThrow);
+                }
+            });
+        }
+    }
+
+    function getResource(url) {
+        $.ajax({
+            url: url,
+            type: "GET",
+            dataType: "html",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                $("#edit-form").html(data);
+            },
+            error: function (xhr, status, errThrow) {
+                alert(errThrow);
+            }
+        });
+    }
+    function parseDateColumn(data, type, fullObject) {
+        if(data != null)
+            return moment(data).format("DD/MM/YYYY HH:mm:ss");
+        return "";
+    }
+    $(function () {
+        $('#frm-edit-user').on('hidden.bs.modal', function (e) {
+            //remove all html code:
+            $("#edit-form").html('');
+        })
+        $("#btn-add-user").click(function () {
+            var newItemUrl = '@Url.Action("Add")';
+            getResource(newItemUrl);
+        });
+        
+        resourceTable = $('#tb-setting').DataTable(
+               {
+                   paging: true,
+                   ajax:
+                   {
+                       url: '@Url.Action("List")',
+                       type: "POST",
+                       contentType: "application/json; charset=utf-8"
+                   },
+                   "pageLength": 20,
+                   "lengthMenu": [
+                       [10, 15, 20, -1],
+                       [10, 15, 20, "All"] // change per page values here
+                   ],
+                   columns: [
+                       { title: "Id", data: "Id" },
+                       { title: "Username", data: "UserName" },
+                       { title: "First Name", data: "FirstName" },
+                       { title: "Last Name", data: "LastName" },
+                     { title: "Email", data: "Email" },
+                     {
+                         title: "Roles", data: "Roles",
+                         mRender:function(data,type,fullObject)
+                         {
+                             var roles = "";
+                             if (data != null && data.length > 0)
+                             {
+                                 for(var i = 0;i<data.length-1;i++)
+                                 {
+                                     roles += data[i].Name + ", ";
+                                 }
+                                 roles += data[data.length - 1].Name;
+                             }
+                             return roles;
+                         }
+                     },
+                     { title: "Active", data: "IsActive" },
+                     {
+                         title: "Created On", data: "CreatedOn",
+                         mRender: parseDateColumn
+                     },
+                     {
+                         title: "Last Updated On", data: "UpdatedOn",
+                         mRender: parseDateColumn
+                     },
+                       {
+                           //Edit column
+                           mRender: function (data, type, fullObject) {
+                               var Id = fullObject.Id;
+                               var url = '@Url.Action("Edit")/?Id=' + Id;
+                               return '<a id="btn-update" data-toggle="modal" onclick="getResource(\'' + url + '\')" href="#frm-edit-user" class="edit"> Edit </a>';
+                           }
+                       },
+                       {
+                           //Delete column
+                           mRender: function (data, type, fullObject) {
+                               var Id = fullObject.Id;
+                               var url = '@Url.Action("Delete")/?Id=' + Id;
+                               return '<a class="delete" onclick="deleteResource(\'' + url + '\')" href=""> Delete </a>';
+                           }
+                       }
+                   ]
+               });
+    });
+</script>
+
+
+
+
+
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="~/Administration/assets/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
