@@ -14,5 +14,11 @@ namespace Mercedes.Services.Contract
         Setting GetSettingById(int Id);
         IList<Setting> GetAllSettings();
         IList<Setting> FindSettings(string name, string value);
+
+        //Language
+        bool AddOrUpdate(Language entity);
+        bool Delete(Language entity);
+        Language GetLanguageById(int Id);
+        IList<Language> GetAllLanguages();
     }
 }

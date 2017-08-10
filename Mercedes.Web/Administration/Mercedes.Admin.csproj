@@ -160,6 +160,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ClientContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\ManufacturerController.cs" />
     <Compile Include="Controllers\ModelController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="DependencyRegistrar.cs" />
     <Compile Include="Extensions\MappingExtensions.cs" />
+    <Compile Include="Models\Language\LanguageModel.cs" />
     <Compile Include="Models\UserManagement\UserListModel.cs" />
     <Compile Include="Models\UserManagement\UserModel.cs" />
     <Compile Include="Models\ModelListModel.cs" />
@@ -1757,6 +1759,7 @@
     <Folder Include="fileman\tmp\" />
     <Folder Include="fileman\Uploads\Documents\" />
     <Folder Include="fileman\Uploads\FLV\" />
+    <Folder Include="Views\Language\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

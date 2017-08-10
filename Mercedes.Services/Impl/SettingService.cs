@@ -12,6 +12,7 @@ namespace Mercedes.Services.Impl
     public class SettingService : ISettingService
     {
         private readonly ISettingRepository _settingRepository;
+        private readonly ILanguageRepository _languageRepository;
         public SettingService(ISettingRepository settingRepository)
         {
             _settingRepository = settingRepository;
@@ -54,6 +55,26 @@ namespace Mercedes.Services.Impl
         {
             var result = _settingRepository.Find(name, value).ToList();
             return result;
+        }
+
+        public bool AddOrUpdate(Language entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Delete(Language entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Language GetLanguageById(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<Language> GetAllLanguages()
+        {
+            throw new NotImplementedException();
         }
     }
 }

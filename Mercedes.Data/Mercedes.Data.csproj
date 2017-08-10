@@ -63,6 +63,8 @@
     <Compile Include="Repositories\Contract\IManufacturerRepository.cs" />
     <Compile Include="Repositories\Contract\IRoleRepository.cs" />
     <Compile Include="Repositories\Contract\IUserRepository.cs" />
+    <Compile Include="Repositories\Contract\ILanguageRepository.cs" />
+    <Compile Include="Repositories\Impl\LanguageRepository.cs" />
     <Compile Include="Repositories\Impl\SettingRepository.cs" />
     <Compile Include="Repositories\Impl\ContactRepository.cs" />
     <Compile Include="Repositories\Impl\CategoryRepository.cs" />

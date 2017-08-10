@@ -89,6 +89,7 @@
     <Compile Include="Domain\BaseEntity.cs" />
     <Compile Include="Domain\Category.cs" />
     <Compile Include="Domain\Contact.cs" />
+    <Compile Include="Domain\Language.cs" />
     <Compile Include="Domain\PasswordFormat.cs" />
     <Compile Include="Domain\UserLoginResults.cs" />
     <Compile Include="Domain\Media\Picture.cs" />
