@@ -24,6 +24,7 @@ namespace Mercedes.Services.Contract
         //LocaleResourceString
         bool AddOrUpdate(List<LocaleResourceString> resources);
         IList<LocaleResourceString> GetAllLocaleResourceStrings();
+        IList<LocaleResourceString> GetAllLocaleResourceStringsByLang(int lang);
         IList<LocaleResourceString> GetAllLocaleResourceStringsByKey(string resourceKey);
         bool Delete(string resourceKey);
     }

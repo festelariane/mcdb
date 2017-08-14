@@ -77,6 +77,22 @@ namespace Mercedes.Admin.Extensions
         }
         #endregion
 
+        #region LocaleResourceString
+        public static List<LocaleResourceStringModel> ToModel(this List<LocaleResourceString> entity)
+        {
+            return TypeAdapter.Adapt<List<LocaleResourceString>, List<LocaleResourceStringModel>>(entity);
+        }
+        public static List<LocaleResourceString> ToEntity(this List<LocaleResourceStringModel> model)
+        {
+            return TypeAdapter.Adapt<List<LocaleResourceStringModel>, List<LocaleResourceString>>(model);
+        }
+
+        public static List<LocaleResourceString> ToEntity(this List<LocaleResourceStringModel> model, List<LocaleResourceString> destination)
+        {
+            return TypeAdapter.Adapt(model, destination);
+        }
+        #endregion
+
         #region User Management
         public static UserModel ToModel(this User entity)
         {
