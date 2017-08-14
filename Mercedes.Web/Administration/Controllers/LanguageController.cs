@@ -6,7 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Mercedes.Admin.Extensions;
 using System.Web.Mvc;
+using Mercedes.Web.Framework.AjaxDataSource;
 
 namespace Mercedes.Admin.Controllers
 {
@@ -18,58 +20,57 @@ namespace Mercedes.Admin.Controllers
         {
             this._settingService = settingsService;
         }
+        public ActionResult Index()
+        {
+            return RedirectToAction("List");
+        }
         [HttpGet]
         public ActionResult List()
         {
             return View();
         }
         [HttpPost]
-        public JsonResult ListJson()
+        public JsonResult List(DataSourceRequest command)
         {
-            var ls = _settingService.GetAllLanguages(false);
+            var ls = _settingService.GetAllLanguages();
             return Json(new { data = TypeAdapter.Adapt<List<Language>, List<LanguageModel>>(ls) });
         }
-        public ActionResult Create()
+        [HttpGet]
+        public ActionResult Add()
         {
-            return View();
+            var model = new LanguageModel();
+            return View("Create", model);
         }
-        [HttpPost]
-        public ActionResult Create(LanguageModel model)
+        [HttpGet]
+        public ActionResult Update(int Id)
         {
-            var result = _settingService.AddLanguage(TypeAdapter.Adapt<LanguageModel, Language>(model));
-            if (result > 1)
+            var currentSetting = _settingService.GetLanguageById(Id);
+            if (currentSetting == null)
             {
-                return RedirectToAction("Create");
+                return Json("This setting doesn't exist");
             }
-            return View(model);
+            return View("Edit", currentSetting.ToModel());
         }
         [HttpPost]
-        public JsonResult Update(int id, string name, string culture, bool isactive, bool isdefault)
+        public JsonResult Update(LanguageModel model)
         {
-            var result = _settingService.UpdateLanguage(new Language()
+            Language currentLanguage;
+            if (model.Id > 0)
             {
-                Id = id,
-                Name = name,
-                Culture = culture,
-                IsDefault = isdefault,
-                Active = isactive
-            });
-            return Json(result);
-        }
-        public ActionResult Update(LanguageModel model)
-        {
-            return View(model);
-        }
-        [HttpPost]
-        public ActionResult UpdateAction(LanguageModel model)
-        {
-            var result = _settingService.UpdateLanguage(TypeAdapter.Adapt<LanguageModel, Language>(model));
-            return RedirectToAction("List");
+                currentLanguage = _settingService.GetLanguageById(model.Id);
+            }
+            else
+            {
+                currentLanguage = new Language();
+            }
+            model.ToEntity(currentLanguage);
+            var rs = _settingService.AddOrUpdate(currentLanguage);
+            return Json(rs);
         }
         [HttpPost]
         public JsonResult Delete(int id)
         {
-            var result = _settingService.DeleteLanguageById(id);
+            var result = _settingService.Delete(new Language { Id = id });
             return Json(result);
         }
     }
