@@ -52,6 +52,7 @@
     <Compile Include="DapperExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\Contract\ILocaleResourceStringRepository.cs" />
     <Compile Include="Repositories\Contract\ISettingRepository.cs" />
     <Compile Include="Repositories\Contract\IContactRepository.cs" />
     <Compile Include="Repositories\Contract\ICategoryRepository.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Repositories\Contract\IUserRepository.cs" />
     <Compile Include="Repositories\Contract\ILanguageRepository.cs" />
     <Compile Include="Repositories\Impl\LanguageRepository.cs" />
+    <Compile Include="Repositories\Impl\LocaleResourceStringRepository.cs" />
     <Compile Include="Repositories\Impl\SettingRepository.cs" />
     <Compile Include="Repositories\Impl\ContactRepository.cs" />
     <Compile Include="Repositories\Impl\CategoryRepository.cs" />

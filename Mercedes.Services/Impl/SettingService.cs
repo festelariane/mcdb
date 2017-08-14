@@ -13,10 +13,12 @@ namespace Mercedes.Services.Impl
     {
         private readonly ISettingRepository _settingRepository;
         private readonly ILanguageRepository _languageRepository;
-        public SettingService(ISettingRepository settingRepository,ILanguageRepository languageRespository)
+        private readonly ILocaleResourceStringRepository _localeResourceStringRespository;
+        public SettingService(ISettingRepository settingRepository,ILanguageRepository languageRespository,ILocaleResourceStringRepository localResourceStringRespository)
         {
             _settingRepository = settingRepository;
             _languageRepository = languageRespository;
+            _localeResourceStringRespository = localResourceStringRespository;
         }
         public bool AddOrUpdate(Setting entity)
         {
@@ -89,9 +91,30 @@ namespace Mercedes.Services.Impl
             return _languageRepository.Get(Id);
         }
 
-        public List<Language> GetAllLanguages()
+        public IList<Language> GetAllLanguages()
         {
             return _languageRepository.GetAll().ToList();
+        }
+
+
+        public bool AddOrUpdate(List<LocaleResourceString> resources)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<LocaleResourceString> GetAllLocaleResourceStrings()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<LocaleResourceString> GetAllLocaleResourceStringsByKey(string resourceKey)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Delete(string resourceKey)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -19,6 +19,12 @@ namespace Mercedes.Services.Contract
         bool AddOrUpdate(Language entity);
         bool Delete(Language entity);
         Language GetLanguageById(int Id);
-        List<Language> GetAllLanguages();
+        IList<Language> GetAllLanguages();
+
+        //LocaleResourceString
+        bool AddOrUpdate(List<LocaleResourceString> resources);
+        IList<LocaleResourceString> GetAllLocaleResourceStrings();
+        IList<LocaleResourceString> GetAllLocaleResourceStringsByKey(string resourceKey);
+        bool Delete(string resourceKey);
     }
 }

@@ -32,7 +32,7 @@ namespace Mercedes.Admin.Controllers
         [HttpPost]
         public JsonResult List(DataSourceRequest command)
         {
-            var ls = _settingService.GetAllLanguages();
+            var ls = _settingService.GetAllLanguages().ToList();
             return Json(new { data = TypeAdapter.Adapt<List<Language>, List<LanguageModel>>(ls) });
         }
         [HttpGet]
