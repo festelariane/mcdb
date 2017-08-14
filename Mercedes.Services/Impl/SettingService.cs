@@ -116,5 +116,11 @@ namespace Mercedes.Services.Impl
         {
             throw new NotImplementedException();
         }
+
+
+        public IList<LocaleResourceString> GetAllLocaleResourceStringsByLang(int lang)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
