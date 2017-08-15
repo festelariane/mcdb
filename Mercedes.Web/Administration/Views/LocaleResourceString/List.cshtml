@@ -106,22 +106,31 @@
                    ],
                    columns: [
                        { title: "Id", data: "Id" },
+                        {
+                            title: "Language", data: function (data, type, value) {
+                                if (null != data.Language) {
+                                    return data.Language.Name;
+                                } else {
+                                    return "";
+                                }
+                            }
+                        },
                        { title: "ResourceName", data: "ResourceName" },
                        { title: "ResourceValue", data: "ResourceValue" },
                      
                        {
                            //Edit column
                            mRender: function (data, type, fullObject) {
-                               var Id = fullObject.Id;
-                               var url = '@Url.Action("Update")/?Id=' + Id;
+                               var Id = fullObject.ResourceName;
+                               var url = '@Url.Action("Update")/?resourceName=' + Id;
                                return '<a id="btn-update" data-toggle="modal" onclick="getResource(\'' + url + '\')" href="#frm-edit-setting" class="edit"> Edit </a>';
                            }
                        },
                        {
                            //Delete column
                            mRender: function (data, type, fullObject) {
-                               var Id = fullObject.Id;
-                               var url = '@Url.Action("Delete")/?Id=' + Id;
+                               var Id = fullObject.ResourceName;
+                               var url = '@Url.Action("Delete")/?resourceName=' + Id;
                                return '<a class="delete" onclick="deleteResource(\'' + url + '\')" href=""> Delete </a>';
                            }
                        }

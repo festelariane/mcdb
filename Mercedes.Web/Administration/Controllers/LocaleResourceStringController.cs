@@ -39,13 +39,14 @@ namespace Mercedes.Admin.Controllers
             {
                 return Json(null);
             }
-            var ls = _settingService.GetAllLocaleResourceStringsByLang(lang.Id);
+            var ls = _settingService.GetAllLocaleResourceStringsByLang(lang.Id).ToList();
             return Json(new { data = ls });
         }
         [HttpGet]
         public ActionResult Add()
         {
             var model = new List<LocaleResourceStringModel>();
+            ViewBag.Languages = _settingService.GetAllLanguages();
             return View("Create", model);
         }
         [HttpGet]
@@ -56,23 +57,33 @@ namespace Mercedes.Admin.Controllers
             {
                 return Json("This setting doesn't exist");
             }
+            ViewBag.Languages = _settingService.GetAllLanguages();
             return View("Edit", currentSetting.ToList().ToModel());
         }
         [HttpPost]
-        public JsonResult Update(LanguageModel model)
+        public JsonResult Update(FormCollection form)
         {
-            Language currentLanguage;
-            if (model.Id > 0)
+            List<LocaleResourceString> resources = new List<LocaleResourceString>();
+            var key = form["ResourceName"];
+            var langs = _settingService.GetAllLanguages();
+            foreach (var lang in langs)
             {
-                currentLanguage = _settingService.GetLanguageById(model.Id);
+                var resource = new LocaleResourceString
+                {
+                    LanguageId = lang.Id,
+                    ResourceName = key,
+                    ResourceValue = form[lang.Id.ToString()]
+                };
+                resources.Add(resource);
             }
-            else
-            {
-                currentLanguage = new Language();
-            }
-            model.ToEntity(currentLanguage);
-            var rs = _settingService.AddOrUpdate(currentLanguage);
+            var rs = _settingService.AddOrUpdate(resources);
             return Json(rs);
+        }
+        [HttpPost]
+        public JsonResult Delete(string resourceName)
+        {
+            var result = _settingService.Delete(resourceName);
+            return Json(result);
         }
     }
 }

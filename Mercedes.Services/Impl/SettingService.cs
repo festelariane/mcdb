@@ -99,7 +99,16 @@ namespace Mercedes.Services.Impl
 
         public bool AddOrUpdate(List<LocaleResourceString> resources)
         {
-            throw new NotImplementedException();
+            var key = resources[0].ResourceName;
+            var localeKey = GetAllLocaleResourceStringsByKey(key);
+            if (localeKey.Any())
+            {
+                return _localeResourceStringRespository.UpdateLocaleResourceString(resources);
+            }
+            else
+            {
+                return _localeResourceStringRespository.AddLocaleResourceString(resources);
+            }
         }
 
         public IList<LocaleResourceString> GetAllLocaleResourceStrings()
@@ -109,18 +118,19 @@ namespace Mercedes.Services.Impl
 
         public IList<LocaleResourceString> GetAllLocaleResourceStringsByKey(string resourceKey)
         {
-            throw new NotImplementedException();
+            return _localeResourceStringRespository.GetLocaleResourceStringsByKey(resourceKey).ToList();
         }
 
         public bool Delete(string resourceKey)
         {
-            throw new NotImplementedException();
+            _localeResourceStringRespository.Delete(new LocaleResourceString { ResourceName = resourceKey });
+            return true;
         }
 
 
         public IList<LocaleResourceString> GetAllLocaleResourceStringsByLang(int lang)
         {
-            throw new NotImplementedException();
+            return _localeResourceStringRespository.GetLocaleResourceStringsByLang(lang).ToList();
         }
     }
 }

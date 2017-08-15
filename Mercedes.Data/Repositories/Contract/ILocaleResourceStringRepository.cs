@@ -9,5 +9,9 @@ namespace Mercedes.Data.Repositories.Contract
 {
     public interface ILocaleResourceStringRepository : IGenericRepository<LocaleResourceString>
     {
+        IEnumerable<LocaleResourceString> GetLocaleResourceStringsByLang(int lang);
+        IEnumerable<LocaleResourceString> GetLocaleResourceStringsByKey(string key);
+        bool AddLocaleResourceString(List<LocaleResourceString> resources);
+        bool UpdateLocaleResourceString(List<LocaleResourceString> resources);
     }
 }
