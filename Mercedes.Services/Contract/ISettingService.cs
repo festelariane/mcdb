@@ -1,4 +1,5 @@
-﻿using Mercedes.Core.Domain;
+﻿using Mercedes.Core.Configuration;
+using Mercedes.Core.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,7 @@ namespace Mercedes.Services.Contract
         Setting GetSettingById(int Id);
         IList<Setting> GetAllSettings();
         IList<Setting> FindSettings(string name, string value);
+        T LoadSetting<T>() where T : ISettings;
+        T GetSettingByKey<T>(string key, T defaultValue = default(T));
     }
 }

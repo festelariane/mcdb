@@ -11,12 +11,14 @@ using Mercedes.Services.Contract;
 using Mercedes.Services.Impl;
 using Mercedes.Services.Contract.Security;
 using Mercedes.Services.Impl.Security;
+using Mercedes.Core.Configuration;
+using Mercedes.Core.Infrastructure;
 
 namespace Mercedes.Services
 {
     public class DependencyRegistrar : DryIocModule
     {
-        protected override void Load(IRegistrator builder)
+        protected override void Load(IRegistrator builder, ITypeFinder typeFinder, SiteConfig config)
         {
             //Register for Data Repositories
             builder.Register<IVehicleRepository, VehicleRepository>(Reuse.InWebRequest);
@@ -29,6 +31,7 @@ namespace Mercedes.Services
             builder.Register<ICategoryRepository, CategoryRepository>(Reuse.InWebRequest);
             builder.Register<IContactRepository, ContactRepository>(Reuse.InWebRequest);
             builder.Register<ISettingRepository, SettingRepository>(Reuse.InWebRequest);
+            builder.Register<IEmailAccountRepository, EmailAccountRepository>(Reuse.InWebRequest);
 
             //Register for Data Services
             builder.Register<ICarService, CarService>(Reuse.Transient);
@@ -40,6 +43,8 @@ namespace Mercedes.Services
             builder.Register<ISettingService, SettingService>(Reuse.InWebRequest);
             builder.Register<IEncryptionService, EncryptionService>(Reuse.Singleton);
             builder.Register<IUserRegistrationService, UserRegistrationService>(Reuse.InWebRequest);
+            builder.Register<IEmailService, EmailService>(Reuse.Singleton);
+            builder.Register<IEmailAccountService, EmailAccountService>(Reuse.InWebRequest);
         }
     }
 }

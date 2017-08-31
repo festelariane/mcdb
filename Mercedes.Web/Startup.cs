@@ -1,4 +1,6 @@
-﻿using Microsoft.Owin;
+﻿using Mercedes.Core.Infrastructure;
+using Mercedes.Web.App_Start;
+using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(Mercedes.Web.Startup))]
@@ -9,6 +11,7 @@ namespace Mercedes.Web
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            WebApiConfig.Configure(app, SiteEngine.Instance.ContainerManager.Container);
         }
     }
 }

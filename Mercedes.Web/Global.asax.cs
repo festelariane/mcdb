@@ -1,4 +1,5 @@
-﻿using Mercedes.Web.Framework.Mvc.Infrastructure;
+﻿using Mercedes.Core.Infrastructure;
+using Mercedes.Web.Framework.Mvc.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,10 @@ namespace Mercedes.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            DryIocConfig.BuildConfig();
             //Set viewEngines
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new MercedesViewEngine());
+            SiteEngine.Instance.Init();
         }
     }
 }

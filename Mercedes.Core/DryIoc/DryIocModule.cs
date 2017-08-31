@@ -1,4 +1,6 @@
 ﻿using DryIoc;
+using Mercedes.Core.Configuration;
+using Mercedes.Core.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +11,10 @@ namespace Mercedes.Core.DryIoc
 {
     public abstract class DryIocModule
     {
-        protected abstract void Load(IRegistrator builder);
-        public void Configure(IRegistrator builder)
+        protected abstract void Load(IRegistrator builder, ITypeFinder typeFinder, SiteConfig config);
+        public void Configure(IRegistrator builder, ITypeFinder typeFinder, SiteConfig config)
         {
-            Load(builder);
+            Load(builder, typeFinder, config);
         }
     }
 }

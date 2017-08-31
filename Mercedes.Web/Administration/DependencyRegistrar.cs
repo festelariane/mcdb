@@ -7,12 +7,13 @@ using Mercedes.Core.DryIoc;
 using Mercedes.Framework.Menu;
 using System.Collections;
 using Mercedes.Core.Infrastructure;
+using Mercedes.Core.Configuration;
 
 namespace Mercedes.Admin
 {
     public class DependencyRegistrar : DryIocModule
     {
-        protected override void Load(IRegistrator builder)
+        protected override void Load(IRegistrator builder, ITypeFinder typeFinder, SiteConfig config)
         {
             builder.RegisterDelegate<Func<IList<string>, bool>>(c =>
             {

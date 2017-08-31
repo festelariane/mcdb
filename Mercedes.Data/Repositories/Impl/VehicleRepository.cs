@@ -12,6 +12,10 @@ namespace Mercedes.Data.Repositories.Impl
 {
     public class VehicleRepository : GenericRepository<Vehicle>, IVehicleRepository
     {
+        public VehicleRepository() : base("Vehicle")
+        {
+        }
+
         public Task<IEnumerable<Vehicle>> GetAllVehicles(int pageIndex, int pageSize)
         {
             throw new NotImplementedException();

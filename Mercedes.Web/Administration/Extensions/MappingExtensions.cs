@@ -1,8 +1,11 @@
 ﻿using FastMapper;
 using Mercedes.Admin.Models;
+using Mercedes.Admin.Models.Configuration;
+using Mercedes.Admin.Models.Plugins;
 using Mercedes.Admin.Models.Settings;
 using Mercedes.Admin.Models.UserManagement;
 using Mercedes.Core.Domain;
+using Mercedes.Core.Plugins;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -74,5 +77,24 @@ namespace Mercedes.Admin.Extensions
             return TypeAdapter.Adapt(model, destination);
         }
         #endregion
+        #region Configuration
+        public static EmailAccountModel ToModel(this EmailAccount entity)
+        {
+            return TypeAdapter.Adapt<EmailAccount, EmailAccountModel>(entity);
+        }
+        public static EmailAccount ToEntity(this EmailAccountModel model)
+        {
+            return TypeAdapter.Adapt<EmailAccountModel, EmailAccount>(model);
+        }
+
+        public static EmailAccount ToEntity(this EmailAccountModel model, EmailAccount destination)
+        {
+            return TypeAdapter.Adapt(model, destination);
+        }
+        #endregion
+        public static PluginModel ToModel(this PluginDescriptor entity)
+        {
+            return TypeAdapter.Adapt<PluginDescriptor, PluginModel>(entity);
+        }
     }
 }

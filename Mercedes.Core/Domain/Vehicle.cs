@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mercedes.Core.Domain
 {
-    public class Vehicle
+    public class Vehicle:BaseEntity
     {
     }
 }

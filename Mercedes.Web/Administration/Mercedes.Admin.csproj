@@ -159,16 +159,23 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ClientContactController.cs" />
+    <Compile Include="Controllers\EmailAccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManufacturerController.cs" />
     <Compile Include="Controllers\ModelController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
+    <Compile Include="Controllers\PluginController.cs" />
     <Compile Include="Controllers\PriceModelController.cs" />
     <Compile Include="Controllers\RentTypeController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="DependencyRegistrar.cs" />
     <Compile Include="Extensions\MappingExtensions.cs" />
+    <Compile Include="Models\Configuration\EmailAccountModel.cs" />
+    <Compile Include="Models\Configuration\EmailListModel.cs" />
+    <Compile Include="Models\Plugins\MiscPluginModel.cs" />
+    <Compile Include="Models\Plugins\PluginListModel.cs" />
+    <Compile Include="Models\Plugins\PluginModel.cs" />
     <Compile Include="Models\UserManagement\UserListModel.cs" />
     <Compile Include="Models\UserManagement\UserModel.cs" />
     <Compile Include="Models\ModelListModel.cs" />
@@ -1865,6 +1872,11 @@
     <Content Include="Views\Account\Create.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Account\List.cshtml" />
+    <Content Include="Views\EmailAccount\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\EmailAccount\Create.cshtml" />
+    <Content Include="Views\EmailAccount\Edit.cshtml" />
+    <Content Include="Views\EmailAccount\List.cshtml" />
+    <Content Include="Views\Plugin\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

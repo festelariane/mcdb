@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Mercedes.Core.Domain;
 using Dapper;
 using System;
+using System.Linq.Expressions;
 
 namespace Mercedes.Data.Repositories.Impl
 {
@@ -78,6 +79,11 @@ namespace Mercedes.Data.Repositories.Impl
         }
 
         public IEnumerable<Category> GetAllExceptDeletedItems()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Category> Find(Expression<Func<Category, bool>> predicate)
         {
             throw new NotImplementedException();
         }

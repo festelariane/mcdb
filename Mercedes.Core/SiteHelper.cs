@@ -61,5 +61,14 @@ namespace LP.Core
             path = path.Replace("~/", "").TrimStart('/').Replace('/', '\\');
             return Path.Combine(baseDirectory, path);
         }
+        public static object GetDefaultValue(Type type)
+        {
+            object retVal = null;
+            if (type.IsValueType)
+            {
+                retVal = Activator.CreateInstance(type);
+            }
+            return retVal;
+        }
     }
 }

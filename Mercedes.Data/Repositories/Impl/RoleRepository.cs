@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Dapper;
+using System.Linq.Expressions;
 
 namespace Mercedes.Data.Repositories.Impl
 {
@@ -91,6 +92,11 @@ namespace Mercedes.Data.Repositories.Impl
                 var result = conn.Execute(sb.ToString(), new { UserId = user.Id });
                 return true;
             }
+        }
+
+        public IEnumerable<UserRole> Find(Expression<Func<UserRole, bool>> predicate)
+        {
+            throw new NotImplementedException();
         }
     }
 }

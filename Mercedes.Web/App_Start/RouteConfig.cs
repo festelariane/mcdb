@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Mercedes.Core.Infrastructure;
+using Mercedes.Web.Framework.Mvc.Routes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +14,9 @@ namespace Mercedes.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            var routeRegistrator = SiteEngine.Instance.Resolve<IRouteRegistrator>();
+            routeRegistrator.RegisterRoutes(routes);
 
             routes.MapRoute(
                 name: "Homepage",
@@ -54,14 +59,7 @@ namespace Mercedes.Web
                 defaults: new { controller = "Category", action = "Category" },
                  namespaces: new[] { "Mercedes.Web.Controllers" }
             );
-
-            routes.MapRoute(
-                name: "Default",
-                url: "",
-                defaults: new { controller = "Home", action = "Index" },
-                 namespaces: new[] { "Mercedes.Web.Controllers" }
-            );
-
+            
             routes.MapRoute(
                 name: "VehicleSeries",
                 url: "{type}/{id}",
@@ -69,7 +67,12 @@ namespace Mercedes.Web
                  namespaces: new[] { "Mercedes.Web.Controllers" }
             );
 
-
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "Mercedes.Web.Controllers" }
+            );
         }
     }
 }

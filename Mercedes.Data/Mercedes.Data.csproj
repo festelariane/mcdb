@@ -50,8 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DapperExtensions.cs" />
+    <Compile Include="DynamicQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryResult.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\Contract\IEmailAccountRepository.cs" />
     <Compile Include="Repositories\Contract\ISettingRepository.cs" />
     <Compile Include="Repositories\Contract\IContactRepository.cs" />
     <Compile Include="Repositories\Contract\ICategoryRepository.cs" />
@@ -63,6 +66,7 @@
     <Compile Include="Repositories\Contract\IManufacturerRepository.cs" />
     <Compile Include="Repositories\Contract\IRoleRepository.cs" />
     <Compile Include="Repositories\Contract\IUserRepository.cs" />
+    <Compile Include="Repositories\Impl\EmailAccountRepository.cs" />
     <Compile Include="Repositories\Impl\SettingRepository.cs" />
     <Compile Include="Repositories\Impl\ContactRepository.cs" />
     <Compile Include="Repositories\Impl\CategoryRepository.cs" />

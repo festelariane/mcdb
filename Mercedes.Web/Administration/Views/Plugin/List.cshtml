@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Administration/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Administration/assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Administration/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+
+<link href="~/Administration/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.css" rel="stylesheet" type="text/css" />
+<script src="~/Administration/assets/plugins/bootstrap-touchspin/bootstrap.touchspin.js" type="text/javascript"></script>
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">All Plugins</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="btn-group">
+                    <a class="btn btn-danger" data-toggle="modal" href="#frm-edit-emailaccount" id="btn-add-emailaccount"> Add new <i class="fa fa-plus"></i> </a>
+                </div>
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+        <br />
+        <table id="tb-setting" class="table table-bordered table-striped">
+          
+        </table>
+    </div>
+    <!-- /.box-body -->
+</div>
+
+<script type="text/javascript">
+    var resourceTable = null;
+    function postFormData(url) {
+        $.ajax({
+            url: url,
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+
+            },
+            error: function (xhr, status, errThrow) {
+                alert(errThrow);
+            }
+        });
+    }
+
+
+    $(function () {
+
+        resourceTable = $('#tb-setting').DataTable(
+               {
+                   paging: true,
+                   ajax:
+                   {
+                       url: '@Url.Action("List")',
+                       type: "POST",
+                       contentType: "application/json; charset=utf-8"
+                   },
+                   "pageLength": 20,
+                   "lengthMenu": [
+                       [10, 15, 20, -1],
+                       [10, 15, 20, "All"] // change per page values here
+                   ],
+                   columns: [
+                       { title: "System Name", data: "SystemName" },
+                       { title: "Friendly Name", data: "FriendlyName" },
+                       { title: "Author", data: "Author" },
+                       { title: "Installed", data: "Installed" },
+                     { title: "Description", data: "Description"},
+                         { title: "IsEnabled", data: "IsEnabled" },
+                         { title: "LogoUrl", data: "LogoUrl" },
+                         { title: "CanChangeEnabled", data: "CanChangeEnabled" },
+                         { title: "ConfigurationUrl", data: "ConfigurationUrl" },
+                       {
+                           title: "Action",
+                           //Edit column
+                           mRender: function (data, type, fullObject) {
+                               var installed = fullObject.Installed;
+                               var installLink = '<a id="btn-install" data-toggle="modal" onclick="postFormData(\'@Url.Action("Install")/?pluginSystemName=' + fullObject.SystemName + '\')" class="edit"> Install </a>';
+                               var uninstallLink = '<a id="btn-uninstall" data-toggle="modal" onclick="postFormData(\'@Url.Action("Uninstall")/?pluginSystemName=' + fullObject.SystemName + '\')" class="edit"> Uninstall </a>';
+                               if (installed)
+                                   return uninstallLink;
+                               return installLink;
+                           }
+                       }
+                   ]
+               });
+    });
+</script>
+
+
+
+
+
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="~/Administration/assets/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->

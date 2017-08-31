@@ -1,5 +1,6 @@
 ﻿using DryIoc;
 using DryIoc.Web;
+using LP.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,7 +64,24 @@ namespace Mercedes.Core.Infrastructure.DependencyManagement
             }
             return scope.Resolve<IEnumerable<T>>(key).ToArray();
         }
-
+        public virtual bool TryResolve(Type serviceType, IContainer scope, out object instance)
+        {
+            if (scope == null)
+            {
+                //no scope specified
+                scope = Scope();
+            }
+            if (scope.IsRegistered(serviceType))
+            {
+                instance = scope.Resolve(serviceType);
+                return true;
+            }
+            else
+            {
+                instance = SiteHelper.GetDefaultValue(serviceType);
+                return false;
+            }
+        }
         public virtual bool IsRegistered(Type serviceType, IContainer scope = null)
         {
             if (scope == null)
@@ -92,6 +110,36 @@ namespace Mercedes.Core.Infrastructure.DependencyManagement
             //{
             //    return Container.OpenScope();
             //}
+        }
+        public virtual object ResolveUnregistered(Type type, IContainer scope = null)
+        {
+            if (scope == null)
+            {
+                scope = Scope();
+            }
+            var constructors = type.GetConstructors();
+            foreach(var constructor in constructors)
+            {
+                try
+                {
+                    var parameters = constructor.GetParameters();
+                    var parameterInstances = new List<object>();
+                    foreach (var parameter in parameters)
+                    {
+                        var service = Resolve(parameter.ParameterType, scope);
+                        if (service == null)
+                        {
+                            throw new ArgumentNullException("Unknown dependency");
+                        }
+                        parameterInstances.Add(service);
+                    }
+                    return Activator.CreateInstance(type, parameterInstances.ToArray());
+                }
+                catch (Exception)
+                {
+                }
+            }
+            throw new Exception("No constructor  was found that had all the dependencies satisfied.");
         }
     }
 }

@@ -32,6 +32,11 @@
    
 </head>
 <body>   
+    @{ 
+        var str = Url.RouteUrl("DefaultTmcApi");
+
+        <div>@str</div>
+    }
     <!-- Loader -->
     <div class='loader'></div>
     <!-- Header -->
@@ -71,7 +76,8 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 footer-info">
                     <p>209 Nam Kỳ Khởi Nghĩa, P.7, Q.3, TP. HCM<br />0972.87.82.82 (Mr. Thân)</p>
-                    @Html.Partial("ContactSocial")
+                    @*@Html.Partial("ContactSocial")*@
+                   @Html.Action("Social", "Common")
                 </div>
             </div>
             <p class="copy-right">Copyright © 2017 Mercedes Benz. Allright reserved</p>
