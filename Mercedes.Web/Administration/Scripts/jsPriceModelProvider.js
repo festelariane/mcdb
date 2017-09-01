@@ -37,7 +37,7 @@ PriceModelProvider.prototype.Init = function () {
                     {
                         title: "Loại hình thuê", data: function (data, type, value) {
                             if (null != data.RentType) {
-                                return data.RentType.RentTypeName
+                                return data.RentType.RentTypeName;
                             } else {
                                 return "";
                             }
@@ -46,7 +46,7 @@ PriceModelProvider.prototype.Init = function () {
                     {
                         title: "Price", data: function (data, type, value) {
                             if (null != data.Price) {
-                                return data.Price
+                                return data.Price;
                             } else {
                                 return "";
                             }

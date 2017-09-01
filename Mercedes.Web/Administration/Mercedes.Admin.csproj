@@ -161,6 +161,8 @@
     <Compile Include="Controllers\ClientContactController.cs" />
     <Compile Include="Controllers\EmailAccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LanguageController.cs" />
+    <Compile Include="Controllers\LocaleResourceStringController.cs" />
     <Compile Include="Controllers\ManufacturerController.cs" />
     <Compile Include="Controllers\ModelController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
@@ -176,6 +178,8 @@
     <Compile Include="Models\Plugins\MiscPluginModel.cs" />
     <Compile Include="Models\Plugins\PluginListModel.cs" />
     <Compile Include="Models\Plugins\PluginModel.cs" />
+    <Compile Include="Models\Language\LanguageModel.cs" />
+    <Compile Include="Models\Language\LocaleResourceStringModel.cs" />
     <Compile Include="Models\UserManagement\UserListModel.cs" />
     <Compile Include="Models\UserManagement\UserModel.cs" />
     <Compile Include="Models\ModelListModel.cs" />
@@ -1877,6 +1881,14 @@
     <Content Include="Views\EmailAccount\Edit.cshtml" />
     <Content Include="Views\EmailAccount\List.cshtml" />
     <Content Include="Views\Plugin\List.cshtml" />
+    <Content Include="Views\Language\List.cshtml" />
+    <Content Include="Views\Language\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\Language\Create.cshtml" />
+    <Content Include="Views\Language\Edit.cshtml" />
+    <Content Include="Views\LocaleResourceString\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\LocaleResourceString\Create.cshtml" />
+    <Content Include="Views\LocaleResourceString\Edit.cshtml" />
+    <Content Include="Views\LocaleResourceString\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

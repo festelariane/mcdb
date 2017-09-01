@@ -1,5 +1,6 @@
 ﻿using FastMapper;
 using Mercedes.Admin.Models;
+using Mercedes.Admin.Models.Language;
 using Mercedes.Admin.Models.Configuration;
 using Mercedes.Admin.Models.Plugins;
 using Mercedes.Admin.Models.Settings;
@@ -62,6 +63,39 @@ namespace Mercedes.Admin.Extensions
             return TypeAdapter.Adapt(model, destination);
         }
         #endregion
+
+        #region Language
+        public static LanguageModel ToModel(this Language entity)
+        {
+            return TypeAdapter.Adapt<Language, LanguageModel>(entity);
+        }
+        public static Language ToEntity(this LanguageModel model)
+        {
+            return TypeAdapter.Adapt<LanguageModel, Language>(model);
+        }
+
+        public static Language ToEntity(this LanguageModel model, Language destination)
+        {
+            return TypeAdapter.Adapt(model, destination);
+        }
+        #endregion
+
+        #region LocaleResourceString
+        public static List<LocaleResourceStringModel> ToModel(this List<LocaleResourceString> entity)
+        {
+            return TypeAdapter.Adapt<List<LocaleResourceString>, List<LocaleResourceStringModel>>(entity);
+        }
+        public static List<LocaleResourceString> ToEntity(this List<LocaleResourceStringModel> model)
+        {
+            return TypeAdapter.Adapt<List<LocaleResourceStringModel>, List<LocaleResourceString>>(model);
+        }
+
+        public static List<LocaleResourceString> ToEntity(this List<LocaleResourceStringModel> model, List<LocaleResourceString> destination)
+        {
+            return TypeAdapter.Adapt(model, destination);
+        }
+        #endregion
+
         #region User Management
         public static UserModel ToModel(this User entity)
         {

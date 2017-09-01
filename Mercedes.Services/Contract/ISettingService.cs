@@ -15,6 +15,19 @@ namespace Mercedes.Services.Contract
         Setting GetSettingById(int Id);
         IList<Setting> GetAllSettings();
         IList<Setting> FindSettings(string name, string value);
+
+        //Language
+        bool AddOrUpdate(Language entity);
+        bool Delete(Language entity);
+        Language GetLanguageById(int Id);
+        IList<Language> GetAllLanguages();
+
+        //LocaleResourceString
+        bool AddOrUpdate(List<LocaleResourceString> resources);
+        IList<LocaleResourceString> GetAllLocaleResourceStrings();
+        IList<LocaleResourceString> GetAllLocaleResourceStringsByLang(int lang);
+        IList<LocaleResourceString> GetAllLocaleResourceStringsByKey(string resourceKey);
+        bool Delete(string resourceKey);
         T LoadSetting<T>() where T : ISettings;
         T GetSettingByKey<T>(string key, T defaultValue = default(T));
     }

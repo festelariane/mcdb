@@ -18,11 +18,16 @@ namespace Mercedes.Services.Impl
         private const string SETTINGS_PATTERN_KEY = "MerBenz.setting.";
 
         private readonly ISettingRepository _settingRepository;
+        private readonly ILanguageRepository _languageRepository;
+        private readonly ILocaleResourceStringRepository _localeResourceStringRespository;
+        public SettingService(ISettingRepository settingRepository,ILanguageRepository languageRespository,ILocaleResourceStringRepository localResourceStringRespository)
         private readonly ICacheManager _cacheManager;
         public SettingService(ISettingRepository settingRepository, ICacheManager cacheManager)
         {
             _settingRepository = settingRepository;
             _cacheManager = cacheManager;
+            _languageRepository = languageRespository;
+            _localeResourceStringRespository = localResourceStringRespository;
         }
         public bool AddOrUpdate(Setting entity)
         {
@@ -62,6 +67,79 @@ namespace Mercedes.Services.Impl
         {
             var result = _settingRepository.Find(name, value).ToList();
             return result;
+        }
+
+        public bool AddOrUpdate(Language entity)
+        {
+            try
+            {
+                if (entity.Id > 0)
+                {
+                    _languageRepository.Update(entity);
+                }
+                else
+                {
+                    _languageRepository.Add(entity);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool Delete(Language entity)
+        {
+            _languageRepository.Delete(entity);
+            return true;
+        }
+
+        public Language GetLanguageById(int Id)
+        {
+            return _languageRepository.Get(Id);
+        }
+
+        public IList<Language> GetAllLanguages()
+        {
+            return _languageRepository.GetAll().ToList();
+        }
+
+
+        public bool AddOrUpdate(List<LocaleResourceString> resources)
+        {
+            var key = resources[0].ResourceName;
+            var localeKey = GetAllLocaleResourceStringsByKey(key);
+            if (localeKey.Any())
+            {
+                return _localeResourceStringRespository.UpdateLocaleResourceString(resources);
+            }
+            else
+            {
+                return _localeResourceStringRespository.AddLocaleResourceString(resources);
+            }
+        }
+
+        public IList<LocaleResourceString> GetAllLocaleResourceStrings()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<LocaleResourceString> GetAllLocaleResourceStringsByKey(string resourceKey)
+        {
+            return _localeResourceStringRespository.GetLocaleResourceStringsByKey(resourceKey).ToList();
+        }
+
+        public bool Delete(string resourceKey)
+        {
+            _localeResourceStringRespository.Delete(new LocaleResourceString { ResourceName = resourceKey });
+            return true;
+        }
+
+
+        public IList<LocaleResourceString> GetAllLocaleResourceStringsByLang(int lang)
+        {
+            return _localeResourceStringRespository.GetLocaleResourceStringsByLang(lang).ToList();
         }
         protected virtual IList<Setting> GetAllSettingsCached()
         {

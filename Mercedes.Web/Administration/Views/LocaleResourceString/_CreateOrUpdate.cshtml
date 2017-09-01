@@ -1,0 +1,92 @@
+﻿@using Mercedes.Admin.Models.Language;
+@using Mercedes.Core.Domain
+@model List<LocaleResourceStringModel>
+@Html.ValidationSummary(false)
+@{ 
+    var languages = ViewBag.Languages as List<Language>;
+}
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+    <h4 class="modal-title">Resources Information</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        @if (Model.Count > 0)
+        {
+            <div class="form-group">
+                <label class="col-md-3 control-label">Resource Key</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="ResourceName" name="ResourceName" value="@Model[0].ResourceName"/>
+                </div>
+            </div>
+            foreach (var lang in languages)
+            {
+                var resource = Model.FirstOrDefault(p => p.LanguageId == lang.Id);
+                if (null == resource)
+                {
+                    resource = new LocaleResourceStringModel();
+                }
+                <div class="form-group">
+                    <label class="col-md-3 control-label">@lang.Name</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="@lang.Id" name="@lang.Id" value="@resource.ResourceValue"/>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="form-group">
+                <label class="col-md-3 control-label">Resource Key</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="ResourceName" name="ResourceName" value="" />
+                </div>
+            </div>
+            foreach (var lang in languages)
+            {
+                <div class="form-group">
+                    <label class="col-md-3 control-label">@lang.Name</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="@lang.Id" name="@lang.Id" />
+                    </div>
+                </div>
+            }
+        }
+
+
+
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn btn-default" id="btn-Close">Close</button>
+    <button type="button" class="btn btn-success" onclick="saveSetting()" id="btn-update">Update</button>
+</div>
+
+<script type="text/javascript">
+    function saveSetting() {
+        var frmCategory = $("#setting-form");
+        var formData = frmCategory.serialize();
+        $("#btn-update").attr("disabled", "disabled");
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: '@Url.Action("Update")',
+            data: formData,
+            success: function (data) {
+                if (data) {
+                    alert("Save setting successfully");
+                    resourceTable.ajax.reload();
+                    //jQuery.noConflict();
+                    $('#frm-edit-setting').modal('toggle');
+                } else {
+                    alert("Cannot save setting information. Please check again!");
+                }
+                $("#btn-update").removeAttr("disabled");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.responeText);
+                $("#btn-update").removeAttr("disabled");
+            }
+        });
+    }
+</script>
