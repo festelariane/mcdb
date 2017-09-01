@@ -1,0 +1,27 @@
+﻿@using Mercedes.Admin.Models.Plugins;
+@model MiscPluginModel
+
+@{
+
+}
+
+<h1>Config Plugin Page</h1>
+
+<div class="content">
+    <div class="form-horizontal">
+        @if (!String.IsNullOrEmpty(Model.ConfigurationActionName))
+        {
+            @Html.Action(Model.ConfigurationActionName, Model.ConfigurationControllerName, Model.ConfigurationRouteValues);
+        }
+        else
+        {
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        No configuration page
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

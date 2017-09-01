@@ -83,3 +83,6 @@ C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Web\Plugins\TrinhMinh.WebApi\Mercedes.
 C:\Users\tuyen\Source\Repos\mcdb\Plugins\Mercedes.Plugins.TrinhMinh.WebApi\obj\Debug\Mercedes.Plugins.TrinhMinh.WebApi.csprojResolveAssemblyReference.cache
 C:\Users\tuyen\Source\Repos\mcdb\Plugins\Mercedes.Plugins.TrinhMinh.WebApi\obj\Debug\Mercedes.Plugins.TrinhMinh.WebApi.dll
 C:\Users\tuyen\Source\Repos\mcdb\Plugins\Mercedes.Plugins.TrinhMinh.WebApi\obj\Debug\Mercedes.Plugins.TrinhMinh.WebApi.pdb
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Web\Plugins\TrinhMinh.WebApi\Content\styles.css
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Web\Plugins\TrinhMinh.WebApi\Views\Configure.cshtml
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Web\Plugins\TrinhMinh.WebApi\Web.config

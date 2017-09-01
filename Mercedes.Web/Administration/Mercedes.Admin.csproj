@@ -1889,6 +1889,7 @@
     <Content Include="Views\LocaleResourceString\Create.cshtml" />
     <Content Include="Views\LocaleResourceString\Edit.cshtml" />
     <Content Include="Views\LocaleResourceString\List.cshtml" />
+    <Content Include="Views\Plugin\ConfigureMiscPlugin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

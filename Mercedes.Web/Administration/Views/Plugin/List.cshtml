@@ -74,7 +74,16 @@
                          { title: "IsEnabled", data: "IsEnabled" },
                          { title: "LogoUrl", data: "LogoUrl" },
                          { title: "CanChangeEnabled", data: "CanChangeEnabled" },
-                         { title: "ConfigurationUrl", data: "ConfigurationUrl" },
+                         {
+                             title: "Configuration Url",
+                             mRender: function (data, type, fullObject) {
+                                 var configUrl = "";
+                                 if (fullObject.ConfigurationUrl != null)
+                                     configUrl = fullObject.ConfigurationUrl;
+                                 var configLink = '<a id="btn-configure" href="'+configUrl+'" class="edit"> Configure </a>';
+                                 return configLink;
+                             }
+                         },
                        {
                            title: "Action",
                            //Edit column

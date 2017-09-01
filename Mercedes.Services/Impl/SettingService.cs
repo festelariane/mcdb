@@ -20,9 +20,8 @@ namespace Mercedes.Services.Impl
         private readonly ISettingRepository _settingRepository;
         private readonly ILanguageRepository _languageRepository;
         private readonly ILocaleResourceStringRepository _localeResourceStringRespository;
-        public SettingService(ISettingRepository settingRepository,ILanguageRepository languageRespository,ILocaleResourceStringRepository localResourceStringRespository)
         private readonly ICacheManager _cacheManager;
-        public SettingService(ISettingRepository settingRepository, ICacheManager cacheManager)
+        public SettingService(ISettingRepository settingRepository, ILanguageRepository languageRespository, ILocaleResourceStringRepository localResourceStringRespository, ICacheManager cacheManager)
         {
             _settingRepository = settingRepository;
             _cacheManager = cacheManager;
