@@ -1,0 +1,9 @@
+﻿Group: Tmc WebApi
+FriendlyName: Tmc WebApi
+SystemName: TrinhMinh.WebApi
+Version: 1.00
+SupportedVersions: 1.00
+Author: MerBenz team
+DisplayOrder: 1
+FileName: Mercedes.Plugins.TrinhMinh.WebApi.dll
+Description: This plugin is used for Tmc website.

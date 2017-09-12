@@ -1,0 +1,9 @@
+﻿@using Mercedes.Admin.Models.Configuration
+@model EmailAccountModel
+@{
+    Layout = "";
+}
+@using (Html.BeginForm("Add", "EmailAccount", FormMethod.Post, new { id = "emailaccount-form" }))
+{
+    @Html.Partial("_CreateOrUpdate", Model)
+}

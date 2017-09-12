@@ -1442,6 +1442,10 @@
     <Content Include="assets\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="assets\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="assets\plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="Content\images\ajax-loading.gif" />
+    <Content Include="Content\images\ajax_loader_small.gif" />
+    <Content Include="Content\images\google-maps.gif" />
+    <Content Include="Content\images\warnings-ajax-loader.gif" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
     <Content Include="fileman\css\images\animated-overlay.gif" />
@@ -1746,6 +1750,8 @@
     <Content Include="Scripts\fine-uploader\templates\gallery.html" />
     <Content Include="Scripts\fine-uploader\templates\simple-thumbnails.html" />
     <Content Include="Scripts\fine-uploader\trash.gif" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jsPriceModelProvider.js" />
     <Content Include="Scripts\jsrender.min.js" />
     <Content Include="Scripts\moment-with-locales.js" />

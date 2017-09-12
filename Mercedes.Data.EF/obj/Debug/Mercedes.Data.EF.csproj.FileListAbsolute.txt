@@ -1,0 +1,10 @@
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Data.EF\bin\Debug\Mercedes.Data.EF.dll.config
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Data.EF\bin\Debug\Mercedes.Data.EF.dll
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Data.EF\bin\Debug\Mercedes.Data.EF.pdb
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Data.EF\bin\Debug\EntityFramework.dll
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Data.EF\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Data.EF\bin\Debug\EntityFramework.xml
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Data.EF\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Data.EF\obj\Debug\Mercedes.Data.EF.dll
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Data.EF\obj\Debug\Mercedes.Data.EF.pdb
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Data.EF\obj\Debug\Mercedes.Data.EF.csprojResolveAssemblyReference.cache

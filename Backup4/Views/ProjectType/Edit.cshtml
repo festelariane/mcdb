@@ -1,0 +1,9 @@
+﻿@using Mercedes.Plugins.TrinhMinh.WebApi.Models
+@model ProjectTypeModel
+@{
+    Layout = "";
+}
+@using (Html.BeginForm("SaveProjectType", "TmcAdmin", FormMethod.Post, new { id = "projecttype-form" }))
+{
+    @Html.Partial("~/Plugins/TrinhMinh.WebApi/Views/ProjectType/_CreateOrUpdate.cshtml", Model)
+}

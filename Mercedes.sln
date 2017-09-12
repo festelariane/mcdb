@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mercedes.Web", "Mercedes.Web\Mercedes.Web.csproj", "{5BFF7F77-21FC-408E-8D51-1CD8B4A83DC4}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -22,7 +22,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mercedes.Data.EF", "Mercede
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{05479B5A-2A6D-4440-8270-9CD89672C540}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mercedes.Plugins.TrinhMinh.WebApi", "Plugins\Mercedes.Plugins.TrinhMinh.WebApi\Mercedes.Plugins.TrinhMinh.WebApi.csproj", "{0D0727E4-56F7-446E-9C87-55150373258E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sites", "Sites", "{225C1153-8A99-46E7-B34C-2F851C600ACC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrinhMinh.Web", "TrinhMinh.Web\TrinhMinh.Web.csproj", "{36591FDB-C836-48CB-BA9D-6BD876C0FACE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mercedes.Plugins.TrinhMinh.WebApi", "Plugins\Mercedes.Plugins.TrinhMinh.WebApi\Mercedes.Plugins.TrinhMinh.WebApi.csproj", "{7F295F69-2FAA-4ADF-89BA-EBD6FBC76E92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,15 +62,20 @@ Global
 		{51A25982-7E5C-407F-AA90-2DE7495642E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51A25982-7E5C-407F-AA90-2DE7495642E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51A25982-7E5C-407F-AA90-2DE7495642E6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0D0727E4-56F7-446E-9C87-55150373258E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D0727E4-56F7-446E-9C87-55150373258E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D0727E4-56F7-446E-9C87-55150373258E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D0727E4-56F7-446E-9C87-55150373258E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36591FDB-C836-48CB-BA9D-6BD876C0FACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36591FDB-C836-48CB-BA9D-6BD876C0FACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36591FDB-C836-48CB-BA9D-6BD876C0FACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36591FDB-C836-48CB-BA9D-6BD876C0FACE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F295F69-2FAA-4ADF-89BA-EBD6FBC76E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F295F69-2FAA-4ADF-89BA-EBD6FBC76E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F295F69-2FAA-4ADF-89BA-EBD6FBC76E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F295F69-2FAA-4ADF-89BA-EBD6FBC76E92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{0D0727E4-56F7-446E-9C87-55150373258E} = {05479B5A-2A6D-4440-8270-9CD89672C540}
+		{36591FDB-C836-48CB-BA9D-6BD876C0FACE} = {225C1153-8A99-46E7-B34C-2F851C600ACC}
+		{7F295F69-2FAA-4ADF-89BA-EBD6FBC76E92} = {05479B5A-2A6D-4440-8270-9CD89672C540}
 	EndGlobalSection
 EndGlobal

@@ -14,6 +14,7 @@ namespace Mercedes.Web
     {
         protected void Application_Start()
         {
+            SiteEngine.Instance.Init();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -21,7 +22,7 @@ namespace Mercedes.Web
             //Set viewEngines
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new MercedesViewEngine());
-            SiteEngine.Instance.Init();
+            
         }
     }
 }

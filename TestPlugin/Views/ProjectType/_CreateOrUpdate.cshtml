@@ -1,0 +1,73 @@
+﻿@using Mercedes.Plugins.TrinhMinh.WebApi.Models
+@model ProjectTypeModel
+@Html.ValidationSummary(false)
+@Html.HiddenFor(model => model.Id)
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+    <h4 class="modal-title">Project Type</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="form-group">
+            <label class="col-md-3 control-label">System Name</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.SystemName, new { @class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Name</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Display Order</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.DisplayOrder, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn btn-default" id="btn-Close">Close</button>
+    <button type="button" name="save" class="btn btn-success" onclick="submitEmailAccountForm(this)" id="btn-update">Save</button>
+</div>
+
+<script type="text/javascript">
+    function submitEmailAccountForm(source) {
+        var frmEmailAccount = $("#emailaccount-form");
+        var formData = frmEmailAccount.serialize();
+        if (source != null)
+        {
+            var buttonName = $(source).attr('name');
+            var param = {};
+            param[buttonName] = $(source).attr('value');
+            //formData = formData + '&' + $.param({ buttonName: $(source).attr('value') });
+            formData = formData + '&' + $.param(param);
+        }
+        
+        $("#btn-update").attr("disabled", "disabled");
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: frmEmailAccount.attr("action"),
+            data: formData,
+            success: function (data) {
+                if (data) {
+                    alert("Process request successfully");
+                    resourceTable.ajax.reload();
+                    //jQuery.noConflict();
+                    $('#frm-edit-emailaccount').modal('toggle');
+                } else {
+                    alert("Cannot Process request information. Please check again!");
+                }
+                $("#btn-update").removeAttr("disabled");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.responeText);
+                $("#btn-update").removeAttr("disabled");
+            }
+        });
+    }
+</script>

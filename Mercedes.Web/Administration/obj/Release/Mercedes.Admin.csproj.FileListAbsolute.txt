@@ -67,3 +67,4 @@ C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Web\Administration\bin\Dapper.xml
 C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Web\Administration\obj\Release\Mercedes.Admin.csprojResolveAssemblyReference.cache
 C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Web\Administration\obj\Release\Mercedes.Admin.dll
 C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Web\Administration\obj\Release\Mercedes.Admin.pdb
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Web\Administration\bin\Dapper.SqlBuilder.dll

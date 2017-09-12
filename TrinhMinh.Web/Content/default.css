@@ -1,0 +1,550 @@
+@font-face {
+    font-family: 'Conv_AkzidenzGrotesk-LightCond';
+    src: url('../fonts/AkzidenzGrotesk-LightCond.eot');
+    src: local('☺'), url('../fonts/AkzidenzGrotesk-LightCond.woff') format('woff'), url('../fonts/AkzidenzGrotesk-LightCond.ttf') format('truetype'), url('../fonts/AkzidenzGrotesk-LightCond.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+    font: normal 13px/20px Arial, Helvetica, sans-serif;
+    color: #000000;
+    background: #242424;
+}
+h1, h2, h3, h4, h5, h6{font-family: "Conv_AkzidenzGrotesk-LightCond", "Myriad Pro", Arial, Helvetica, sans-serif;}
+h1{font-size: 60px; line-height: 60px;}
+h2{font-size: 50px; line-height: 50px;}
+h3{font-size: 30px; line-height: 30px}
+h4{font-size: 20px; line-height: 24px;}
+
+li{list-style: none;}
+
+
+/*
+* 00. Structures
+*/
+.wrap-header{
+    width: 100%;
+    overflow: hidden;
+    background: #242424;
+    border-bottom: 1px solid #040507;
+}
+#header{
+    width: 1200px;
+    margin: 0 auto;
+}
+.wrap-container{
+    width: 100%;
+    overflow: hidden;
+}
+.wrap-footer{
+    width: 100%;
+    overflow: hidden;
+    background: #242424;
+    margin-bottom: 1px;
+    border-top: 1px solid #505050;
+    border-bottom: 1px solid #505050;
+}
+#footer{
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+.section{}
+.main{
+    width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.f-left{
+    float: left;
+    width: 290px;
+}
+.f-right{
+    float: right;
+    width: 910px;
+}
+
+/*
+* 01. Header
+*/
+#header h1.logo{
+    float: left;
+    margin: 0;
+    width: 240px;
+}
+h1 a{
+    display: block;    
+}
+
+/*
+* 02. Navigation
+*/
+#nav{
+    float: right;
+}
+#nav ul{
+    width: 100%;
+    margin: 50px auto;    
+}
+#nav ul li{
+    display: inline-block;
+    margin: 0 50px;
+}
+#nav ul li a{
+    display: block;
+    color: #2cabee;
+    font-size: 20px;
+    font-family: "Conv_AkzidenzGrotesk-LightCond", "Myriad Pro", Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+}
+#nav ul li a:hover, #nav ul li a.active{
+    color: #ffffff;
+    text-shadow: 5px 0px 5px #f4f4ec, -5px 0px 5px #f4f4ec, 0px -5px 5px #f4f4ec; 
+    transition: all 0.5s ease; 
+    -moz-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+}
+
+/*
+* 03. Main Content
+* Ordered & Grouped by #ContentPage
+*/
+
+/* 0. General */
+#home, #about-us, #projects, #services, #contact-us{
+    width: 100%;
+    min-height: 250px;
+    overflow: hidden;
+}
+.main h2{
+    color: #005083;
+    background: url("../images/bgd-line-01.jpg") repeat-x 0 100%;
+    padding: 0 0 5px 0;
+    width: 240px;
+    text-transform: uppercase;
+}
+
+/* 1. Home */
+#home{border-top: 1px solid #282a29;}
+#home .banner{width: 100%; text-align: center;}
+#home img{width: 100%;}
+
+/* 2. About Us */
+#about-us{
+    border-top: 5px solid #007fc2;
+    background: #ffffff url("../images/bgd-01.jpg") repeat-x 0 0;
+    color: #39444a;
+    font-size: 14px;
+    min-height: 258px;
+}
+#about-us .main{width: 700px;}
+#about-us h1{
+    margin: 25px auto 15px auto;
+    font-size: 40px;
+    line-height: 48px;
+    text-transform: uppercase;
+    color: #db7b65;
+    text-align: center;
+}
+#about-us ul{
+    float: left;
+    width: 50%;
+}
+#about-us ul li{
+    background: url("../images/ui-icon-link.png") no-repeat 0 0;
+    padding: 0 0 0 20px;
+    margin: 0 0 10px 60px;
+    font-size: 13px;
+    font-style: initial;
+}
+
+
+/* Projects */
+#projects{
+    background: url("../images/bgd-02.jpg") repeat 0 0;
+    padding: 30px 0 0 0;
+}
+#projects .f-left ul{
+    margin: 100px 0 0 0;
+}
+#projects .f-left ul li{
+    margin: 0 0 30px 0;
+    width: 100%;
+    float: left;
+}
+#projects .f-left ul li a{
+    font-family: "Conv_AkzidenzGrotesk-LightCond", "Myriad Pro", Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #2e2e2e;
+    background: url("../images/ui-icon-link.png") no-repeat 0 -40px;
+    padding: 0 0 0 40px;
+    display: block;
+    float: left;
+}
+#projects .f-left ul li a.active{
+    color: #db7b65;
+    background: url("../images/ui-icon-link.png") no-repeat 0 -80px;
+}
+#projects .f-left ul li a:hover{
+    color: #db7b65;
+    background: url("../images/ui-icon-link.png") no-repeat 0 -80px;
+    text-shadow: 5px 0px 5px #c44325, -5px 0px 5px #db7b65, 0px -5px 5px #ffffff; 
+    transition: all 0.5s ease; 
+    -moz-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+}
+
+.lst-projects{
+    overflow: hidden;
+    width: 100%;
+    margin: 10px 0;
+}
+.lst-projects .item{
+    float: left;
+    width: 260px;
+    height: 320px;
+    background: url("../images/bgd-item.jpg") no-repeat 0 0;
+    margin: 0 60px 30px 0;
+}
+.lst-projects .item:hover{
+    box-shadow: 0 0 40px rgba(143, 143, 143, .5) inset;
+    -moz-box-shadow: 0 0 40px rgba(143, 143, 143, .5) inset;
+    -webkit-box-shadow: 0 0 40px rgba(143, 143, 143, .5) inset;
+    transition: all 1s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -webkit-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+}
+.lst-projects .item:nth-of-type(3n){
+    margin-right: 0;
+}
+.lst-projects .item p, .lst-projects .item h4{
+    margin: 0;
+    text-align: center;
+}
+.lst-projects .item a{
+    display: block;
+}
+.lst-projects .item img{
+    margin: 10px;
+    width: 240px;
+    height: 240px;
+}
+.lst-projects .item h4, .lst-projects .item h4 a{
+    color: #234b6e;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.lst-projects h4 a:hover{
+    color: #db7b65;
+}
+
+
+
+/* Services */
+#services{
+    background: url("../images/bgd-03.jpg") repeat-x 0 0;
+    padding: 30px 0 10px 0;
+    color: #39444a;
+    height: 481px;
+}
+#services .f-right h3{
+    color: #ee7c1c;
+    font-size: 36px;
+    font-style: italic;
+    line-height: 48px;
+    text-align: center;
+    font-weight: normal;
+    word-spacing: 20px;
+}
+.sequence{
+    margin: 25px 0 15px 0;
+}
+.sequence .item{
+    float: left;
+    width: 260px;
+    margin: 0 60px 0 0;
+    text-align: center;
+}
+.sequence .item:last-child{
+    margin-right: 0;
+}
+.sequence .item h4{
+    text-transform: uppercase;
+    color: #000000;
+    font-weight: normal;
+    margin: 20px auto 12px auto;
+    text-decoration: underline;
+}
+.sequence .item p{
+    text-transform: uppercase;
+    font-size: 11px;
+    font-style: italic;
+    line-height: 27px;
+}
+
+
+/* Contact Us */
+#contact-us{
+    background: #121623 url("../images/bgd-04.jpg") no-repeat 50% 0;
+    border-bottom: 1px solid #040507;
+    color: #ffffff;
+    padding: 30px 0 0 0;
+    height: 626px;
+}
+#contact-us .f-left h2{
+    color: #ffffff;
+    background: none;
+}
+#contact-us .f-left{
+    width: 210px;
+}
+#contact-us .f-right{
+    width: 990px;
+}
+.page-des{
+    font-size: 12px;
+    font-style: italic;
+}
+#contact-us .page-des{
+    width: 170px;
+}
+.contact-info{
+    width: 100%;
+    overflow: hidden;
+}
+.contact-info ul li{
+    float: left;
+    width: 280px;
+    margin: 0 60px 0 0;
+}
+.contact-info ul li:last-child{
+    margin-right: 0;
+}
+.contact-info ul li .ui-icon{
+    float: left;
+}
+.contact-info ul li h4{
+    font-weight: normal;
+}
+.contact-info ul li h4 span{
+    font-weight: normal;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+}
+
+.frm-contact{
+    width: 770px;
+    margin: 15px 0 0 0;
+}
+.frm-contact h3{
+    text-align: center;
+    font-size: 40px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+.frm-contact .contact-des{
+    color: #58e2ff;
+    font-size: 13px;
+    font-style: italic;
+    margin: 20px 0 16px 70px;
+}
+.contact-msg{
+    margin: 0 0 16px 70px;
+    color: #ff0000;
+    font-size: 13px;
+}
+.frm-contact .inp{
+    float: left;
+    width: 330px;
+    height: 46px;
+    margin: 0 22px 24px 50px;
+}
+.frm-contact .inp.inp-02{
+    margin: 0;
+}
+.frm-contact .inp span, .frm-contact .area span{
+    float: left;
+    width: 10px;
+    margin: 15px 5px 0 20px;
+}
+.frm-contact .area{
+    float: left;
+    width: 680px;
+    height: 190px;
+    margin: 0 0 0 50px;
+}
+.frm-contact .inp input, .frm-contact .area textarea{
+    float: left;
+    background: none;
+    border: 0 none;
+    font-size: 13px;
+    font-style: italic;
+    color: #000000;
+    line-height: 24px;
+    margin: 10px 0;
+}
+.frm-contact .inp input{
+    height: 24px;
+    width: 290px;
+}
+.frm-contact .area textarea{
+    height: 170px;
+    width: 640px;
+}
+.frm-contact .btn-submit{
+    text-align: center;
+    margin: 30px auto 0 3px;
+    width: 770px;
+}
+.frm-contact .btn-submit a{
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px #000000;
+    color: #ffffff;
+    text-align: center;
+    width: 240px;
+    margin: 0 0 0 40px;
+}
+
+
+/*
+* 04. Hightlight - Blocks
+*/
+
+
+/*
+* 05. Footer
+*/
+.copyright{
+    width: 500px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-size: 11px;
+    margin: 40px auto;
+}
+#footer .block-social{
+    position: absolute;
+    left: 0;
+    top: 40px;
+}
+#footer .block-social li{
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+
+/*
+* 06. Forms
+*/
+
+
+/*
+* 07. Icons + Elements Sprite
+*/
+.ui-sequence{
+    background-image: url("../images/bgd-circle.png");
+    background-repeat: no-repeat;
+    display: block;
+    text-indent: -3000px;
+    font-size: 0;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto;
+}
+.design{
+    background-position: 0 0;
+}
+.development{
+    background-position: -200px 0;
+}
+.maintenance{
+    background-position: -400px 0;
+}
+.ui-icon{
+    background-image: url("../images/ui-icon.png");
+    background-repeat: no-repeat;
+    display: block;
+    text-indent: -3000px;
+    font-size: 0;
+}
+.facebook, .twitter, .google, .broadcast{
+    width: 25px;
+    height: 25px;
+}
+.facebook{
+    background-position: 0 0;
+}
+.twitter{
+    background-position: -40px 0;
+}
+.google{
+    background-position: -80px 0;
+}
+.broadcast{
+    background-position: -160px 0;
+}
+
+.address{
+    width: 24px;
+    height: 30px;
+    background-position: -80px -40px;
+    margin: 8px 15px 0 0;
+}
+.email{
+    width: 26px;
+    height: 16px;
+    background-position: -120px -40px;
+    margin: 15px 15px 0 0;
+}
+.phone{
+    width: 22px;
+    height: 28px;
+    background-position: -160px -40px;
+    margin: 10px 15px 0 0;
+}
+.i-back{
+    background-position: -160px -46px;
+    width: 10px;
+    height: 10px;
+    
+}
+
+
+/*
+* 08. Popup Style
+*/
+
+
+/*
+* 09. Paging - Breadcrumb
+*/
+
+
+/*
+* 10. Common Style
+*/
+.hidden{display: none;}
+
+.f-left{float: left;}
+.f-right{float: right;}
+.clear{clear: both;}
+
+.required, .txt-msg{color: #ff0000;}
+.txt-link{color: #ff9c00;}
+
+#toTop{
+    background: url("../images/ui-icon.png") no-repeat 0 -40px;
+    width: 51px;
+    height: 51px;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    text-indent: -3000px;
+    font-size: 0;
+}

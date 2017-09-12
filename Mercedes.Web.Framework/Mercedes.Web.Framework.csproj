@@ -118,6 +118,10 @@
     <Compile Include="UI\IPageHeadBuilder.cs" />
     <Compile Include="UI\LayoutExtensions.cs" />
     <Compile Include="UI\PageHeadBuilder.cs" />
+    <Compile Include="Website\Controllers\HomeController.cs" />
+    <Compile Include="Website\Global Configs\FilterConfig.cs" />
+    <Compile Include="Website\Global Configs\RouteConfig.cs" />
+    <Compile Include="Website\MerBenzApplication.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mercedes.Core\Mercedes.Core.csproj">

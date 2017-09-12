@@ -1,0 +1,9 @@
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Data.EF\bin\Release\Mercedes.Data.EF.dll.config
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Data.EF\bin\Release\Mercedes.Data.EF.dll
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Data.EF\bin\Release\Mercedes.Data.EF.pdb
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Data.EF\bin\Release\EntityFramework.dll
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Data.EF\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Data.EF\bin\Release\EntityFramework.xml
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Data.EF\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Data.EF\obj\Release\Mercedes.Data.EF.dll
+C:\Users\tuyen\Source\Repos\mcdb\Mercedes.Data.EF\obj\Release\Mercedes.Data.EF.pdb

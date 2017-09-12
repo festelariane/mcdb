@@ -1,0 +1,67 @@
+﻿@using Mercedes.Plugins.TrinhMinh.WebApi.Models
+@model ProjectTypeModel
+@Html.ValidationSummary(false)
+@Html.HiddenFor(model => model.Id)
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+    <h4 class="modal-title">ProjectType Information</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="form-group">
+            <label class="col-md-3 control-label">System Name</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.SystemName, new { @class = "form-control"})
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Name</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Display Order</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.DisplayOrder, new { @class = "form-control touchspin_displayorder" })
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn btn-default" id="btn-Close">Close</button>
+    <button type="button" name="save" class="btn btn-success" onclick="saveProjectType(this)" id="btn-update">Update</button>
+</div>
+
+<script type="text/javascript">
+    function saveProjectType() {
+        var frmProjectType = $("#projecttype-form");
+        var formData = frmProjectType.serialize();
+        $("#btn-update").attr("disabled", "disabled");
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: '@Url.Action("SaveProjectType")',
+            data: formData,
+            success: function (data) {
+                if (data) {
+                    alert("Save project type successfully");
+                    resourceTable.ajax.reload();
+                    //jQuery.noConflict();
+                    $('#frm-edit-projecttype').modal('toggle');
+                } else {
+                    alert("Cannot save project type information. Please check again!");
+                }
+                $("#btn-update").removeAttr("disabled");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.responeText);
+                $("#btn-update").removeAttr("disabled");
+            }
+        });
+    }
+    $(function () {
+        $("#DisplayOrder").TouchSpin();
+    });
+</script>

@@ -41,7 +41,7 @@ namespace Mercedes.Framework.Menu
                 var routeData = context.Request.RequestContext.RouteData;
                 var currentAction = routeData.Values["action"].ToString();
                 var currentController = routeData.Values["controller"].ToString();
-                var currentArea = context.Request.RequestContext.RouteData.DataTokens["area"].ToString();
+                var currentArea = Convert.ToString(context.Request.RequestContext.RouteData.DataTokens["area"]);
 
                 if(this.RootNode == null)
                 {
